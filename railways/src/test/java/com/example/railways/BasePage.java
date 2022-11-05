@@ -1,5 +1,6 @@
 package com.example.railways;
 
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
-// page_url = http://www.railwayb2.somee.com/
+@Getter
 public class BasePage {
 
     @FindBy(xpath = "//div[@id='menu']")
