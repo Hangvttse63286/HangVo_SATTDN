@@ -28,6 +28,15 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//a[contains(@href, 'ForgotPassword')]")
     private WebElement forgotPasswordLink;
 
+    @FindBy(xpath = "//p[contains(@class,'error')]")
+    private WebElement errorMsg;
+
+    @FindBy(xpath = "//form[@class='LoginForm']//label[@for='username' and @class='validation-error']")
+    private WebElement usernameValidationErrMsg;
+
+    @FindBy(xpath = "//form[@class='LoginForm']//label[@for='password' and @class='validation-error']")
+    private WebElement passwordValidationErrMsg;
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -40,24 +49,9 @@ public class LoginPage extends BasePage{
         forgotPasswordLink.click();
     }
 
-    public Boolean isDisplayedLoginForm() {
-        return loginForm.isDisplayed();
-    }
-
     public void login(String username, String password) {
         usernameTxt.sendKeys(username);
         passwordTxt.sendKeys(password);
         loginBtn.click();
-    }
-
-    public void sendKeys(String textbox, String keys) {
-        switch (textbox) {
-            case "username":
-                usernameTxt.sendKeys(keys);
-                break;
-            case "password":
-                passwordTxt.sendKeys(keys);
-                break;
-        }
     }
 }

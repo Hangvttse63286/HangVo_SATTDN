@@ -21,17 +21,8 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void navigate(String tab) {
-            navBar.findElement(By.xpath("//span[.='" + tab + "']/..")).click();
+    public WebElement getTab(String tab) {
+            return navBar.findElement(By.xpath("//span[.='" + tab + "']/.."));
     }
-
-    public String getWelcomeText() {
-        return welcomeText.getText();
-    }
-
-    public Boolean isDisplayedTab(String tab) {
-        return navBar.findElement(By.xpath("//span[.='" + tab + "']/..")).isDisplayed();
-    }
-
 
 }

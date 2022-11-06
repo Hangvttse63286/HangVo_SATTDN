@@ -32,6 +32,21 @@ public class RegisterPage extends BasePage{
     @FindBy(xpath = "//a[contains(@href, 'Confirm')]")
     private WebElement confirmLink;
 
+    @FindBy(xpath = "//p[contains(@class,'error')]")
+    private WebElement errorMsg;
+
+    @FindBy(xpath = "//form[@class='RegisterForm']//label[@for='email' and @class='validation-error']")
+    private WebElement emailValidationErrMsg;
+
+    @FindBy(xpath = "//form[@class='RegisterForm']//label[@for='password' and @class='validation-error']")
+    private WebElement passwordValidationErrMsg;
+
+    @FindBy(xpath = "//form[@class='RegisterForm']//label[@for='confirmPassword' and @class='validation-error']")
+    private WebElement confirmPasswordValidationErrMsg;
+
+    @FindBy(xpath = "//form[@class='RegisterForm']//label[@for='pid' and @class='validation-error']")
+    private WebElement pidValidationErrMsg;
+
     public RegisterPage(WebDriver driver) {
         super(driver);
     }
@@ -44,32 +59,11 @@ public class RegisterPage extends BasePage{
         confirmLink.click();
     }
 
-    public Boolean isDisplayedLoginForm() {
-        return registerForm.isDisplayed();
-    }
-
     public void register(String email, String password, String confirmPassword, String pid) {
         emailTxt.sendKeys(email);
         passwordTxt.sendKeys(password);
         confirmPasswordTxt.sendKeys(password);
         pidTxt.sendKeys(password);
         registerBtn.click();
-    }
-
-    public void sendKeys(String textbox, String keys) {
-        switch (textbox) {
-            case "email":
-                emailTxt.sendKeys(keys);
-                break;
-            case "password":
-                passwordTxt.sendKeys(keys);
-                break;
-            case "confirmPassword":
-                confirmPasswordTxt.sendKeys(keys);
-                break;
-            case "pid":
-                pidTxt.sendKeys(keys);
-                break;
-        }
     }
 }

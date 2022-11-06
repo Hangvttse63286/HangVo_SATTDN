@@ -46,4 +46,5 @@ public class TicketPricePage extends BasePage{
         return bookTicketBtn.findElement(By.xpath("/ancestor::tr//li[contains(@class,'ListSmall')]"));
     }
 
+
 }
