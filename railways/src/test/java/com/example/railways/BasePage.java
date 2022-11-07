@@ -10,7 +10,6 @@ import java.util.List;
 
 @Getter
 public class BasePage {
-
     @FindBy(xpath = "//div[@id='menu']")
     private WebElement navBar;
 

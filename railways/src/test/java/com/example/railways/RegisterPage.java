@@ -1,6 +1,7 @@
 package com.example.railways;
 
 import lombok.Getter;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,8 +48,11 @@ public class RegisterPage extends BasePage{
     @FindBy(xpath = "//form[@class='RegisterForm']//label[@for='pid' and @class='validation-error']")
     private WebElement pidValidationErrMsg;
 
+    private JavascriptExecutor js;
+
     public RegisterPage(WebDriver driver) {
         super(driver);
+        js = (JavascriptExecutor) driver;
     }
 
     public void clickLoginLink() {
@@ -64,6 +68,8 @@ public class RegisterPage extends BasePage{
         passwordTxt.sendKeys(password);
         confirmPasswordTxt.sendKeys(password);
         pidTxt.sendKeys(password);
+
+        js.executeScript("arguments[0].scrollIntoView();", registerBtn);
         registerBtn.click();
     }
 }
