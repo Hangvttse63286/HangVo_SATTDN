@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Raiways Suite" verbose="1">
+    <test name="Railways Test">
+        <classes>
+            <class name="com.example.railways.testcases.LoginPageTest">
+                <methods>
+                    <include name="TC_001_ValidateLoginNavigation"/>
+                </methods>
+            </class>
+            <class name="com.example.railways.testcases.RegisterPageTest"/>
+        </classes>
+    </test>
+</suite>
