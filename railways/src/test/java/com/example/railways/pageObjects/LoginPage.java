@@ -1,5 +1,6 @@
 package com.example.railways.pageObjects;
 
+import com.example.railways.common.constant.Constant;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,6 +43,12 @@ public class LoginPage extends BasePage {
     public void login(String email, String password) {
         loc_txtEmail.sendKeys(email);
         loc_txtPassword.sendKeys(password);
+        loc_btnLogin.click();
+    }
+
+    public void loginWithValidAcc() {
+        loc_txtEmail.sendKeys(Constant.EMAIL);
+        loc_txtPassword.sendKeys(Constant.PASSWORD);
         loc_btnLogin.click();
     }
 }

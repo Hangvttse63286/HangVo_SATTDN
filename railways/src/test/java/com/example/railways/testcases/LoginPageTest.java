@@ -6,6 +6,8 @@ import com.example.railways.common.utilities.BaseSetup;
 import com.example.railways.pageObjects.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterGroups;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -19,14 +21,14 @@ public class LoginPageTest extends BaseSetup {
         driver = getDriver();
     }
 
-    @Test
+    @Test(priority = 2)
     public void TC_001_ValidateLoginNavigation() {
         loginPage = new LoginPage(driver);
         loginPage.getTab(Tab.LOGIN.getName()).click();
         Assert.assertEquals(driver.getCurrentUrl(), Constant.RAILWAYS_LOGIN_URL);
     }
 
-    @Test
+    @Test(priority = 1)
     public void TC_002_Login_ValidAccount() {
         String email = Constant.EMAIL;
         String password = Constant.PASSWORD;
@@ -35,7 +37,7 @@ public class LoginPageTest extends BaseSetup {
         loginPage.getTab(Tab.LOGIN.getName()).click();
         loginPage.login(email, password);
         String welcomeText = loginPage.getLoc_lblWelcomeText().getText().trim();
-        loginPage.getTab(Tab.LOGOUT.getName()).click();
         Assert.assertEquals(welcomeText, "Welcome " + email);
+//        loginPage.getTab(Tab.LOGOUT.getName()).click();
     }
 }

@@ -37,8 +37,8 @@ public class BookTicketPage extends BasePage{
         super(driver);
     }
 
-    public void selectOption (WebElement combobox, String value) {
-        combobox.findElement(By.xpath("/option[@value='"+value+"']")).click();
+    public void selectOption (WebElement dropdown, String value) {
+        dropdown.findElement(By.xpath("/option[@value='"+value+"']")).click();
     }
 
 
