@@ -5,6 +5,7 @@ import com.example.railways.common.constant.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.Utilities;
+import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.RegisterPage;
@@ -30,26 +31,26 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
 
     @Test
     public void TC_Register_ConfirmPasswordMismatchPassword() {
-        Log.info("TC10-User can't create account with \"Confirm password\" is not the same with \"Password\"");
+        ExtentTestManager.logMessage("TC10-User can't create account with \"Confirm password\" is not the same with \"Password\"");
 
-        Log.info("Navigate to QA Railway Website");
+        ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
-        Log.info("Click on \"Register\" tab");
+        ExtentTestManager.logMessage("Click on \"Register\" tab");
         homePage.getTab(Tab.REGISTER).click();
 
         String email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
         String password = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
         String confirmPassword = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
         String pid = Utilities.generateRandomString(Utilities.getRandomNumber(8, 20));
-        Log.info("Email: " + email + " - Password: " + password + " - Confirm Password: " + confirmPassword + " - Pid: " + pid);
+        ExtentTestManager.logMessage("Email: " + email + " - Password: " + password + " - Confirm Password: " + confirmPassword + " - Pid: " + pid);
 
         RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
         DriverManager.scrollToView(registerPage.getBtnRegister());
-        Log.info("Enter valid information into all fields except \"Confirm password\" is not the same with \"Password\"");
-        Log.info("Click on \"Register\" button");
+        ExtentTestManager.logMessage("Enter valid information into all fields except \"Confirm password\" is not the same with \"Password\"");
+        ExtentTestManager.logMessage("Click on \"Register\" button");
         registerPage.register(email, password, confirmPassword, pid);
 
-        Log.info("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears.");
+        ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears.");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(registerPage.getMsgError().isDisplayed());
         softAssert.assertEquals(registerPage.getMsgError().getText(), "There're errors in the form. Please correct the errors and try again.");

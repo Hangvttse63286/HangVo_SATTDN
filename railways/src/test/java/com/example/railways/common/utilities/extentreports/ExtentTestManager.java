@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.example.railways.common.utilities.DriverManager;
+import com.example.railways.common.utilities.Log;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -45,6 +46,7 @@ public class ExtentTestManager {
 
     public static void logMessage(String message) {
         getTest().log(Status.INFO, message);
+        Log.info(message);
     }
 
     public static void logMessage(Status status, String message) {

@@ -3,6 +3,7 @@ package com.example.railways.testcases.login;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
+import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
@@ -16,12 +17,12 @@ public class TC01_Login_ValidAcc extends BaseTest {
 
     @Test
     public void TC_Login_ValidAccount() {
-        Log.info("TC01-User can log into Railway with valid username and password");
+        ExtentTestManager.logMessage("TC01-User can log into Railway with valid username and password");
 
-        Log.info("Navigate to QA Railway Website");
+        ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
 
-        Log.info("Click on \"Login\" tab");
+        ExtentTestManager.logMessage("Click on \"Login\" tab");
         homePage.getTab(Tab.LOGIN).click();
 
         String email = getEmail();
@@ -30,12 +31,12 @@ public class TC01_Login_ValidAcc extends BaseTest {
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
         DriverManager.scrollToView(loginPage.getBtnLogin());
-        Log.info("Enter valid Email and Password");
-        Log.info("Click on \"Login\" button");
+        ExtentTestManager.logMessage("Enter valid Email and Password");
+        ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);
         String welcomeText = loginPage.getLblWelcomeText().getText().trim();
 
-        Log.info("Expected: User is logged into Railway. Welcome user message is displayed.");
+        ExtentTestManager.logMessage("Expected: User is logged into Railway. Welcome user message is displayed.");
         Assert.assertEquals(welcomeText, "Welcome " + email);
     }
 }
