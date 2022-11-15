@@ -39,8 +39,8 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         DriverManager.open(Url.RAILWAYS_URL.getUrlLink());
-        DriverManager.pageLoadTimeout(TimeUnit.SECONDS);
-        DriverManager.implicitlyWait(TimeUnit.SECONDS);
+        DriverManager.pageLoadTimeout();
+        DriverManager.implicitlyWait();
 
         RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
         registerPage.getTab(Tab.REGISTER).click();
