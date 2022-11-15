@@ -18,7 +18,7 @@ public class DriverManager {
     }
 
     public static void setDriver() {
-        Browser browserType = Browser.valueOf(ConfigFileReader.getValue("browser"));
+        Browser browserType = Browser.valueOf(ConfigFileReader.getValue("browser").toUpperCase().replaceAll("\\s+",""));
         switch (browserType) {
             case CHROME:
                 driver = initChromeDriver();
@@ -27,7 +27,7 @@ public class DriverManager {
                 driver = initFirefoxDriver();
                 break;
             default:
-                System.out.println("Browser: " + browserType.getName() + " is invalid, Launching Chrome as browser of choice...");
+                System.out.println("Browser: " + browserType.name() + " is invalid, Launching Chrome as browser of choice...");
                 driver = initChromeDriver();
                 break;
         }

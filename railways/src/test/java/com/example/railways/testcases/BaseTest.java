@@ -8,9 +8,7 @@ import com.example.railways.common.utilities.Utilities;
 import com.example.railways.dataObjects.ConfigFileReader;
 import com.example.railways.pageObjects.RegisterPage;
 import org.testng.annotations.*;
-
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
