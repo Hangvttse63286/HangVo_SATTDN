@@ -4,12 +4,16 @@ import com.example.railways.common.constant.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.Utilities;
+import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+@Listeners(ReportListener.class)
 public class TC03_Login_InvalidPassword extends BaseTest {
 
     @Test
@@ -32,7 +36,9 @@ public class TC03_Login_InvalidPassword extends BaseTest {
         loginPage.login(email, password);
 
         Log.info("Expected: Error message \"There was a problem with your login and/or errors exist in your form.\" is displayed");
-        Assert.assertTrue(loginPage.getMsgError().isDisplayed());
-        Assert.assertEquals(loginPage.getMsgError().getText(), "Invalid username or password. Please try again.");
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(loginPage.getMsgError().isDisplayed());
+        softAssert.assertEquals(loginPage.getMsgError().getText(), "Invalid username or password. Please try again.");
+        softAssert.assertAll();
     }
 }

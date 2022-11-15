@@ -4,12 +4,16 @@ import com.example.railways.common.constant.Tab;
 import com.example.railways.common.constant.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
+import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+@Listeners(ReportListener.class)
 public class TC08_Login_InactivatedAccount extends BaseTest {
 
     @Test
@@ -34,8 +38,10 @@ public class TC08_Login_InactivatedAccount extends BaseTest {
 
         Log.info("Expected: User can't login and message \"Invalid username or password. Please try again.\" appears.");
         String welcomeText = loginPage.getLblWelcomeText().getText().trim();
+        SoftAssert softAssert = new SoftAssert();
         Assert.assertEquals(DriverManager.getDriver().getCurrentUrl(), Url.RAILWAYS_LOGIN_URL.getUrlLink());
-        Assert.assertEquals(welcomeText, "Welcome guest!");
-        Assert.assertEquals(loginPage.getMsgError().getText(), "Invalid username or password. Please try again.");
+        softAssert.assertEquals(welcomeText, "Welcome guest!");
+        softAssert.assertEquals(loginPage.getMsgError().getText(), "Invalid username or password. Please try again.");
+        softAssert.assertAll();
     }
 }

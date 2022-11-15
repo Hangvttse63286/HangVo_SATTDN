@@ -1,48 +1,42 @@
 package com.example.railways.dataObjects;
 
+import com.example.railways.common.utilities.Log;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Properties;
 
 public class ConfigFileReader {
 
-    private final Properties properties;
+    private static Properties properties;
+    static String propertyFilePath = "src//test//resources//config.properties";
 
-    public ConfigFileReader() {
+    public static void setConfigFileReader() {
         BufferedReader reader;
-        String propertyFilePath = "src//test//resources//config.properties";
+
+        properties = new Properties();
         try {
             reader = new BufferedReader(new FileReader(propertyFilePath));
-            properties = new Properties();
             try {
                 properties.load(reader);
                 reader.close();
             } catch (IOException e) {
+                Log.error("Error" + Arrays.toString(e.getStackTrace()));
                 e.printStackTrace();
             }
         } catch (FileNotFoundException e) {
+            Log.error("Error" + Arrays.toString(e.getStackTrace()));
             e.printStackTrace();
             throw new RuntimeException("config.properties not found at " + propertyFilePath);
         }
     }
 
-    public String getDriverPath() {
-        String driverPath = properties.getProperty("driverPath");
-        if (driverPath != null) return driverPath;
-        else throw new RuntimeException("driverPath not specified in the config.properties file.");
-    }
-
-    public long getPageLoadTimeout() {
-        String pageLoadTimeout = properties.getProperty("pageLoadTimeout");
-        if (pageLoadTimeout != null) return Long.parseLong(pageLoadTimeout);
-        else throw new RuntimeException("pageLoadTimeout not specified in the config.properties file.");
-    }
-
-    public long getImplicitlyWait() {
-        String implicitlyWait = properties.getProperty("implicitlyWait");
-        if (implicitlyWait != null) return Long.parseLong(implicitlyWait);
-        else throw new RuntimeException("implicitlyWait not specified in the config.properties file.");
+    public static String getValue(String key) {
+        String value = properties.getProperty(key);
+        if (value != null) return value;
+        else throw new RuntimeException(key + " not specified in the config.properties file.");
     }
 }

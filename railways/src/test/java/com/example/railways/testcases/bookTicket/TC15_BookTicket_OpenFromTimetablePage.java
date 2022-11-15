@@ -5,12 +5,16 @@ import com.example.railways.common.constant.Tab;
 import com.example.railways.common.constant.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
+import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.*;
 import com.example.railways.testcases.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+@Listeners(ReportListener.class)
 public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
 
     @Test
@@ -44,7 +48,9 @@ public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
         BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
         DriverManager.scrollToView(bookTicketPage.getBtnBookTicket());
 
-        Assert.assertEquals(bookTicketPage.getDdlDepartStation().getFirstSelectedOption().getText(), timetableDpStation.getName());
-        Assert.assertEquals(bookTicketPage.getDdlArriveStation().getFirstSelectedOption().getText(), timetableArStation.getName());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(bookTicketPage.getDdlDepartStation().getFirstSelectedOption().getText(), timetableDpStation.getName());
+        softAssert.assertEquals(bookTicketPage.getDdlArriveStation().getFirstSelectedOption().getText(), timetableArStation.getName());
+        softAssert.assertAll();
     }
 }

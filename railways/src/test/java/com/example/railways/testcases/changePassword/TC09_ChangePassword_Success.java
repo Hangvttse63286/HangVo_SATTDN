@@ -4,13 +4,17 @@ import com.example.railways.common.constant.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.Utilities;
+import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.ChangePasswordPage;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+@Listeners(ReportListener.class)
 public class TC09_ChangePassword_Success extends BaseTest {
 
     @Test
@@ -38,7 +42,9 @@ public class TC09_ChangePassword_Success extends BaseTest {
         changePasswordPage.changePassword(getPassword(), newPassword, newPassword);
 
         Log.info("Expected: Message \"Your password has been updated!\" appears.");
-        Assert.assertTrue(changePasswordPage.getMsgSuccess().isDisplayed());
-        Assert.assertEquals(changePasswordPage.getMsgSuccess().getText(), "Your password has been updated!");
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(changePasswordPage.getMsgSuccess().isDisplayed());
+        softAssert.assertEquals(changePasswordPage.getMsgSuccess().getText(), "Your password has been updated!");
+        softAssert.assertAll();
     }
 }

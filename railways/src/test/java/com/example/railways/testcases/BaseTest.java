@@ -3,10 +3,13 @@ package com.example.railways.testcases;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.constant.Url;
 import com.example.railways.common.utilities.DriverManager;
+import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.Utilities;
+import com.example.railways.dataObjects.ConfigFileReader;
 import com.example.railways.pageObjects.RegisterPage;
 import org.testng.annotations.*;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
@@ -22,19 +25,19 @@ public class BaseTest {
         return password;
     }
 
-    @Parameters({"browserType"})
     @BeforeTest
-    public void initializeTestBaseSetup(String browserType) {
+    public void initializeTestBaseSetup() {
         try {
-            DriverManager.setDriver(browserType);
+            ConfigFileReader.setConfigFileReader();
+            DriverManager.setDriver();
             DriverManager.maximizeWindow();
         } catch (Exception e) {
-            System.out.println("Error..." + e.getStackTrace());
+            Log.error("Error..." + Arrays.toString(e.getStackTrace()));
         }
     }
 
     @BeforeMethod
-    public void openWebsite() {
+    public void setUp() {
         DriverManager.open(Url.RAILWAYS_URL.getUrlLink());
         DriverManager.pageLoadTimeout(TimeUnit.SECONDS);
         DriverManager.implicitlyWait(TimeUnit.SECONDS);
@@ -55,9 +58,13 @@ public class BaseTest {
     }
 
     @AfterTest
-    public void tearDown() throws Exception {
-        Thread.sleep(2000);
-        DriverManager.quit();
+    public void tearDown() {
+        try {
+            Thread.sleep(2000);
+            DriverManager.quit();
+        } catch (Exception e) {
+            Log.error("Error..." + Arrays.toString(e.getStackTrace()));
+        }
     }
 }
 

@@ -5,20 +5,24 @@ import com.example.railways.common.constant.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.Utilities;
+import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.RegisterPage;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.concurrent.TimeUnit;
 
+@Listeners(ReportListener.class)
 public class TC07_Register_Success extends BaseTest {
 
     @Override
     @BeforeMethod
-    public void openWebsite() {
+    public void setUp() {
         DriverManager.pageLoadTimeout(TimeUnit.SECONDS);
         DriverManager.implicitlyWait(TimeUnit.SECONDS);
         DriverManager.open(Url.RAILWAYS_URL.getUrlLink());
@@ -45,7 +49,9 @@ public class TC07_Register_Success extends BaseTest {
         registerPage.register(email, password, password, pid);
 
         Log.info("Expected: New account is created and message \"You're here\"");
-        Assert.assertTrue(registerPage.getMsgSuccess().isDisplayed());
-        Assert.assertEquals(registerPage.getMsgSuccess().getText(), "You're here");
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(registerPage.getMsgSuccess().isDisplayed());
+        softAssert.assertEquals(registerPage.getMsgSuccess().getText(), "You're here");
+        softAssert.assertAll();
     }
 }

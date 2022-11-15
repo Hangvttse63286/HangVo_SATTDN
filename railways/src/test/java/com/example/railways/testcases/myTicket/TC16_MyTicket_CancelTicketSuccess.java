@@ -3,11 +3,14 @@ package com.example.railways.testcases.myTicket;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
+import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.*;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(ReportListener.class)
 public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
 
     @Test

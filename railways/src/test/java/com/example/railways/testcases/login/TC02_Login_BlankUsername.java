@@ -3,12 +3,16 @@ package com.example.railways.testcases.login;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
+import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+@Listeners(ReportListener.class)
 public class TC02_Login_BlankUsername extends BaseTest {
 
     @Test
@@ -31,7 +35,9 @@ public class TC02_Login_BlankUsername extends BaseTest {
         loginPage.login(email, password);
 
         Log.info("Expected: User can't login and message \"There was a problem with your login and/or errors exist in your form. \" appears.");
-        Assert.assertTrue(loginPage.getMsgError().isDisplayed());
-        Assert.assertEquals(loginPage.getMsgError().getText(), "There was a problem with your login and/or errors exist in your form.");
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(loginPage.getMsgError().isDisplayed());
+        softAssert.assertEquals(loginPage.getMsgError().getText(), "There was a problem with your login and/or errors exist in your form.");
+        softAssert.assertAll();
     }
 }

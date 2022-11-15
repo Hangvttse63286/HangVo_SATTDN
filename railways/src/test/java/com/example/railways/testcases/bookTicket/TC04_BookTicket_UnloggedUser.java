@@ -4,11 +4,14 @@ import com.example.railways.common.constant.Tab;
 import com.example.railways.common.constant.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
+import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(ReportListener.class)
 public class TC04_BookTicket_UnloggedUser extends BaseTest {
 
     @Test

@@ -4,12 +4,16 @@ import com.example.railways.common.constant.Tab;
 import com.example.railways.common.constant.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
+import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+@Listeners(ReportListener.class)
 public class TC06_Login_AdditionalPagesDisplay extends BaseTest {
 
     @Test
@@ -31,16 +35,18 @@ public class TC06_Login_AdditionalPagesDisplay extends BaseTest {
         loginPage.login(email, password);
 
         Log.info("Expected: \"My ticket\", \"Change password\" and \"Logout\" tabs are displayed. ");
-        Assert.assertTrue(loginPage.getTab(Tab.MY_TICKET).isDisplayed()
-                && loginPage.getTab(Tab.CHANGE_PASSWORD).isDisplayed()
-                && loginPage.getTab(Tab.LOGOUT).isDisplayed());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(loginPage.getTab(Tab.MY_TICKET).isDisplayed());
+        softAssert.assertTrue(loginPage.getTab(Tab.CHANGE_PASSWORD).isDisplayed());
+        softAssert.assertTrue(loginPage.getTab(Tab.LOGOUT).isDisplayed());
 
         loginPage.getTab(Tab.MY_TICKET).click();
         Log.info("Expected: Click \"My ticket\" tab, user will be directed to My ticket page");
-        Assert.assertEquals(DriverManager.getCurrentUrl(), Url.RAILWAYS_MY_TICKET_URL.getUrlLink());
+        softAssert.assertEquals(DriverManager.getCurrentUrl(), Url.RAILWAYS_MY_TICKET_URL.getUrlLink());
 
         loginPage.getTab(Tab.CHANGE_PASSWORD).click();
         Log.info("Expected: Click \"Change password\" tab, user will be directed to Change password page");
-        Assert.assertEquals(DriverManager.getCurrentUrl(), Url.RAILWAYS_CHANGE_PASSWORD_URL.getUrlLink());
+        softAssert.assertEquals(DriverManager.getCurrentUrl(), Url.RAILWAYS_CHANGE_PASSWORD_URL.getUrlLink());
+        softAssert.assertAll();
     }
 }
