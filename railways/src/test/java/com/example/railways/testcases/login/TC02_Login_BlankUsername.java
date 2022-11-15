@@ -1,5 +1,6 @@
 package com.example.railways.testcases.login;
 
+import com.example.railways.common.constant.Message;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
@@ -38,7 +39,7 @@ public class TC02_Login_BlankUsername extends BaseTest {
         ExtentTestManager.logMessage("Expected: User can't login and message \"There was a problem with your login and/or errors exist in your form. \" appears.");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(loginPage.getMsgError().isDisplayed());
-        softAssert.assertEquals(loginPage.getMsgError().getText(), "There was a problem with your login and/or errors exist in your form.");
+        softAssert.assertEquals(loginPage.getMsgError().getText(), Message.LOGIN_BLANK_FIELD.getMsg());
         softAssert.assertAll();
     }
 }

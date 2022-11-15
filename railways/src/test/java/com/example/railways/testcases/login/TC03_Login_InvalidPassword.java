@@ -1,5 +1,6 @@
 package com.example.railways.testcases.login;
 
+import com.example.railways.common.constant.Message;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
@@ -36,10 +37,10 @@ public class TC03_Login_InvalidPassword extends BaseTest {
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);
 
-        ExtentTestManager.logMessage("Expected: Error message \"There was a problem with your login and/or errors exist in your form.\" is displayed");
+        ExtentTestManager.logMessage("Expected: Error message \"Invalid username or password. Please try again.\" is displayed");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(loginPage.getMsgError().isDisplayed());
-        softAssert.assertEquals(loginPage.getMsgError().getText(), "Invalid username or password. Please try again.");
+        softAssert.assertEquals(loginPage.getMsgError().getText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
         softAssert.assertAll();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.railways.testcases.login;
 
+import com.example.railways.common.constant.Message;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.constant.Url;
 import com.example.railways.common.utilities.DriverManager;
@@ -41,8 +42,8 @@ public class TC08_Login_InactivatedAccount extends BaseTest {
         String welcomeText = loginPage.getLblWelcomeText().getText().trim();
         SoftAssert softAssert = new SoftAssert();
         Assert.assertEquals(DriverManager.getDriver().getCurrentUrl(), Url.RAILWAYS_LOGIN_URL.getUrlLink());
-        softAssert.assertEquals(welcomeText, "Welcome guest!");
-        softAssert.assertEquals(loginPage.getMsgError().getText(), "Invalid username or password. Please try again.");
+        softAssert.assertEquals(welcomeText, Message.UNLOGGED_WELCOME_TEXT.getMsg());
+        softAssert.assertEquals(loginPage.getMsgError().getText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
         softAssert.assertAll();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.railways.testcases.changePassword;
 
+import com.example.railways.common.constant.Message;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
@@ -45,7 +46,7 @@ public class TC09_ChangePassword_Success extends BaseTest {
         ExtentTestManager.logMessage("Expected: Message \"Your password has been updated!\" appears.");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(changePasswordPage.getMsgSuccess().isDisplayed());
-        softAssert.assertEquals(changePasswordPage.getMsgSuccess().getText(), "Your password has been updated!");
+        softAssert.assertEquals(changePasswordPage.getMsgSuccess().getText(), Message.CHANGE_PASSWORD_SUCCESS.getMsg());
         softAssert.assertAll();
     }
 }

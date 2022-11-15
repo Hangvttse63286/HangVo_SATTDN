@@ -1,5 +1,6 @@
 package com.example.railways.testcases.login;
 
+import com.example.railways.common.constant.Message;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
@@ -41,7 +42,7 @@ public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
         ExtentTestManager.logMessage("Expected: User can't login and message \"You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.\" appears.");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(loginPage.getMsgError().isDisplayed());
-        softAssert.assertEquals(loginPage.getMsgError().getText(), "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.");
+        softAssert.assertEquals(loginPage.getMsgError().getText(), Message.LOGIN_FAILED_SEVERAL_TIMES.getMsg());
         softAssert.assertAll();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.railways.testcases.login;
 
+import com.example.railways.common.constant.Message;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
@@ -37,6 +38,6 @@ public class TC01_Login_ValidAcc extends BaseTest {
         String welcomeText = loginPage.getLblWelcomeText().getText().trim();
 
         ExtentTestManager.logMessage("Expected: User is logged into Railway. Welcome user message is displayed.");
-        Assert.assertEquals(welcomeText, "Welcome " + email);
+        Assert.assertEquals(welcomeText, Message.LOGGED_WELCOME_TEXT.getMsg() + email);
     }
 }

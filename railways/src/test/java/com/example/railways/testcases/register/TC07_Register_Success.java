@@ -1,5 +1,6 @@
 package com.example.railways.testcases.register;
 
+import com.example.railways.common.constant.Message;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.constant.Url;
 import com.example.railways.common.utilities.DriverManager;
@@ -24,8 +25,8 @@ public class TC07_Register_Success extends BaseTest {
     @Override
     @BeforeMethod
     public void setUp() {
-        DriverManager.pageLoadTimeout(TimeUnit.SECONDS);
-        DriverManager.implicitlyWait(TimeUnit.SECONDS);
+        DriverManager.pageLoadTimeout();
+        DriverManager.implicitlyWait();
         DriverManager.open(Url.RAILWAYS_URL.getUrlLink());
     }
 
@@ -52,7 +53,7 @@ public class TC07_Register_Success extends BaseTest {
         ExtentTestManager.logMessage("Expected: New account is created and message \"You're here\"");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(registerPage.getMsgSuccess().isDisplayed());
-        softAssert.assertEquals(registerPage.getMsgSuccess().getText(), "You're here");
+        softAssert.assertEquals(registerPage.getMsgSuccess().getText(), Message.REGISTER_SUCCESS.getMsg());
         softAssert.assertAll();
     }
 }

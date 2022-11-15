@@ -1,5 +1,6 @@
 package com.example.railways.common.utilities;
 
+import com.example.railways.common.constant.Browser;
 import com.example.railways.dataObjects.ConfigFileReader;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
@@ -7,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class DriverManager {
     private static WebDriver driver;
@@ -17,16 +18,16 @@ public class DriverManager {
     }
 
     public static void setDriver() {
-        String browserType = ConfigFileReader.getValue("browser");
+        Browser browserType = Browser.valueOf(ConfigFileReader.getValue("browser"));
         switch (browserType) {
-            case "chrome":
+            case CHROME:
                 driver = initChromeDriver();
                 break;
-            case "firefox":
+            case FIREFOX:
                 driver = initFirefoxDriver();
                 break;
             default:
-                System.out.println("Browser: " + browserType + " is invalid, Launching Chrome as browser of choice...");
+                System.out.println("Browser: " + browserType.getName() + " is invalid, Launching Chrome as browser of choice...");
                 driver = initChromeDriver();
                 break;
         }
@@ -48,12 +49,12 @@ public class DriverManager {
         driver.get(url);
     }
 
-    public static void pageLoadTimeout(TimeUnit timeUnit) {
-        driver.manage().timeouts().pageLoadTimeout(Long.parseLong(ConfigFileReader.getValue("pageLoadTimeout")), timeUnit);
+    public static void pageLoadTimeout() {
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Long.parseLong(ConfigFileReader.getValue("pageLoadTimeout"))));
     }
 
-    public static void implicitlyWait(TimeUnit timeUnit) {
-        driver.manage().timeouts().implicitlyWait(Long.parseLong(ConfigFileReader.getValue("implicitlyWait")), timeUnit);
+    public static void implicitlyWait() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(ConfigFileReader.getValue("implicitlyWait"))));
     }
 
     public static void maximizeWindow() {

@@ -1,5 +1,6 @@
 package com.example.railways.testcases.register;
 
+import com.example.railways.common.constant.Message;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.constant.Url;
 import com.example.railways.common.utilities.DriverManager;
@@ -24,8 +25,8 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
     @Override
     @BeforeMethod
     public void setUp() {
-        DriverManager.pageLoadTimeout(TimeUnit.SECONDS);
-        DriverManager.implicitlyWait(TimeUnit.SECONDS);
+        DriverManager.pageLoadTimeout();
+        DriverManager.implicitlyWait();
         DriverManager.open(Url.RAILWAYS_URL.getUrlLink());
     }
 
@@ -53,7 +54,7 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears.");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(registerPage.getMsgError().isDisplayed());
-        softAssert.assertEquals(registerPage.getMsgError().getText(), "There're errors in the form. Please correct the errors and try again.");
+        softAssert.assertEquals(registerPage.getMsgError().getText(), Message.REGISTER_FAILED.getMsg());
         softAssert.assertAll();
     }
 }

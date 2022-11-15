@@ -1,5 +1,6 @@
 package com.example.railways.testcases.myTicket;
 
+import com.example.railways.common.constant.Message;
 import com.example.railways.common.constant.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
@@ -42,6 +43,6 @@ public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
         DriverManager.switchToAlert().accept();
 
         ExtentTestManager.logMessage("Expected: The canceled ticket is disappeared.");
-        Assert.assertTrue(myTicketPage.getDivContent().getText().contains("You haven't booked any tickets yet."));
+        Assert.assertTrue(myTicketPage.getDivContent().getText().contains(Message.MY_TICKET_EMPTY.getMsg()));
     }
 }
