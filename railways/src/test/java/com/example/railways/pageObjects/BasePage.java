@@ -2,6 +2,7 @@ package com.example.railways.pageObjects;
 
 import com.example.railways.dataObjects.Tab;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -15,11 +16,29 @@ public class BasePage {
         this.driver = driver;
     }
 
-    public WebElement getLblWelcomeText() {
+    private WebElement getLblWelcomeText() {
         return driver.findElement(lblWelcomeText);
     }
 
-    public WebElement getTab(Tab tab) {
+    public String getWelcomeText() {
+        return getLblWelcomeText().getText();
+    }
+
+    private WebElement getTab(Tab tab) {
         return driver.findElement(By.xpath(String.format(tabXPath, tab.getName())));
+    }
+
+    public void clickTab(Tab tab) {
+        getTab(tab).click();
+    }
+
+    public Boolean isExisted(Tab tab) {
+        try{
+            getTab(tab);
+            return true;
+        }
+        catch(NoSuchElementException e){
+            return false;
+        }
     }
 }

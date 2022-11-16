@@ -22,26 +22,26 @@ public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Login with valid account");
-        homePage.getTab(Tab.LOGIN).click();
+        homePage.clickTab(Tab.LOGIN);
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        DriverManager.scrollToView(loginPage.getBtnLogin());
+        loginPage.scrollToBtnLogin();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Book a ticket");
-        loginPage.getTab(Tab.BOOK_TICKET).click();
+        loginPage.clickTab(Tab.BOOK_TICKET);
         BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
-        DriverManager.scrollToView(bookTicketPage.getBtnBookTicket());
-        bookTicketPage.getBtnBookTicket().click();
+        bookTicketPage.scrollToBtnBookTicket();
+        bookTicketPage.clickBtnBookTicket();
         ExtentTestManager.logMessage("Click on \"My ticket\" tab");
-        bookTicketPage.getTab(Tab.MY_TICKET).click();
+        bookTicketPage.clickTab(Tab.MY_TICKET);
 
         MyTicketPage myTicketPage = new MyTicketPage(DriverManager.getDriver());
-        DriverManager.scrollToView(myTicketPage.getTblMyTicket());
+        myTicketPage.scrollToTblMyTicket();
         ExtentTestManager.logMessage("Click on \"Cancel\" button of ticket which user want to cancel.");
-        myTicketPage.getBtnCancel().click();
+        myTicketPage.clickBtnCancel();
         ExtentTestManager.logMessage("Click on \"OK\" button on Confirmation message \"Are you sure?\"");
-        DriverManager.switchToAlert().accept();
+        DriverManager.acceptAlert();
 
         ExtentTestManager.logMessage("Expected: The canceled ticket is disappeared.");
-        Assert.assertTrue(myTicketPage.getDivContent().getText().contains(Message.MY_TICKET_EMPTY.getMsg()));
+        Assert.assertTrue(myTicketPage.getDivContentText().contains(Message.MY_TICKET_EMPTY.getMsg()));
     }
 }

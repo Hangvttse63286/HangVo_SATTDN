@@ -21,7 +21,7 @@ public class TC04_BookTicket_UnloggedUser extends BaseTest {
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Click on \"Book ticket\" tab");
-        homePage.getTab(Tab.BOOK_TICKET).click();
+        homePage.clickTab(Tab.BOOK_TICKET);
 
         ExtentTestManager.logMessage("Expected: Login page displays instead of Book ticket page");
         Assert.assertTrue(DriverManager.getCurrentUrl().contains(Url.RAILWAYS_LOGIN_URL.getUrlLink()));

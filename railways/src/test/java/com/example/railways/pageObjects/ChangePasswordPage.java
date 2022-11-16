@@ -1,6 +1,8 @@
 package com.example.railways.pageObjects;
 
+import com.example.railways.common.utilities.DriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -21,35 +23,35 @@ public class ChangePasswordPage extends BasePage {
         super(driver);
     }
 
-    public WebElement getFrmChangePassword() {
+    private WebElement getFrmChangePassword() {
         return driver.findElement(frmChangePassword);
     }
 
-    public WebElement getTxtCurrentPassword() {
+    private WebElement getTxtCurrentPassword() {
         return driver.findElement(txtCurrentPassword);
     }
 
-    public WebElement getTxtNewPassword() {
+    private WebElement getTxtNewPassword() {
         return driver.findElement(txtNewPassword);
     }
 
-    public WebElement getTxtConfirmPassword() {
+    private WebElement getTxtConfirmPassword() {
         return driver.findElement(txtConfirmPassword);
     }
 
-    public WebElement getBtnChangePassword() {
+    private WebElement getBtnChangePassword() {
         return driver.findElement(btnChangePassword);
     }
 
-    public WebElement getMsgSuccess() {
+    private WebElement getMsgSuccess() {
         return driver.findElement(msgSuccess);
     }
 
-    public WebElement getMsgError() {
+    private WebElement getMsgError() {
         return driver.findElement(msgError);
     }
 
-    public WebElement getMsgCurrentPasswordValidationError() {
+    private WebElement getMsgCurrentPasswordValidationError() {
         return driver.findElement(msgCurrentPasswordValidationError);
     }
 
@@ -66,5 +68,23 @@ public class ChangePasswordPage extends BasePage {
         getTxtNewPassword().sendKeys(newPassword);
         getTxtConfirmPassword().sendKeys(confirmPassword);
         getBtnChangePassword().click();
+    }
+
+    public String getMsgSuccessText() {
+        return getMsgSuccess().getText();
+    }
+
+    public Boolean isExistedMsgSuccess(){
+        try{
+            getMsgSuccess();
+            return true;
+        }
+        catch(NoSuchElementException e){
+            return false;
+        }
+    }
+
+    public void scrollToBtnChangePassword() {
+        DriverManager.scrollToView(getBtnChangePassword());
     }
 }

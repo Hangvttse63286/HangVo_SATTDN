@@ -31,24 +31,24 @@ public class DriverManager {
                     driver = initFirefoxDriver();
                     break;
                 default:
-                    ExtentTestManager.logMessage("Browser: " + browserType.name() + " is invalid, Launching Chrome as browser of choice...");
+                    System.out.println("Browser: " + browserType.name() + " is invalid, Launching Chrome as browser of choice...");
                     driver = initChromeDriver();
                     break;
             }
         } catch (Exception e) {
-            ExtentTestManager.logMessage("Browser: " + configBrowser + " is invalid, Launching Chrome as browser of choice...");
+            System.out.println("Browser: " + configBrowser + " is invalid, Launching Chrome as browser of choice...");
             driver = initChromeDriver();
         }
     }
 
     private static WebDriver initChromeDriver() {
-        ExtentTestManager.logMessage("Launching Chrome browser...");
+        System.out.println("Launching Chrome browser...");
         System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath() + ConfigFileReader.getValue("driverPath") + "chromedriver.exe");
         return new ChromeDriver();
     }
 
     private static WebDriver initFirefoxDriver() {
-        ExtentTestManager.logMessage("Launching Firefox browser...");
+        System.out.println("Launching Firefox browser...");
         System.setProperty("webdriver.gecko.driver", Utilities.getProjectPath() + ConfigFileReader.getValue("driverPath") + "geckodriver.exe");
         return new FirefoxDriver();
     }
@@ -77,8 +77,16 @@ public class DriverManager {
         return driver.getCurrentUrl();
     }
 
-    public static Alert switchToAlert() {
+    private static Alert switchToAlert() {
         return driver.switchTo().alert();
+    }
+
+    public static void acceptAlert() {
+        switchToAlert().accept();
+    }
+
+    public static void dismissAlert() {
+        switchToAlert().dismiss();
     }
 
     public static void scrollToView(WebElement element) {

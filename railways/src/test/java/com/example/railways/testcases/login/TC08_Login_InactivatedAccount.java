@@ -25,24 +25,24 @@ public class TC08_Login_InactivatedAccount extends BaseTest {
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Click on \"Login\" tab");
-        homePage.getTab(Tab.LOGIN).click();
+        homePage.clickTab(Tab.LOGIN);
 
         String email = getEmail();
         String password = getPassword();
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        DriverManager.scrollToView(loginPage.getBtnLogin());
+        loginPage.scrollToBtnLogin();
         ExtentTestManager.logMessage("Enter username and password of account hasn't been activated.");
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);
 
         ExtentTestManager.logMessage("Expected: User can't login and message \"Invalid username or password. Please try again.\" appears.");
-        String welcomeText = loginPage.getLblWelcomeText().getText().trim();
+        String welcomeText = loginPage.getWelcomeText().trim();
         SoftAssert softAssert = new SoftAssert();
         Assert.assertEquals(DriverManager.getDriver().getCurrentUrl(), Url.RAILWAYS_LOGIN_URL.getUrlLink());
         softAssert.assertEquals(welcomeText, Message.UNLOGGED_WELCOME_TEXT.getMsg());
-        softAssert.assertEquals(loginPage.getMsgError().getText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
+        softAssert.assertEquals(loginPage.getMsgErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
         softAssert.assertAll();
     }
 }

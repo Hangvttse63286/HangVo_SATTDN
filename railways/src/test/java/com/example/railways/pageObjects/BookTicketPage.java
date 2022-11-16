@@ -1,5 +1,6 @@
 package com.example.railways.pageObjects;
 
+import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.dataObjects.SeatType;
 import com.example.railways.dataObjects.Station;
 import org.openqa.selenium.By;
@@ -20,27 +21,27 @@ public class BookTicketPage extends BasePage {
         super(driver);
     }
 
-    public Select getDdlDepartDate() {
+    private Select getDdlDepartDate() {
         return new Select(driver.findElement(ddlDepartDate));
     }
 
-    public Select getDdlDepartStation() {
+    private Select getDdlDepartStation() {
         return new Select(driver.findElement(ddlDepartStation));
     }
 
-    public Select getDdlArriveStation() {
+    private Select getDdlArriveStation() {
         return new Select(driver.findElement(ddlArriveStation));
     }
 
-    public Select getDdlSeatType() {
+    private Select getDdlSeatType() {
         return new Select(driver.findElement(ddlSeatType));
     }
 
-    public Select getDdlTicketAmount() {
+    private Select getDdlTicketAmount() {
         return new Select(driver.findElement(ddlTicketAmount));
     }
 
-    public WebElement getBtnBookTicket() {
+    private WebElement getBtnBookTicket() {
         return driver.findElement(btnBookTicket);
     }
 
@@ -51,5 +52,21 @@ public class BookTicketPage extends BasePage {
         getDdlSeatType().selectByVisibleText(seatType.getName());
         getDdlTicketAmount().selectByVisibleText(String.valueOf(ticketAmount));
         getBtnBookTicket().click();
+    }
+
+    public void scrollToBtnBookTicket() {
+        DriverManager.scrollToView(getBtnBookTicket());
+    }
+
+    public void clickBtnBookTicket() {
+        getBtnBookTicket().click();
+    }
+
+    public String getSelectedDpStation() {
+        return getDdlDepartStation().getFirstSelectedOption().getText();
+    }
+
+    public String getSelectedArStation() {
+        return getDdlArriveStation().getFirstSelectedOption().getText();
     }
 }

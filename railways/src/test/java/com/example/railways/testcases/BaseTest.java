@@ -41,12 +41,12 @@ public class BaseTest {
         DriverManager.implicitlyWait();
 
         RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
-        registerPage.getTab(Tab.REGISTER).click();
+        registerPage.clickTab(Tab.REGISTER);
 
         email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
         password = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
         String pid = Utilities.generateRandomString(Utilities.getRandomNumber(8, 20));
-        DriverManager.scrollToView(registerPage.getBtnRegister());
+        registerPage.scrollToBtnRegister();
         registerPage.register(email, password, password, pid);
     }
 

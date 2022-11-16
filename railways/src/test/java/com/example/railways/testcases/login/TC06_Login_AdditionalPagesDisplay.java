@@ -22,28 +22,28 @@ public class TC06_Login_AdditionalPagesDisplay extends BaseTest {
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Click on \"Login\" tab");
-        homePage.getTab(Tab.LOGIN).click();
+        homePage.clickTab(Tab.LOGIN);
 
         String email = getEmail();
         String password = getPassword();
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        DriverManager.scrollToView(loginPage.getBtnLogin());
+        loginPage.scrollToBtnLogin();
         ExtentTestManager.logMessage("Login with valid account");
         loginPage.login(email, password);
 
         ExtentTestManager.logMessage("Expected: \"My ticket\", \"Change password\" and \"Logout\" tabs are displayed. ");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(loginPage.getTab(Tab.MY_TICKET).isDisplayed());
-        softAssert.assertTrue(loginPage.getTab(Tab.CHANGE_PASSWORD).isDisplayed());
-        softAssert.assertTrue(loginPage.getTab(Tab.LOGOUT).isDisplayed());
+        softAssert.assertTrue(loginPage.isExisted(Tab.MY_TICKET));
+        softAssert.assertTrue(loginPage.isExisted(Tab.CHANGE_PASSWORD));
+        softAssert.assertTrue(loginPage.isExisted(Tab.LOGOUT));
 
-        loginPage.getTab(Tab.MY_TICKET).click();
+        loginPage.clickTab(Tab.MY_TICKET);
         ExtentTestManager.logMessage("Expected: Click \"My ticket\" tab, user will be directed to My ticket page");
         softAssert.assertEquals(DriverManager.getCurrentUrl(), Url.RAILWAYS_MY_TICKET_URL.getUrlLink());
 
-        loginPage.getTab(Tab.CHANGE_PASSWORD).click();
+        loginPage.clickTab(Tab.CHANGE_PASSWORD);
         ExtentTestManager.logMessage("Expected: Click \"Change password\" tab, user will be directed to Change password page");
         softAssert.assertEquals(DriverManager.getCurrentUrl(), Url.RAILWAYS_CHANGE_PASSWORD_URL.getUrlLink());
         softAssert.assertAll();

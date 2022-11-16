@@ -26,12 +26,12 @@ public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Login with valid account");
-        homePage.getTab(Tab.LOGIN).click();
+        homePage.clickTab(Tab.LOGIN);
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        DriverManager.scrollToView(loginPage.getBtnLogin());
+        loginPage.scrollToBtnLogin();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Click on \"Book ticket\" tab");
-        loginPage.getTab(Tab.BOOK_TICKET).click();
+        loginPage.clickTab(Tab.BOOK_TICKET);
 
         Date startDate = Utilities.getDateAheadFromCurrentDate(3);
         Date endDate = Utilities.getDateAheadFromCurrentDate(30);
@@ -48,7 +48,7 @@ public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
                 + " - Ticket Amount: " + ticketAmount);
 
         BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
-        DriverManager.scrollToView(bookTicketPage.getBtnBookTicket());
+        bookTicketPage.scrollToBtnBookTicket();
         ExtentTestManager.logMessage("Select a \"Depart date\" from the list");
         ExtentTestManager.logMessage("Select \"Sài Gòn\" for \"Depart from\" and \"Nha Trang\" for \"Arrive at\".");
         ExtentTestManager.logMessage("Select \"Soft bed with air conditioner\" for \"Seat type\"");
@@ -65,7 +65,7 @@ public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: Message \"Ticket Booked Successfully!\" displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(successPage.getMsgBookTicketSuccess().getText(), Message.BOOK_TICKET_SUCCESS.getMsg());
+        softAssert.assertEquals(successPage.getMsgBookTicketSuccessText(), Message.BOOK_TICKET_SUCCESS.getMsg());
         softAssert.assertEquals(successDepartDate, departDate);
         softAssert.assertEquals(successDepartStation, departStation.getName());
         softAssert.assertEquals(successArriveStation, arriverStation.getName());

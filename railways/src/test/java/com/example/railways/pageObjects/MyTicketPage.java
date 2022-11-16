@@ -1,5 +1,6 @@
 package com.example.railways.pageObjects;
 
+import com.example.railways.common.utilities.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,63 +28,75 @@ public class MyTicketPage extends BasePage {
         super(driver);
     }
 
-    public WebElement getDivContent() {
+    private WebElement getDivContent() {
         return driver.findElement(divContent);
     }
 
-    public WebElement getDivNote() {
+    private WebElement getDivNote() {
         return driver.findElement(divNote);
     }
 
-    public WebElement getFrmFilter() {
+    private WebElement getFrmFilter() {
         return driver.findElement(frmFilter);
     }
 
-    public Select getDdlFilterDpStation() {
+    private Select getDdlFilterDpStation() {
         return new Select(driver.findElement(ddlFilterDpStation));
     }
 
-    public Select getDdlFilterArStation() {
+    private Select getDdlFilterArStation() {
         return new Select(driver.findElement(ddlFilterArStation));
     }
 
-    public WebElement getTxtFilterDpDate() {
+    private WebElement getTxtFilterDpDate() {
         return driver.findElement(txtFilterDpDate);
     }
 
-    public Select getDdlFilterStatus() {
+    private Select getDdlFilterStatus() {
         return new Select(driver.findElement(ddlFilterStatus));
     }
 
-    public WebElement getBtnFilter() {
+    private WebElement getBtnFilter() {
         return driver.findElement(btnFilter);
     }
 
-    public WebElement getTblMyTicket() {
+    private WebElement getTblMyTicket() {
         return driver.findElement(tblMyTicket);
     }
 
-    public List<WebElement> getTrMyTickets() {
+    private List<WebElement> getTrMyTickets() {
         return driver.findElements(trMyTickets);
     }
 
-    public List<WebElement> getBtnCancels() {
+    private List<WebElement> getBtnCancels() {
         return driver.findElements(btnCancels);
     }
 
-    public WebElement getBtnCancel() {
+    private WebElement getBtnCancel() {
         return driver.findElement(btnCancel);
     }
 
-    public List<WebElement> getBtnDeletes() {
+    private List<WebElement> getBtnDeletes() {
         return driver.findElements(btnDeletes);
     }
 
-    public WebElement getMsgFilterError() {
+    private WebElement getMsgFilterError() {
         return driver.findElement(msgFilterError);
     }
 
-    public WebElement getRemovedRow(WebElement button) {
+    private WebElement getRemovedRow(WebElement button) {
         return button.findElement(By.xpath("//ancestor::tr"));
+    }
+
+    public void scrollToTblMyTicket() {
+        DriverManager.scrollToView(getTblMyTicket());
+    }
+
+    public String getDivContentText() {
+        return getDivContent().getText();
+    }
+
+    public void clickBtnCancel() {
+        getBtnCancel().click();
     }
 }

@@ -1,6 +1,8 @@
 package com.example.railways.pageObjects;
 
+import com.example.railways.common.utilities.DriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -20,39 +22,39 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public WebElement getFrmLogin() {
+    private WebElement getFrmLogin() {
         return driver.findElement(frmLogin);
     }
 
-    public WebElement getTxtEmail() {
+    private WebElement getTxtEmail() {
         return driver.findElement(txtEmail);
     }
 
-    public WebElement getTxtPassword() {
+    private WebElement getTxtPassword() {
         return driver.findElement(txtPassword);
     }
 
-    public WebElement getBtnLogin() {
+    private WebElement getBtnLogin() {
         return driver.findElement(btnLogin);
     }
 
-    public WebElement getLnkRegister() {
+    private WebElement getLnkRegister() {
         return driver.findElement(lnkRegister);
     }
 
-    public WebElement getLnkForgotPassword() {
+    private WebElement getLnkForgotPassword() {
         return driver.findElement(lnkForgotPassword);
     }
 
-    public WebElement getMsgError() {
+    private WebElement getMsgError() {
         return driver.findElement(msgError);
     }
 
-    public WebElement getMsgEmailValidationError() {
+    private WebElement getMsgEmailValidationError() {
         return driver.findElement(msgEmailValidationError);
     }
 
-    public WebElement getMsgPasswordValidationError() {
+    private WebElement getMsgPasswordValidationError() {
         return driver.findElement(msgPasswordValidationError);
     }
 
@@ -60,5 +62,23 @@ public class LoginPage extends BasePage {
         getTxtEmail().sendKeys(email);
         getTxtPassword().sendKeys(password);
         getBtnLogin().click();
+    }
+
+    public String getMsgErrorText() {
+        return getMsgError().getText();
+    }
+
+    public Boolean isExistedMsgError() {
+        try{
+            getMsgError();
+            return true;
+        }
+        catch(NoSuchElementException e){
+            return false;
+        }
+    }
+
+    public void scrollToBtnLogin() {
+        DriverManager.scrollToView(getBtnLogin());
     }
 }

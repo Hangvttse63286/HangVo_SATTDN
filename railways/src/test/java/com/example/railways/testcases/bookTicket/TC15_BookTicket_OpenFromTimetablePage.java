@@ -25,32 +25,31 @@ public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Login with valid account");
-        homePage.getTab(Tab.LOGIN).click();
+        homePage.clickTab(Tab.LOGIN);
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        DriverManager.scrollToView(loginPage.getBtnLogin());
+        loginPage.scrollToBtnLogin();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Click on \"Timetable\" tab");
-        loginPage.getTab(Tab.TIMETABLE).click();
+        loginPage.clickTab(Tab.TIMETABLE);
 
         Station timetableDpStation = Station.HUE;
         Station timetableArStation = Station.SAI_GON;
         ExtentTestManager.logMessage("Depart Station: " + timetableDpStation.getName() + " - Arrive Station: " + timetableArStation.getName());
 
         TimetablePage timetablePage = new TimetablePage(DriverManager.getDriver());
-        WebElement lnkBookTicket = timetablePage.getLnk(timetableDpStation, timetableArStation, "Book");
-        DriverManager.scrollToView(lnkBookTicket);
         ExtentTestManager.logMessage("Click on \"book ticket\" link of the route from \"Huế\" to \"Sài Gòn\"");
-        lnkBookTicket.click();
+        timetablePage.scrollToLnk(timetableDpStation, timetableArStation, "Book");
+        timetablePage.clickLnk(timetableDpStation, timetableArStation, "Book");
 
         ExtentTestManager.logMessage("Expected: \"Book ticket\" page is loaded with correct  \"Depart from\" and \"Arrive at\" values.");
         Assert.assertTrue(DriverManager.getCurrentUrl().contains(Url.RAILWAYS_BOOK_TICKET_URL.getUrlLink()));
 
         BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
-        DriverManager.scrollToView(bookTicketPage.getBtnBookTicket());
+        bookTicketPage.scrollToBtnBookTicket();
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(bookTicketPage.getDdlDepartStation().getFirstSelectedOption().getText(), timetableDpStation.getName());
-        softAssert.assertEquals(bookTicketPage.getDdlArriveStation().getFirstSelectedOption().getText(), timetableArStation.getName());
+        softAssert.assertEquals(bookTicketPage.getSelectedDpStation(), timetableDpStation.getName());
+        softAssert.assertEquals(bookTicketPage.getSelectedArStation(), timetableArStation.getName());
         softAssert.assertAll();
     }
 }

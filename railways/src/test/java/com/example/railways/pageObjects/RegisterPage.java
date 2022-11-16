@@ -1,6 +1,8 @@
 package com.example.railways.pageObjects;
 
+import com.example.railways.common.utilities.DriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -25,59 +27,59 @@ public class RegisterPage extends BasePage {
         super(driver);
     }
 
-    public WebElement getFrmRegister() {
+    private WebElement getFrmRegister() {
         return driver.findElement(frmRegister);
     }
 
-    public WebElement getTxtEmail() {
+    private WebElement getTxtEmail() {
         return driver.findElement(txtEmail);
     }
 
-    public WebElement getTxtPassword() {
+    private WebElement getTxtPassword() {
         return driver.findElement(txtPassword);
     }
 
-    public WebElement getTxtConfirmPassword() {
+    private WebElement getTxtConfirmPassword() {
         return driver.findElement(txtConfirmPassword);
     }
 
-    public WebElement getTxtPid() {
+    private WebElement getTxtPid() {
         return driver.findElement(txtPid);
     }
 
-    public WebElement getBtnRegister() {
+    private WebElement getBtnRegister() {
         return driver.findElement(btnRegister);
     }
 
-    public WebElement getLnkLogin() {
+    private WebElement getLnkLogin() {
         return driver.findElement(lnkLogin);
     }
 
-    public WebElement getLnkConfirm() {
+    private WebElement getLnkConfirm() {
         return driver.findElement(lnkConfirm);
     }
 
-    public WebElement getMsgSuccess() {
+    private WebElement getMsgSuccess() {
         return driver.findElement(msgSuccess);
     }
 
-    public WebElement getMsgError() {
+    private WebElement getMsgError() {
         return driver.findElement(msgError);
     }
 
-    public WebElement getMsgEmailValidationError() {
+    private WebElement getMsgEmailValidationError() {
         return driver.findElement(msgEmailValidationError);
     }
 
-    public WebElement getMsgPasswordValidationError() {
+    private WebElement getMsgPasswordValidationError() {
         return driver.findElement(msgPasswordValidationError);
     }
 
-    public WebElement getMsgConfirmPasswordValidationError() {
+    private WebElement getMsgConfirmPasswordValidationError() {
         return driver.findElement(msgConfirmPasswordValidationError);
     }
 
-    public WebElement getMsgPidValidationError() {
+    private WebElement getMsgPidValidationError() {
         return driver.findElement(msgPidValidationError);
     }
 
@@ -87,5 +89,65 @@ public class RegisterPage extends BasePage {
         getTxtConfirmPassword().sendKeys(confirmPassword);
         getTxtPid().sendKeys(pid);
         getBtnRegister().click();
+    }
+
+    public void scrollToBtnRegister() {
+        DriverManager.scrollToView(getBtnRegister());
+    }
+
+    public String getMsgSuccessText() {
+        return getMsgSuccess().getText();
+    }
+
+    public Boolean isExistedMsgSuccess() {
+        try{
+            getMsgSuccess();
+            return true;
+        }
+        catch(NoSuchElementException e){
+            return false;
+        }
+    }
+
+    public String getMsgPasswordValidationErrorText() {
+        return getMsgPasswordValidationError().getText();
+    }
+
+    public Boolean isExistedMsgPasswordValidationError() {
+        try{
+            getMsgPasswordValidationError();
+            return true;
+        }
+        catch(NoSuchElementException e){
+            return false;
+        }
+    }
+
+    public String getMsgPidValidationErrorText() {
+        return getMsgPidValidationError().getText();
+    }
+
+    public Boolean isExistedMsgPidValidationError() {
+        try{
+            getMsgPidValidationError();
+            return true;
+        }
+        catch(NoSuchElementException e){
+            return false;
+        }
+    }
+
+    public String getMsgErrorText() {
+        return getMsgError().getText();
+    }
+
+    public Boolean isExistedMsgError() {
+        try{
+            getMsgError();
+            return true;
+        }
+        catch(NoSuchElementException e){
+            return false;
+        }
     }
 }

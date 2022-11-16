@@ -9,6 +9,7 @@ import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.testcases.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -23,22 +24,20 @@ public class TC03_Login_InvalidPassword extends BaseTest {
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Click on \"Login\" tab");
-        homePage.getTab(Tab.LOGIN).click();
+        homePage.clickTab(Tab.LOGIN);
 
         String email = getEmail();
         String password = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        DriverManager.scrollToView(loginPage.getBtnLogin());
+        loginPage.scrollToBtnLogin();
         ExtentTestManager.logMessage("Enter valid Email and invalid Password");
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);
 
         ExtentTestManager.logMessage("Expected: Error message \"Invalid username or password. Please try again.\" is displayed");
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(loginPage.getMsgError().isDisplayed());
-        softAssert.assertEquals(loginPage.getMsgError().getText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
-        softAssert.assertAll();
+        Assert.assertTrue(loginPage.isExistedMsgError());
+        Assert.assertEquals(loginPage.getMsgErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
     }
 }

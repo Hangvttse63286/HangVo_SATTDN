@@ -34,7 +34,7 @@ public class TC11_Register_BlankPasswordAndPid extends BaseTest {
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Click on \"Register\" tab");
-        homePage.getTab(Tab.REGISTER).click();
+        homePage.clickTab(Tab.REGISTER);
 
         String email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
         String password = "";
@@ -42,21 +42,21 @@ public class TC11_Register_BlankPasswordAndPid extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password + " - Confirm Password: " + password + " - Pid: " + pid);
 
         RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
-        DriverManager.scrollToView(registerPage.getBtnRegister());
+        registerPage.scrollToBtnRegister();
         ExtentTestManager.logMessage("Enter valid email address and leave other fields empty");
         ExtentTestManager.logMessage("Click on \"Register\" button");
         registerPage.register(email, password, password, pid);
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears above the form.");
-        Assert.assertTrue(registerPage.getMsgError().isDisplayed());
-        Assert.assertEquals(registerPage.getMsgError().getText(), Message.REGISTER_FAILED.getMsg());
+        Assert.assertTrue(registerPage.isExistedMsgError());
+        Assert.assertEquals(registerPage.getMsgErrorText(), Message.REGISTER_FAILED.getMsg());
         ExtentTestManager.logMessage("Expected: Next to password fields, error message \"Invalid password length.\" displays");
         ExtentTestManager.logMessage("Expected: Next to PID field, error message \"Invalid ID length.\" displays");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(registerPage.getMsgPasswordValidationError().isDisplayed());
-        softAssert.assertTrue(registerPage.getMsgPidValidationError().isDisplayed());
-        softAssert.assertEquals(registerPage.getMsgPasswordValidationError().getText(), Message.REGISTER_PASSWORD_EMPTY.getMsg());
-        softAssert.assertEquals(registerPage.getMsgPidValidationError().getText(), Message.REGISTER_PID_EMPTY.getMsg());
+        softAssert.assertTrue(registerPage.isExistedMsgPasswordValidationError());
+        softAssert.assertTrue(registerPage.isExistedMsgPidValidationError());
+        softAssert.assertEquals(registerPage.getMsgPasswordValidationErrorText(), Message.REGISTER_PASSWORD_EMPTY.getMsg());
+        softAssert.assertEquals(registerPage.getMsgPidValidationErrorText(), Message.REGISTER_PID_EMPTY.getMsg());
         softAssert.assertAll();
     }
 }

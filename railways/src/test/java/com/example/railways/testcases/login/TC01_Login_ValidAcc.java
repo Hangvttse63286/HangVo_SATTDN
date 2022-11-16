@@ -24,18 +24,18 @@ public class TC01_Login_ValidAcc extends BaseTest {
         HomePage homePage = new HomePage(DriverManager.getDriver());
 
         ExtentTestManager.logMessage("Click on \"Login\" tab");
-        homePage.getTab(Tab.LOGIN).click();
+        homePage.clickTab(Tab.LOGIN);
 
         String email = getEmail();
         String password = getPassword();
         Log.info("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        DriverManager.scrollToView(loginPage.getBtnLogin());
+        loginPage.scrollToBtnLogin();
         ExtentTestManager.logMessage("Enter valid Email and Password");
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);
-        String welcomeText = loginPage.getLblWelcomeText().getText().trim();
+        String welcomeText = loginPage.getWelcomeText().trim();
 
         ExtentTestManager.logMessage("Expected: User is logged into Railway. Welcome user message is displayed.");
         Assert.assertEquals(welcomeText, Message.LOGGED_WELCOME_TEXT.getMsg() + email);

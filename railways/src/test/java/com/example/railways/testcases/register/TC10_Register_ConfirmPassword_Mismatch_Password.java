@@ -10,6 +10,7 @@ import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.RegisterPage;
 import com.example.railways.testcases.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -33,7 +34,7 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Click on \"Register\" tab");
-        homePage.getTab(Tab.REGISTER).click();
+        homePage.clickTab(Tab.REGISTER);
 
         String email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
         String password = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
@@ -42,15 +43,13 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password + " - Confirm Password: " + confirmPassword + " - Pid: " + pid);
 
         RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
-        DriverManager.scrollToView(registerPage.getBtnRegister());
+        registerPage.scrollToBtnRegister();
         ExtentTestManager.logMessage("Enter valid information into all fields except \"Confirm password\" is not the same with \"Password\"");
         ExtentTestManager.logMessage("Click on \"Register\" button");
         registerPage.register(email, password, confirmPassword, pid);
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears.");
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(registerPage.getMsgError().isDisplayed());
-        softAssert.assertEquals(registerPage.getMsgError().getText(), Message.REGISTER_FAILED.getMsg());
-        softAssert.assertAll();
+        Assert.assertTrue(registerPage.isExistedMsgError());
+        Assert.assertEquals(registerPage.getMsgErrorText(), Message.REGISTER_FAILED.getMsg());
     }
 }

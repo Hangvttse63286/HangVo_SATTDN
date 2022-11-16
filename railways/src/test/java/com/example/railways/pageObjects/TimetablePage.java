@@ -1,5 +1,6 @@
 package com.example.railways.pageObjects;
 
+import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.dataObjects.Station;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,15 +22,23 @@ public class TimetablePage extends BasePage {
         return driver.findElement(tblTimetable);
     }
 
-    public List<WebElement> getLnkCheckPrices() {
+    private List<WebElement> getLnkCheckPrices() {
         return driver.findElements(lnkCheckPrices);
     }
 
-    public List<WebElement> getLnkBookTickets() {
+    private List<WebElement> getLnkBookTickets() {
         return driver.findElements(lnkBookTickets);
     }
 
-    public WebElement getLnk(Station departStation, Station arriveStation, String lnk) {
+    private WebElement getLnk(Station departStation, Station arriveStation, String lnk) {
         return getTblTimetable().findElement(By.xpath(String.format(linkXPath, departStation.getName(), arriveStation.getName(), lnk)));
+    }
+
+    public void clickLnk(Station departStation, Station arriveStation, String lnk) {
+        getLnk(departStation, arriveStation, lnk).click();
+    }
+
+    public void scrollToLnk(Station departStation, Station arriveStation, String lnk) {
+        DriverManager.scrollToView(getLnk(departStation, arriveStation, lnk));
     }
 }

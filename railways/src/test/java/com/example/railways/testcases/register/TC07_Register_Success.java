@@ -10,6 +10,7 @@ import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.RegisterPage;
 import com.example.railways.testcases.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -33,7 +34,7 @@ public class TC07_Register_Success extends BaseTest {
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Click on \"Register\" tab");
-        homePage.getTab(Tab.REGISTER).click();
+        homePage.clickTab(Tab.REGISTER);
 
         String email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
         String password = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
@@ -41,15 +42,13 @@ public class TC07_Register_Success extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password + " - Confirm Password: " + password + " - Pid: " + pid);
 
         RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
-        DriverManager.scrollToView(registerPage.getBtnRegister());
+        registerPage.scrollToBtnRegister();
         ExtentTestManager.logMessage("Enter valid information into all fields");
         ExtentTestManager.logMessage("Click on \"Register\" button");
         registerPage.register(email, password, password, pid);
 
         ExtentTestManager.logMessage("Expected: New account is created and message \"You're here\"");
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(registerPage.getMsgSuccess().isDisplayed());
-        softAssert.assertEquals(registerPage.getMsgSuccess().getText(), Message.REGISTER_SUCCESS.getMsg());
-        softAssert.assertAll();
+        Assert.assertTrue(registerPage.isExistedMsgSuccess());
+        Assert.assertEquals(registerPage.getMsgSuccessText(), Message.REGISTER_SUCCESS.getMsg());
     }
 }
