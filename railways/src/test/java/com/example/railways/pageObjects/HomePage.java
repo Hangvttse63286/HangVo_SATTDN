@@ -12,7 +12,7 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    public WebElement getLnkRegister() {
+    private WebElement getLnkRegister() {
         return driver.findElement(lnkRegister);
     }
 }

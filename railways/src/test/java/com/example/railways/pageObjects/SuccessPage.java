@@ -13,15 +13,19 @@ public class SuccessPage extends BasePage {
         super(driver);
     }
 
-    public WebElement getMsgBookTicketSuccess() {
+    private WebElement getMsgBookTicketSuccess() {
         return driver.findElement(msgBookTicketSuccess);
     }
 
-    public WebElement getTblBookedTicket() {
+    private WebElement getTblBookedTicket() {
         return driver.findElement(tblBookedTicket);
     }
 
     public String getRowValue(String row) {
         return getTblBookedTicket().findElement(By.xpath("//td[count(//th[.='" + row + "']/preceding-sibling::th)+1]")).getText();
+    }
+
+    public String getMsgBookTicketSuccessText() {
+        return getMsgBookTicketSuccess().getText();
     }
 }

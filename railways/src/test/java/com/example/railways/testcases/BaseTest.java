@@ -1,13 +1,14 @@
 package com.example.railways.testcases;
 
-import com.example.railways.common.constant.Tab;
-import com.example.railways.common.constant.Url;
+import com.example.railways.dataObjects.Tab;
+import com.example.railways.dataObjects.Url;
 import com.example.railways.common.utilities.DriverManager;
+import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.Utilities;
+import com.example.railways.common.utilities.helpers.ConfigFileReader;
 import com.example.railways.pageObjects.RegisterPage;
 import org.testng.annotations.*;
-
-import java.util.concurrent.TimeUnit;
+import java.util.Arrays;
 
 public class BaseTest {
 
@@ -22,30 +23,30 @@ public class BaseTest {
         return password;
     }
 
-    @Parameters({"browserType"})
     @BeforeTest
-    public void initializeTestBaseSetup(String browserType) {
+    public void initializeTestBaseSetup() {
         try {
-            DriverManager.setDriver(browserType);
+            ConfigFileReader.setConfigFileReader();
+            DriverManager.setDriver();
             DriverManager.maximizeWindow();
         } catch (Exception e) {
-            System.out.println("Error..." + e.getStackTrace());
+            Log.error("Error..." + Arrays.toString(e.getStackTrace()));
         }
     }
 
     @BeforeMethod
-    public void openWebsite() {
+    public void setUp() {
         DriverManager.open(Url.RAILWAYS_URL.getUrlLink());
-        DriverManager.pageLoadTimeout(TimeUnit.SECONDS);
-        DriverManager.implicitlyWait(TimeUnit.SECONDS);
+        DriverManager.pageLoadTimeout();
+        DriverManager.implicitlyWait();
 
         RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
-        registerPage.getTab(Tab.REGISTER).click();
+        registerPage.clickTab(Tab.REGISTER);
 
         email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
         password = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
         String pid = Utilities.generateRandomString(Utilities.getRandomNumber(8, 20));
-        DriverManager.scrollToView(registerPage.getBtnRegister());
+        registerPage.scrollToBtnRegister();
         registerPage.register(email, password, password, pid);
     }
 
@@ -55,9 +56,13 @@ public class BaseTest {
     }
 
     @AfterTest
-    public void tearDown() throws Exception {
-        Thread.sleep(2000);
-        DriverManager.quit();
+    public void tearDown() {
+        try {
+            Thread.sleep(2000);
+            DriverManager.quit();
+        } catch (Exception e) {
+            Log.error("Error..." + Arrays.toString(e.getStackTrace()));
+        }
     }
 }
 

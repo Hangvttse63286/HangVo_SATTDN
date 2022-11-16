@@ -15,19 +15,19 @@ public class ForgotPasswordPage extends BasePage {
         super(driver);
     }
 
-    public WebElement getTxtEmail() {
+    private WebElement getTxtEmail() {
         return driver.findElement(txtEmail);
     }
 
-    public WebElement getBtnSendInstruction() {
+    private WebElement getBtnSendInstruction() {
         return driver.findElement(btnSendInstruction);
     }
 
-    public WebElement getMsgError() {
+    private WebElement getMsgError() {
         return driver.findElement(msgError);
     }
 
-    public WebElement getMsgValidationError() {
+    private WebElement getMsgValidationError() {
         return driver.findElement(msgValidationError);
     }
 }

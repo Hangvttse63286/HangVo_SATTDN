@@ -13,11 +13,11 @@ public class ConfirmPage extends BasePage {
         super(driver);
     }
 
-    public WebElement getTxtConfirm() {
+    private WebElement getTxtConfirm() {
         return driver.findElement(txtConfirm);
     }
 
-    public WebElement getBtnConfirm() {
+    private WebElement getBtnConfirm() {
         return driver.findElement(btnConfirm);
     }
 }
