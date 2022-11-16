@@ -1,17 +1,15 @@
 package com.example.railways.testcases.bookTicket;
 
-import com.example.railways.common.constant.Message;
-import com.example.railways.common.constant.SeatType;
-import com.example.railways.common.constant.Station;
-import com.example.railways.common.constant.Tab;
+import com.example.railways.dataObjects.Message;
+import com.example.railways.dataObjects.SeatType;
+import com.example.railways.dataObjects.Station;
+import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
-import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.*;
 import com.example.railways.testcases.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;

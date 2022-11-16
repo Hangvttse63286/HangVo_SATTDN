@@ -1,6 +1,6 @@
 package com.example.railways.pageObjects;
 
-import com.example.railways.common.constant.Tab;
+import com.example.railways.dataObjects.Tab;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

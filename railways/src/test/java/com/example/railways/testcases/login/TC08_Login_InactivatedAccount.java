@@ -1,10 +1,9 @@
 package com.example.railways.testcases.login;
 
-import com.example.railways.common.constant.Message;
-import com.example.railways.common.constant.Tab;
-import com.example.railways.common.constant.Url;
+import com.example.railways.dataObjects.Message;
+import com.example.railways.dataObjects.Tab;
+import com.example.railways.dataObjects.Url;
 import com.example.railways.common.utilities.DriverManager;
-import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.listenter.ReportListener;
 import com.example.railways.pageObjects.HomePage;

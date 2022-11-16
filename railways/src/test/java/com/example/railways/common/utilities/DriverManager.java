@@ -1,7 +1,8 @@
 package com.example.railways.common.utilities;
 
 import com.example.railways.common.constant.Browser;
-import com.example.railways.dataObjects.ConfigFileReader;
+import com.example.railways.common.utilities.extentreports.ExtentTestManager;
+import com.example.railways.common.utilities.helpers.ConfigFileReader;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -18,29 +19,36 @@ public class DriverManager {
     }
 
     public static void setDriver() {
-        Browser browserType = Browser.valueOf(ConfigFileReader.getValue("browser").toUpperCase().replaceAll("\\s+",""));
-        switch (browserType) {
-            case CHROME:
-                driver = initChromeDriver();
-                break;
-            case FIREFOX:
-                driver = initFirefoxDriver();
-                break;
-            default:
-                System.out.println("Browser: " + browserType.name() + " is invalid, Launching Chrome as browser of choice...");
-                driver = initChromeDriver();
-                break;
+        Browser browserType;
+        String configBrowser = ConfigFileReader.getValue("browser");
+        try {
+            browserType = Browser.fromString(configBrowser);
+            switch (browserType) {
+                case CHROME:
+                    driver = initChromeDriver();
+                    break;
+                case FIREFOX:
+                    driver = initFirefoxDriver();
+                    break;
+                default:
+                    ExtentTestManager.logMessage("Browser: " + browserType.name() + " is invalid, Launching Chrome as browser of choice...");
+                    driver = initChromeDriver();
+                    break;
+            }
+        } catch (Exception e) {
+            ExtentTestManager.logMessage("Browser: " + configBrowser + " is invalid, Launching Chrome as browser of choice...");
+            driver = initChromeDriver();
         }
     }
 
     private static WebDriver initChromeDriver() {
-        System.out.println("Launching Chrome browser...");
+        ExtentTestManager.logMessage("Launching Chrome browser...");
         System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath() + ConfigFileReader.getValue("driverPath") + "chromedriver.exe");
         return new ChromeDriver();
     }
 
     private static WebDriver initFirefoxDriver() {
-        System.out.println("Launching Firefox browser...");
+        ExtentTestManager.logMessage("Launching Firefox browser...");
         System.setProperty("webdriver.gecko.driver", Utilities.getProjectPath() + ConfigFileReader.getValue("driverPath") + "geckodriver.exe");
         return new FirefoxDriver();
     }

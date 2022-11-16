@@ -1,4 +1,4 @@
-package com.example.railways.common.constant;
+package com.example.railways.dataObjects;
 
 public enum Message {
     BOOK_TICKET_SUCCESS("Ticket Booked Successfully!"),

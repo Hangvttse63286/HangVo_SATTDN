@@ -1,4 +1,4 @@
-package com.example.railways.dataObjects;
+package com.example.railways.common.utilities.helpers;
 
 import com.example.railways.common.utilities.Log;
 

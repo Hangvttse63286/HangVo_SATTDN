@@ -1,4 +1,4 @@
-package com.example.railways.common.constant;
+package com.example.railways.dataObjects;
 
 public enum Url {
     RAILWAYS_URL("http://www.railwayb2.somee.com/"),

@@ -1,10 +1,9 @@
 package com.example.railways.testcases.register;
 
-import com.example.railways.common.constant.Message;
-import com.example.railways.common.constant.Tab;
-import com.example.railways.common.constant.Url;
+import com.example.railways.dataObjects.Message;
+import com.example.railways.dataObjects.Tab;
+import com.example.railways.dataObjects.Url;
 import com.example.railways.common.utilities.DriverManager;
-import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.listenter.ReportListener;
@@ -16,8 +15,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import java.util.concurrent.TimeUnit;
 
 @Listeners(ReportListener.class)
 public class TC11_Register_BlankPasswordAndPid extends BaseTest {

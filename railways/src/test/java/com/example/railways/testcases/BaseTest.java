@@ -1,11 +1,11 @@
 package com.example.railways.testcases;
 
-import com.example.railways.common.constant.Tab;
-import com.example.railways.common.constant.Url;
+import com.example.railways.dataObjects.Tab;
+import com.example.railways.dataObjects.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.Utilities;
-import com.example.railways.dataObjects.ConfigFileReader;
+import com.example.railways.common.utilities.helpers.ConfigFileReader;
 import com.example.railways.pageObjects.RegisterPage;
 import org.testng.annotations.*;
 import java.util.Arrays;
