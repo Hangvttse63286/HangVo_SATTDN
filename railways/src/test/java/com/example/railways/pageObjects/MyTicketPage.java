@@ -2,6 +2,7 @@ package com.example.railways.pageObjects;
 
 import com.example.railways.common.utilities.DriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -23,6 +24,7 @@ public class MyTicketPage extends BasePage {
     private final By btnCancel = By.xpath("//table[@class='MyTable']//input[@type='button' and @value='Cancel' and last()]");
     private final By btnDeletes = By.xpath("//table[@class='MyTable']//input[@type='button' and @value='Delete']");
     private final By msgFilterError = By.xpath("//div[contains(@class,'error')]");
+    private final String trCanceledXPath = "//table[@class='MyTable']//input[@type='button' and @value='Cancel' and contains(@onClick,'%s')]/..";
 
     public MyTicketPage(WebDriver driver) {
         super(driver);
@@ -96,7 +98,19 @@ public class MyTicketPage extends BasePage {
         return getDivContent().getText();
     }
 
-    public void clickBtnCancel() {
+    public int cancelTicket() {
+        String onClickAttr = getBtnCancel().getAttribute("onClick");
+        int deletedId = Integer.parseInt(onClickAttr.substring(onClickAttr.indexOf("(") + 1,onClickAttr.indexOf(")")));
         getBtnCancel().click();
+        return deletedId;
+    }
+
+    public Boolean isExistedTicket(int id) {
+        try {
+            driver.findElement(By.xpath(trCanceledXPath));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 }
