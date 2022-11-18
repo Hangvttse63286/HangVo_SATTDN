@@ -6,7 +6,7 @@ import com.example.railways.dataObjects.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.RegisterPage;
 import com.example.railways.testcases.BaseTest;
@@ -48,15 +48,15 @@ public class TC11_Register_BlankPasswordAndPid extends BaseTest {
         registerPage.register(email, password, password, pid);
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears above the form.");
-        Assert.assertTrue(registerPage.isExistedMsgError());
-        Assert.assertEquals(registerPage.getMsgErrorText(), Message.REGISTER_FAILED.getMsg());
+        Assert.assertTrue(registerPage.isExistedLblError());
+        Assert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
         ExtentTestManager.logMessage("Expected: Next to password fields, error message \"Invalid password length.\" displays");
         ExtentTestManager.logMessage("Expected: Next to PID field, error message \"Invalid ID length.\" displays");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(registerPage.isExistedMsgPasswordValidationError());
-        softAssert.assertTrue(registerPage.isExistedMsgPidValidationError());
-        softAssert.assertEquals(registerPage.getMsgPasswordValidationErrorText(), Message.REGISTER_PASSWORD_EMPTY.getMsg());
-        softAssert.assertEquals(registerPage.getMsgPidValidationErrorText(), Message.REGISTER_PID_EMPTY.getMsg());
+        softAssert.assertTrue(registerPage.isExistedLblPasswordValidationError());
+        softAssert.assertTrue(registerPage.isExistedLblPidValidationError());
+        softAssert.assertEquals(registerPage.getLblPasswordValidationErrorText(), Message.REGISTER_PASSWORD_EMPTY.getMsg());
+        softAssert.assertEquals(registerPage.getLblPidValidationErrorText(), Message.REGISTER_PID_EMPTY.getMsg());
         softAssert.assertAll();
     }
 }

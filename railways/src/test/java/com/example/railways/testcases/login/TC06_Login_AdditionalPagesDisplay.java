@@ -4,7 +4,7 @@ import com.example.railways.dataObjects.Tab;
 import com.example.railways.dataObjects.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.testcases.BaseTest;

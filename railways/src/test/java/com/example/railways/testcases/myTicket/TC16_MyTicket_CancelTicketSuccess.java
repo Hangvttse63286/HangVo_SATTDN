@@ -1,10 +1,9 @@
 package com.example.railways.testcases.myTicket;
 
-import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.*;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
@@ -37,11 +36,12 @@ public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
         MyTicketPage myTicketPage = new MyTicketPage(DriverManager.getDriver());
         myTicketPage.scrollToTblMyTicket();
         ExtentTestManager.logMessage("Click on \"Cancel\" button of ticket which user want to cancel.");
-        int deletedId = myTicketPage.cancelTicket();
+        myTicketPage.cancelTicket();
         ExtentTestManager.logMessage("Click on \"OK\" button on Confirmation message \"Are you sure?\"");
         DriverManager.acceptAlert();
 
         ExtentTestManager.logMessage("Expected: The canceled ticket is disappeared.");
-        Assert.assertFalse(myTicketPage.isExistedTicket(deletedId));
+
+        Assert.assertFalse(myTicketPage.isExistedTicket(myTicketPage.getDeletedId()));
     }
 }

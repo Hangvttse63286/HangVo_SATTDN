@@ -6,15 +6,15 @@ import org.openqa.selenium.WebElement;
 
 public class SuccessPage extends BasePage {
 
-    private final By msgBookTicketSuccess = By.tagName("h1");
+    private final By lblBookTicketSuccess = By.tagName("h1");
     private final By tblBookedTicket = By.xpath("//table[contains(@class,'WideTable')]");
 
     public SuccessPage(WebDriver driver) {
         super(driver);
     }
 
-    private WebElement getMsgBookTicketSuccess() {
-        return driver.findElement(msgBookTicketSuccess);
+    private WebElement getLblBookTicketSuccess() {
+        return driver.findElement(lblBookTicketSuccess);
     }
 
     private WebElement getTblBookedTicket() {
@@ -25,7 +25,7 @@ public class SuccessPage extends BasePage {
         return getTblBookedTicket().findElement(By.xpath("//td[count(//th[.='" + row + "']/preceding-sibling::th)+1]")).getText();
     }
 
-    public String getMsgBookTicketSuccessText() {
-        return getMsgBookTicketSuccess().getText();
+    public String getLblBookTicketSuccessText() {
+        return getLblBookTicketSuccess().getText();
     }
 }

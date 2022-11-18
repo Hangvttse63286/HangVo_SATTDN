@@ -7,7 +7,7 @@ import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.*;
 import com.example.railways.testcases.BaseTest;
 import org.testng.annotations.Listeners;
@@ -65,7 +65,7 @@ public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: Message \"Ticket Booked Successfully!\" displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(successPage.getMsgBookTicketSuccessText(), Message.BOOK_TICKET_SUCCESS.getMsg());
+        softAssert.assertEquals(successPage.getLblBookTicketSuccessText(), Message.BOOK_TICKET_SUCCESS.getMsg());
         softAssert.assertEquals(successDepartDate, departDate);
         softAssert.assertEquals(successDepartStation, departStation.getName());
         softAssert.assertEquals(successArriveStation, arriverStation.getName());

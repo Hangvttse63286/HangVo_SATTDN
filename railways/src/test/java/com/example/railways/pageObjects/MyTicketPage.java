@@ -1,10 +1,7 @@
 package com.example.railways.pageObjects;
 
 import com.example.railways.common.utilities.DriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
@@ -21,10 +18,11 @@ public class MyTicketPage extends BasePage {
     private final By tblMyTicket = By.className("MyTable");
     private final By trMyTickets = By.className("TableSmallHeader");
     private final By btnCancels = By.xpath("//table[@class='MyTable']//input[@type='button' and @value='Cancel']");
-    private final By btnCancel = By.xpath("//table[@class='MyTable']//input[@type='button' and @value='Cancel' and last()]");
+    private final By btnCancel = By.xpath("//table[@class='MyTable']//input[@type='button' and @value='Cancel']");
     private final By btnDeletes = By.xpath("//table[@class='MyTable']//input[@type='button' and @value='Delete']");
-    private final By msgFilterError = By.xpath("//div[contains(@class,'error')]");
-    private final String trCanceledXPath = "//table[@class='MyTable']//input[@type='button' and @value='Cancel' and contains(@onClick,'%s')]/..";
+    private final By lblFilterError = By.xpath("//div[contains(@class,'error')]");
+    private final String trCanceledXPath = "//table[@class='MyTable']//input[@type='button' and @value='Cancel' and contains(@onclick,'%s')]/ancestor::tr";
+    private String deletedId;
 
     public MyTicketPage(WebDriver driver) {
         super(driver);
@@ -82,12 +80,16 @@ public class MyTicketPage extends BasePage {
         return driver.findElements(btnDeletes);
     }
 
-    private WebElement getMsgFilterError() {
-        return driver.findElement(msgFilterError);
+    private WebElement getLblFilterError() {
+        return driver.findElement(lblFilterError);
     }
 
     private WebElement getRemovedRow(WebElement button) {
         return button.findElement(By.xpath("//ancestor::tr"));
+    }
+
+    public String getDeletedId() {
+        return this.deletedId;
     }
 
     public void scrollToTblMyTicket() {
@@ -98,19 +100,21 @@ public class MyTicketPage extends BasePage {
         return getDivContent().getText();
     }
 
-    public int cancelTicket() {
-        String onClickAttr = getBtnCancel().getAttribute("onClick");
-        int deletedId = Integer.parseInt(onClickAttr.substring(onClickAttr.indexOf("(") + 1,onClickAttr.indexOf(")")));
+    public void cancelTicket() {
+        String onClickAttr = getBtnCancel().getAttribute("onclick");
+        deletedId = onClickAttr.substring(onClickAttr.indexOf("(") + 1, onClickAttr.indexOf(")"));
         getBtnCancel().click();
-        return deletedId;
     }
 
-    public Boolean isExistedTicket(int id) {
+    public Boolean isExistedTicket(String id) {
         try {
-            driver.findElement(By.xpath(trCanceledXPath));
+            DriverManager.setImplicitlyWait(3);
+            driver.findElement(By.xpath(String.format(trCanceledXPath, id)));
             return true;
         } catch (NoSuchElementException e) {
             return false;
+        } finally {
+            DriverManager.implicitlyWait();
         }
     }
 }

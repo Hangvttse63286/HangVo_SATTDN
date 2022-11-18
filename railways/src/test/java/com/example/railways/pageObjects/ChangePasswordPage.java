@@ -13,9 +13,9 @@ public class ChangePasswordPage extends BasePage {
     private final By txtNewPassword = By.id("newPassword");
     private final By txtConfirmPassword = By.id("confirmPassword");
     private final By btnChangePassword = By.xpath("//form[@id='ChangePW']//input[@type='submit']");
-    private final By msgSuccess = By.xpath("//form[@id='ChangePW']//p[contains(@class,'success')]");
-    private final By msgError = By.xpath("//form[@id='ChangePW']//p[contains(@class,'error')]");
-    private final By msgCurrentPasswordValidationError = By.xpath("//form[@class='RegisterForm']//label[@for='currentPassword' and @class='validation-error']");
+    private final By lblSuccess = By.xpath("//form[@id='ChangePW']//p[contains(@class,'success')]");
+    private final By lblError = By.xpath("//form[@id='ChangePW']//p[contains(@class,'error')]");
+    private final By lblCurrentPasswordValidationError = By.xpath("//form[@class='RegisterForm']//label[@for='currentPassword' and @class='validation-error']");
     private final By msgNewPasswordValidationError = By.xpath("//form[@class='RegisterForm']//label[@for='newPassword' and @class='validation-error']");
     private final By msgConfirmPasswordValidationError = By.xpath("//form[@class='RegisterForm']//label[@for='confirmPassword' and @class='validation-error']");
 
@@ -43,16 +43,16 @@ public class ChangePasswordPage extends BasePage {
         return driver.findElement(btnChangePassword);
     }
 
-    private WebElement getMsgSuccess() {
-        return driver.findElement(msgSuccess);
+    private WebElement getLblSuccess() {
+        return driver.findElement(lblSuccess);
     }
 
-    private WebElement getMsgError() {
-        return driver.findElement(msgError);
+    private WebElement getLblError() {
+        return driver.findElement(lblError);
     }
 
-    private WebElement getMsgCurrentPasswordValidationError() {
-        return driver.findElement(msgCurrentPasswordValidationError);
+    private WebElement getLblCurrentPasswordValidationError() {
+        return driver.findElement(lblCurrentPasswordValidationError);
     }
 
     public WebElement getMsgNewPasswordValidationError() {
@@ -70,13 +70,13 @@ public class ChangePasswordPage extends BasePage {
         getBtnChangePassword().click();
     }
 
-    public String getMsgSuccessText() {
-        return getMsgSuccess().getText();
+    public String getLblSuccessText() {
+        return getLblSuccess().getText();
     }
 
-    public Boolean isExistedMsgSuccess(){
+    public Boolean isExistedLblSuccess(){
         try{
-            getMsgSuccess();
+            getLblSuccess();
             return true;
         }
         catch(NoSuchElementException e){

@@ -14,9 +14,9 @@ public class LoginPage extends BasePage {
     private final By btnLogin = By.xpath("//form[@class='LoginForm']//input[@type='submit']");
     private final By lnkRegister = By.xpath("//a[contains(@href, 'Register')]");
     private final By lnkForgotPassword = By.xpath("//a[contains(@href, 'ForgotPassword')]");
-    private final By msgError = By.xpath("//p[contains(@class,'error')]");
-    private final By msgEmailValidationError = By.xpath("//form[@class='LoginForm']//label[@for='username' and @class='validation-error']");
-    private final By msgPasswordValidationError = By.xpath("//form[@class='LoginForm']//label[@for='password' and @class='validation-error']");
+    private final By lblError = By.xpath("//p[contains(@class,'error')]");
+    private final By lblEmailValidationError = By.xpath("//form[@class='LoginForm']//label[@for='username' and @class='validation-error']");
+    private final By lblPasswordValidationError = By.xpath("//form[@class='LoginForm']//label[@for='password' and @class='validation-error']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -46,16 +46,16 @@ public class LoginPage extends BasePage {
         return driver.findElement(lnkForgotPassword);
     }
 
-    private WebElement getMsgError() {
-        return driver.findElement(msgError);
+    private WebElement getLblError() {
+        return driver.findElement(lblError);
     }
 
-    private WebElement getMsgEmailValidationError() {
-        return driver.findElement(msgEmailValidationError);
+    private WebElement getLblEmailValidationError() {
+        return driver.findElement(lblEmailValidationError);
     }
 
-    private WebElement getMsgPasswordValidationError() {
-        return driver.findElement(msgPasswordValidationError);
+    private WebElement getLblPasswordValidationError() {
+        return driver.findElement(lblPasswordValidationError);
     }
 
     public void login(String email, String password) {
@@ -64,13 +64,13 @@ public class LoginPage extends BasePage {
         getBtnLogin().click();
     }
 
-    public String getMsgErrorText() {
-        return getMsgError().getText();
+    public String getLblErrorText() {
+        return getLblError().getText();
     }
 
-    public Boolean isExistedMsgError() {
+    public Boolean isExistedLblError() {
         try{
-            getMsgError();
+            getLblError();
             return true;
         }
         catch(NoSuchElementException e){

@@ -6,7 +6,7 @@ import com.example.railways.dataObjects.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.RegisterPage;
 import com.example.railways.testcases.BaseTest;
@@ -14,7 +14,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
@@ -49,7 +48,7 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         registerPage.register(email, password, confirmPassword, pid);
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears.");
-        Assert.assertTrue(registerPage.isExistedMsgError());
-        Assert.assertEquals(registerPage.getMsgErrorText(), Message.REGISTER_FAILED.getMsg());
+        Assert.assertTrue(registerPage.isExistedLblError());
+        Assert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
     }
 }

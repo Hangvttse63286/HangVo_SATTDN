@@ -5,14 +5,13 @@ import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
@@ -39,7 +38,7 @@ public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
             loginPage.login(email, password);
         }
         ExtentTestManager.logMessage("Expected: User can't login and message \"You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.\" appears.");
-        Assert.assertTrue(loginPage.isExistedMsgError());
-        Assert.assertEquals(loginPage.getMsgErrorText(), Message.LOGIN_FAILED_SEVERAL_TIMES.getMsg());
+        Assert.assertTrue(loginPage.isExistedLblError());
+        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_FAILED_SEVERAL_TIMES.getMsg());
     }
 }

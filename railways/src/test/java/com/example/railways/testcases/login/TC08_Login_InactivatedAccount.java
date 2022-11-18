@@ -5,7 +5,7 @@ import com.example.railways.dataObjects.Tab;
 import com.example.railways.dataObjects.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.testcases.BaseTest;
@@ -42,7 +42,7 @@ public class TC08_Login_InactivatedAccount extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         Assert.assertEquals(DriverManager.getDriver().getCurrentUrl(), Url.RAILWAYS_LOGIN_URL.getUrlLink());
         softAssert.assertEquals(welcomeText, Message.UNLOGGED_WELCOME_TEXT.getMsg());
-        softAssert.assertEquals(loginPage.getMsgErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
+        softAssert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
         softAssert.assertAll();
     }
 }

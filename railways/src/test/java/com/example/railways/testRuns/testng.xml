@@ -2,7 +2,7 @@
 
 <suite name="Railways Suite" verbose="1">
     <listeners>
-        <listener class-name="com.example.railways.common.utilities.listenter.ReportListener" />
+        <listener class-name="com.example.railways.common.utilities.listener.ReportListener" />
     </listeners>
     <test name="Railways Test">
         <classes>

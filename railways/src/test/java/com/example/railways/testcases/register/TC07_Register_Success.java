@@ -6,7 +6,7 @@ import com.example.railways.dataObjects.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.RegisterPage;
 import com.example.railways.testcases.BaseTest;
@@ -14,7 +14,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC07_Register_Success extends BaseTest {
@@ -48,7 +47,7 @@ public class TC07_Register_Success extends BaseTest {
         registerPage.register(email, password, password, pid);
 
         ExtentTestManager.logMessage("Expected: New account is created and message \"You're here\"");
-        Assert.assertTrue(registerPage.isExistedMsgSuccess());
-        Assert.assertEquals(registerPage.getMsgSuccessText(), Message.REGISTER_SUCCESS.getMsg());
+        Assert.assertTrue(registerPage.isExistedLblSuccess());
+        Assert.assertEquals(registerPage.getLblSuccessText(), Message.REGISTER_SUCCESS.getMsg());
     }
 }
