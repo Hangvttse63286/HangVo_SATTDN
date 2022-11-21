@@ -8,8 +8,8 @@ public class ForgotPasswordPage extends BasePage {
 
     private final By txtEmail = By.id("email");
     private final By btnSendInstruction = By.xpath("//form//input[@type='submit']");
-    private final By msgError = By.xpath("//form//p[contains(@class,'error')]");
-    private final By msgValidationError = By.xpath("//form//label[@class='validation-error']");
+    private final By lblError = By.xpath("//form//p[contains(@class,'error')]");
+    private final By lblValidationError = By.xpath("//form//label[@class='validation-error']");
 
     public ForgotPasswordPage(WebDriver driver) {
         super(driver);
@@ -23,11 +23,11 @@ public class ForgotPasswordPage extends BasePage {
         return driver.findElement(btnSendInstruction);
     }
 
-    private WebElement getMsgError() {
-        return driver.findElement(msgError);
+    private WebElement getLblError() {
+        return driver.findElement(lblError);
     }
 
-    private WebElement getMsgValidationError() {
-        return driver.findElement(msgValidationError);
+    private WebElement getLblValidationError() {
+        return driver.findElement(lblValidationError);
     }
 }

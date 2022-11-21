@@ -4,7 +4,7 @@ import com.example.railways.dataObjects.Tab;
 import com.example.railways.dataObjects.Url;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.testcases.BaseTest;
@@ -29,7 +29,6 @@ public class TC06_Login_AdditionalPagesDisplay extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         ExtentTestManager.logMessage("Login with valid account");
         loginPage.login(email, password);
 

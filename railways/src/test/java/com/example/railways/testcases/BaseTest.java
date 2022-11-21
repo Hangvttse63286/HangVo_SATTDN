@@ -46,7 +46,6 @@ public class BaseTest {
         email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
         password = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
         String pid = Utilities.generateRandomString(Utilities.getRandomNumber(8, 20));
-        registerPage.scrollToBtnRegister();
         registerPage.register(email, password, password, pid);
     }
 

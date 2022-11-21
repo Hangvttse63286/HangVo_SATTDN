@@ -1,10 +1,9 @@
 package com.example.railways.testcases.myTicket;
 
-import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.*;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
@@ -24,24 +23,22 @@ public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
         ExtentTestManager.logMessage("Login with valid account");
         homePage.clickTab(Tab.LOGIN);
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Book a ticket");
         loginPage.clickTab(Tab.BOOK_TICKET);
         BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
-        bookTicketPage.scrollToBtnBookTicket();
         bookTicketPage.clickBtnBookTicket();
         ExtentTestManager.logMessage("Click on \"My ticket\" tab");
         bookTicketPage.clickTab(Tab.MY_TICKET);
 
         MyTicketPage myTicketPage = new MyTicketPage(DriverManager.getDriver());
-        myTicketPage.scrollToTblMyTicket();
         ExtentTestManager.logMessage("Click on \"Cancel\" button of ticket which user want to cancel.");
-        myTicketPage.clickBtnCancel();
+        myTicketPage.cancelTicket();
         ExtentTestManager.logMessage("Click on \"OK\" button on Confirmation message \"Are you sure?\"");
         DriverManager.acceptAlert();
 
         ExtentTestManager.logMessage("Expected: The canceled ticket is disappeared.");
-        Assert.assertTrue(myTicketPage.getDivContentText().contains(Message.MY_TICKET_EMPTY.getMsg()));
+
+        Assert.assertFalse(myTicketPage.isExistedTicket(myTicketPage.getDeletedId()));
     }
 }

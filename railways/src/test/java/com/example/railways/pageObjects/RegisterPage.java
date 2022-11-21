@@ -16,12 +16,12 @@ public class RegisterPage extends BasePage {
     private final By btnRegister = By.xpath("//form[@id='RegisterForm']//input[@type='submit']");
     private final By lnkLogin = By.xpath("//a[contains(@href, 'Login')]");
     private final By lnkConfirm = By.xpath("//a[contains(@href, 'Confirm')]");
-    private final By msgSuccess = By.xpath("//div[@id='content']/p");
-    private final By msgError = By.xpath("//p[contains(@class,'error')]");
-    private final By msgEmailValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='email' and @class='validation-error']");
-    private final By msgPasswordValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='password' and @class='validation-error']");
-    private final By msgConfirmPasswordValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='confirmPassword' and @class='validation-error']");
-    private final By msgPidValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='pid' and @class='validation-error']");
+    private final By lblSuccess = By.xpath("//div[@id='content']/p");
+    private final By lblError = By.xpath("//p[contains(@class,'error')]");
+    private final By lblEmailValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='email' and @class='validation-error']");
+    private final By lblPasswordValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='password' and @class='validation-error']");
+    private final By lblConfirmPasswordValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='confirmPassword' and @class='validation-error']");
+    private final By lblPidValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='pid' and @class='validation-error']");
 
     public RegisterPage(WebDriver driver) {
         super(driver);
@@ -59,31 +59,32 @@ public class RegisterPage extends BasePage {
         return driver.findElement(lnkConfirm);
     }
 
-    private WebElement getMsgSuccess() {
-        return driver.findElement(msgSuccess);
+    private WebElement getLblSuccess() {
+        return driver.findElement(lblSuccess);
     }
 
-    private WebElement getMsgError() {
-        return driver.findElement(msgError);
+    private WebElement getLblError() {
+        return driver.findElement(lblError);
     }
 
-    private WebElement getMsgEmailValidationError() {
-        return driver.findElement(msgEmailValidationError);
+    private WebElement getLblEmailValidationError() {
+        return driver.findElement(lblEmailValidationError);
     }
 
-    private WebElement getMsgPasswordValidationError() {
-        return driver.findElement(msgPasswordValidationError);
+    private WebElement getLblPasswordValidationError() {
+        return driver.findElement(lblPasswordValidationError);
     }
 
-    private WebElement getMsgConfirmPasswordValidationError() {
-        return driver.findElement(msgConfirmPasswordValidationError);
+    private WebElement getLblConfirmPasswordValidationError() {
+        return driver.findElement(lblConfirmPasswordValidationError);
     }
 
-    private WebElement getMsgPidValidationError() {
-        return driver.findElement(msgPidValidationError);
+    private WebElement getLblPidValidationError() {
+        return driver.findElement(lblPidValidationError);
     }
 
     public void register(String email, String password, String confirmPassword, String pid) {
+        scrollToBtnRegister();
         getTxtEmail().sendKeys(email);
         getTxtPassword().sendKeys(password);
         getTxtConfirmPassword().sendKeys(confirmPassword);
@@ -95,13 +96,13 @@ public class RegisterPage extends BasePage {
         DriverManager.scrollToView(getBtnRegister());
     }
 
-    public String getMsgSuccessText() {
-        return getMsgSuccess().getText();
+    public String getLblSuccessText() {
+        return getLblSuccess().getText();
     }
 
-    public Boolean isExistedMsgSuccess() {
+    public Boolean isExistedLblSuccess() {
         try{
-            getMsgSuccess();
+            getLblSuccess();
             return true;
         }
         catch(NoSuchElementException e){
@@ -109,13 +110,13 @@ public class RegisterPage extends BasePage {
         }
     }
 
-    public String getMsgPasswordValidationErrorText() {
-        return getMsgPasswordValidationError().getText();
+    public String getLblPasswordValidationErrorText() {
+        return getLblPasswordValidationError().getText();
     }
 
-    public Boolean isExistedMsgPasswordValidationError() {
+    public Boolean isExistedLblPasswordValidationError() {
         try{
-            getMsgPasswordValidationError();
+            getLblPasswordValidationError();
             return true;
         }
         catch(NoSuchElementException e){
@@ -123,13 +124,13 @@ public class RegisterPage extends BasePage {
         }
     }
 
-    public String getMsgPidValidationErrorText() {
-        return getMsgPidValidationError().getText();
+    public String getLblPidValidationErrorText() {
+        return getLblPidValidationError().getText();
     }
 
-    public Boolean isExistedMsgPidValidationError() {
+    public Boolean isExistedLblPidValidationError() {
         try{
-            getMsgPidValidationError();
+            getLblPidValidationError();
             return true;
         }
         catch(NoSuchElementException e){
@@ -137,13 +138,13 @@ public class RegisterPage extends BasePage {
         }
     }
 
-    public String getMsgErrorText() {
-        return getMsgError().getText();
+    public String getLblErrorText() {
+        return getLblError().getText();
     }
 
-    public Boolean isExistedMsgError() {
+    public Boolean isExistedLblError() {
         try{
-            getMsgError();
+            getLblError();
             return true;
         }
         catch(NoSuchElementException e){

@@ -5,7 +5,7 @@ import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.ChangePasswordPage;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
@@ -13,7 +13,6 @@ import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC09_ChangePassword_Success extends BaseTest {
@@ -28,7 +27,6 @@ public class TC09_ChangePassword_Success extends BaseTest {
         ExtentTestManager.logMessage("Login with valid account");
         homePage.clickTab(Tab.LOGIN);
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Click on \"Change Password\" tab");
         loginPage.clickTab(Tab.CHANGE_PASSWORD);
@@ -43,7 +41,7 @@ public class TC09_ChangePassword_Success extends BaseTest {
         changePasswordPage.changePassword(getPassword(), newPassword, newPassword);
 
         ExtentTestManager.logMessage("Expected: Message \"Your password has been updated!\" appears.");
-        Assert.assertTrue(changePasswordPage.isExistedMsgSuccess());
-        Assert.assertEquals(changePasswordPage.getMsgSuccessText(), Message.CHANGE_PASSWORD_SUCCESS.getMsg());
+        Assert.assertTrue(changePasswordPage.isExistedLblSuccess());
+        Assert.assertEquals(changePasswordPage.getLblSuccessText(), Message.CHANGE_PASSWORD_SUCCESS.getMsg());
     }
 }

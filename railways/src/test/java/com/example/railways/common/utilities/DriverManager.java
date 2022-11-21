@@ -1,14 +1,13 @@
 package com.example.railways.common.utilities;
 
 import com.example.railways.common.constant.Browser;
-import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.helpers.ConfigFileReader;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public class DriverManager {
@@ -63,6 +62,26 @@ public class DriverManager {
 
     public static void implicitlyWait() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(ConfigFileReader.getValue("implicitlyWait"))));
+    }
+
+    public static void setImplicitlyWait(long duration) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(duration));
+    }
+
+    private static WebDriverWait explicitlyWait(long duration) {
+        return new WebDriverWait(driver, Duration.ofSeconds(duration));
+    }
+
+    public static void waitVisibility(By by, long duration) {
+        explicitlyWait(duration).until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public WebElement waitToBeClickable(By by, long duration) {
+        return explicitlyWait(duration).until(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    public Boolean waitToBeSelected(By by, long duration) {
+        return explicitlyWait(duration).until(ExpectedConditions.elementToBeSelected(by));
     }
 
     public static void maximizeWindow() {

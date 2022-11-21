@@ -46,6 +46,7 @@ public class BookTicketPage extends BasePage {
     }
 
     public void bookTicket(String departDate, Station departStation, Station arriveStation, SeatType seatType, int ticketAmount) {
+        DriverManager.scrollToView(getBtnBookTicket());
         getDdlDepartDate().selectByVisibleText(departDate);
         getDdlDepartStation().selectByVisibleText(departStation.getName());
         getDdlArriveStation().selectByVisibleText(arriveStation.getName());
@@ -54,19 +55,18 @@ public class BookTicketPage extends BasePage {
         getBtnBookTicket().click();
     }
 
-    public void scrollToBtnBookTicket() {
-        DriverManager.scrollToView(getBtnBookTicket());
-    }
-
     public void clickBtnBookTicket() {
+        DriverManager.scrollToView(getBtnBookTicket());
         getBtnBookTicket().click();
     }
 
     public String getSelectedDpStation() {
+        DriverManager.scrollToView(getDdlDepartStation().getWrappedElement());
         return getDdlDepartStation().getFirstSelectedOption().getText();
     }
 
     public String getSelectedArStation() {
+        DriverManager.scrollToView(getDdlArriveStation().getWrappedElement());
         return getDdlArriveStation().getFirstSelectedOption().getText();
     }
 }

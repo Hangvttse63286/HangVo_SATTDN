@@ -5,7 +5,7 @@ import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
-import com.example.railways.common.utilities.listenter.ReportListener;
+import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.testcases.BaseTest;
@@ -31,7 +31,6 @@ public class TC01_Login_ValidAcc extends BaseTest {
         Log.info("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         ExtentTestManager.logMessage("Enter valid Email and Password");
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);
