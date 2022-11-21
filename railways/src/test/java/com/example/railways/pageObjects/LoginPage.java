@@ -59,6 +59,7 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String email, String password) {
+        scrollToBtnLogin();
         getTxtEmail().sendKeys(email);
         getTxtPassword().sendKeys(password);
         getBtnLogin().click();

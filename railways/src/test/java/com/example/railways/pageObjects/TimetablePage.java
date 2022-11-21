@@ -35,10 +35,12 @@ public class TimetablePage extends BasePage {
     }
 
     public void clickLnk(Station departStation, Station arriveStation, String lnk) {
-        getLnk(departStation, arriveStation, lnk).click();
+        WebElement link = getLnk(departStation, arriveStation, lnk);
+        scrollToLnk(link);
+        link.click();
     }
 
-    public void scrollToLnk(Station departStation, Station arriveStation, String lnk) {
-        DriverManager.scrollToView(getLnk(departStation, arriveStation, lnk));
+    private void scrollToLnk(WebElement lnk) {
+        DriverManager.scrollToView(lnk);
     }
 }

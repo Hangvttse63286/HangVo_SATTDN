@@ -26,7 +26,6 @@ public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
         ExtentTestManager.logMessage("Login with valid account");
         homePage.clickTab(Tab.LOGIN);
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Click on \"Timetable\" tab");
         loginPage.clickTab(Tab.TIMETABLE);
@@ -37,14 +36,12 @@ public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
 
         TimetablePage timetablePage = new TimetablePage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Click on \"book ticket\" link of the route from \"Huế\" to \"Sài Gòn\"");
-        timetablePage.scrollToLnk(timetableDpStation, timetableArStation, "Book");
         timetablePage.clickLnk(timetableDpStation, timetableArStation, "Book");
 
         ExtentTestManager.logMessage("Expected: \"Book ticket\" page is loaded with correct  \"Depart from\" and \"Arrive at\" values.");
         Assert.assertTrue(DriverManager.getCurrentUrl().contains(Url.RAILWAYS_BOOK_TICKET_URL.getUrlLink()));
 
         BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
-        bookTicketPage.scrollToBtnBookTicket();
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(bookTicketPage.getSelectedDpStation(), timetableDpStation.getName());

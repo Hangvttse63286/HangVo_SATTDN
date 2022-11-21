@@ -28,7 +28,6 @@ public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
         ExtentTestManager.logMessage("Login with valid account");
         homePage.clickTab(Tab.LOGIN);
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Click on \"Book ticket\" tab");
         loginPage.clickTab(Tab.BOOK_TICKET);
@@ -48,7 +47,6 @@ public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
                 + " - Ticket Amount: " + ticketAmount);
 
         BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
-        bookTicketPage.scrollToBtnBookTicket();
         ExtentTestManager.logMessage("Select a \"Depart date\" from the list");
         ExtentTestManager.logMessage("Select \"Sài Gòn\" for \"Depart from\" and \"Nha Trang\" for \"Arrive at\".");
         ExtentTestManager.logMessage("Select \"Soft bed with air conditioner\" for \"Seat type\"");

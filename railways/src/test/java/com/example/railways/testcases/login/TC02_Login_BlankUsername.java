@@ -29,7 +29,6 @@ public class TC02_Login_BlankUsername extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         ExtentTestManager.logMessage("User doesn't type any words into \"Username\" textbox but enter valid information into \"Password\" textbox ");
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);

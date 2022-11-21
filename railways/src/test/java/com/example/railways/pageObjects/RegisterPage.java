@@ -84,6 +84,7 @@ public class RegisterPage extends BasePage {
     }
 
     public void register(String email, String password, String confirmPassword, String pid) {
+        scrollToBtnRegister();
         getTxtEmail().sendKeys(email);
         getTxtPassword().sendKeys(password);
         getTxtConfirmPassword().sendKeys(confirmPassword);

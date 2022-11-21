@@ -27,7 +27,6 @@ public class TC09_ChangePassword_Success extends BaseTest {
         ExtentTestManager.logMessage("Login with valid account");
         homePage.clickTab(Tab.LOGIN);
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Click on \"Change Password\" tab");
         loginPage.clickTab(Tab.CHANGE_PASSWORD);

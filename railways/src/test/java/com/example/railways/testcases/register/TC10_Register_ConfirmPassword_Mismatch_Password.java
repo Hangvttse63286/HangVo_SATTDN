@@ -42,7 +42,6 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password + " - Confirm Password: " + confirmPassword + " - Pid: " + pid);
 
         RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
-        registerPage.scrollToBtnRegister();
         ExtentTestManager.logMessage("Enter valid information into all fields except \"Confirm password\" is not the same with \"Password\"");
         ExtentTestManager.logMessage("Click on \"Register\" button");
         registerPage.register(email, password, confirmPassword, pid);

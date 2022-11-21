@@ -41,7 +41,6 @@ public class TC07_Register_Success extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password + " - Confirm Password: " + password + " - Pid: " + pid);
 
         RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
-        registerPage.scrollToBtnRegister();
         ExtentTestManager.logMessage("Enter valid information into all fields");
         ExtentTestManager.logMessage("Click on \"Register\" button");
         registerPage.register(email, password, password, pid);

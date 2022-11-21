@@ -101,6 +101,7 @@ public class MyTicketPage extends BasePage {
     }
 
     public void cancelTicket() {
+        scrollToTblMyTicket();
         String onClickAttr = getBtnCancel().getAttribute("onclick");
         deletedId = onClickAttr.substring(onClickAttr.indexOf("(") + 1, onClickAttr.indexOf(")"));
         getBtnCancel().click();

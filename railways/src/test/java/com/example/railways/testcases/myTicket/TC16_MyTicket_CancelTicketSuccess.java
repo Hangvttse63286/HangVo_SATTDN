@@ -23,18 +23,15 @@ public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
         ExtentTestManager.logMessage("Login with valid account");
         homePage.clickTab(Tab.LOGIN);
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Book a ticket");
         loginPage.clickTab(Tab.BOOK_TICKET);
         BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
-        bookTicketPage.scrollToBtnBookTicket();
         bookTicketPage.clickBtnBookTicket();
         ExtentTestManager.logMessage("Click on \"My ticket\" tab");
         bookTicketPage.clickTab(Tab.MY_TICKET);
 
         MyTicketPage myTicketPage = new MyTicketPage(DriverManager.getDriver());
-        myTicketPage.scrollToTblMyTicket();
         ExtentTestManager.logMessage("Click on \"Cancel\" button of ticket which user want to cancel.");
         myTicketPage.cancelTicket();
         ExtentTestManager.logMessage("Click on \"OK\" button on Confirmation message \"Are you sure?\"");

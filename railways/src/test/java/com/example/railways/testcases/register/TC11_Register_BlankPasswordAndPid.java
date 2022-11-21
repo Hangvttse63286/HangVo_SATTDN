@@ -42,7 +42,6 @@ public class TC11_Register_BlankPasswordAndPid extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password + " - Confirm Password: " + password + " - Pid: " + pid);
 
         RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
-        registerPage.scrollToBtnRegister();
         ExtentTestManager.logMessage("Enter valid email address and leave other fields empty");
         ExtentTestManager.logMessage("Click on \"Register\" button");
         registerPage.register(email, password, password, pid);

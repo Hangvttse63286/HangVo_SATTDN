@@ -31,7 +31,6 @@ public class TC01_Login_ValidAcc extends BaseTest {
         Log.info("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         ExtentTestManager.logMessage("Enter valid Email and Password");
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);

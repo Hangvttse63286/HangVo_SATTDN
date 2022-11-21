@@ -34,7 +34,6 @@ public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
         ExtentTestManager.logMessage("Click on \"Login\" button");
         ExtentTestManager.logMessage("Repeat step 3 three more times.");
         for (int i = 0; i < 4; i++) {
-            loginPage.scrollToBtnLogin();
             loginPage.login(email, password);
         }
         ExtentTestManager.logMessage("Expected: User can't login and message \"You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.\" appears.");

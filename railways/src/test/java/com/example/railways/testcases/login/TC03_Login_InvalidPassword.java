@@ -30,7 +30,6 @@ public class TC03_Login_InvalidPassword extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         ExtentTestManager.logMessage("Enter valid Email and invalid Password");
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);

@@ -29,7 +29,6 @@ public class TC06_Login_AdditionalPagesDisplay extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         ExtentTestManager.logMessage("Login with valid account");
         loginPage.login(email, password);
 

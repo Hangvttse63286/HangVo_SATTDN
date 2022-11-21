@@ -32,7 +32,6 @@ public class TC08_Login_InactivatedAccount extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        loginPage.scrollToBtnLogin();
         ExtentTestManager.logMessage("Enter username and password of account hasn't been activated.");
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);
