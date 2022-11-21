@@ -1,10 +1,6 @@
 package com.example.railways.common.utilities;
 
 import net.bytebuddy.utility.RandomString;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
