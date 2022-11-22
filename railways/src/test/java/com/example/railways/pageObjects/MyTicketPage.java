@@ -21,10 +21,9 @@ public class MyTicketPage extends BasePage {
     private final By tblMyTicket = By.className("MyTable");
     private final By trMyTickets = By.className("TableSmallHeader");
     private final By btnCancels = By.xpath("//table[@class='MyTable']//input[@type='button' and @value='Cancel']");
-    private final By btnCancel = By.xpath("//table[@class='MyTable']//input[@type='button' and @value='Cancel']");
     private final By btnDeletes = By.xpath("//table[@class='MyTable']//input[@type='button' and @value='Delete']");
     private final By lblFilterError = By.xpath("//div[contains(@class,'error')]");
-    private final String trCanceledXPath = "//table[@class='MyTable']//input[@type='button' and @value='Cancel' and contains(@onclick,'%s')]/ancestor::tr";
+    private final String btnCancelXPath = "//table[@class='MyTable']//input[@type='button' and @value='Cancel' and contains(@onclick,'%s')]";
     private String deletedId;
 
     public MyTicketPage(WebDriver driver) {
@@ -75,8 +74,8 @@ public class MyTicketPage extends BasePage {
         return driver.findElements(btnCancels);
     }
 
-    private WebElement getBtnCancel() {
-        return driver.findElement(btnCancel);
+    private WebElement getBtnCancel(int id) {
+        return driver.findElement(By.xpath(String.format(btnCancelXPath, id)));
     }
 
     private List<WebElement> getBtnDeletes() {
@@ -103,17 +102,15 @@ public class MyTicketPage extends BasePage {
         return getDivContent().getText();
     }
 
-    public void cancelTicket() {
+    public void cancelTicket(int id) {
         scrollToTblMyTicket();
-        String onClickAttr = getBtnCancel().getAttribute("onclick");
-        deletedId = onClickAttr.substring(onClickAttr.indexOf("(") + 1, onClickAttr.indexOf(")"));
-        getBtnCancel().click();
+        getBtnCancel(id).click();
     }
 
-    public Boolean isExistedTicket(String id) {
+    public Boolean isExistedTicket(int id) {
         try {
             DriverManager.setImplicitlyWait(3);
-            driver.findElement(By.xpath(String.format(trCanceledXPath, id)));
+            getBtnCancel(id).findElement(By.xpath("/ancestor::tr"));
             return true;
         } catch (NoSuchElementException e) {
             return false;
