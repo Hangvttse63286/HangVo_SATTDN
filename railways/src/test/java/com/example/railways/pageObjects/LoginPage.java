@@ -69,12 +69,10 @@ public class LoginPage extends BasePage {
         return getLblError().getText();
     }
 
-    public Boolean isExistedLblError() {
-        try{
-            getLblError();
-            return true;
-        }
-        catch(NoSuchElementException e){
+    public Boolean isLblErrorDisplayed() {
+        try {
+            return getLblError().isDisplayed();
+        } catch (NoSuchElementException e) {
             return false;
         }
     }

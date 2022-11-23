@@ -18,10 +18,10 @@ public class RegisterPage extends BasePage {
     private final By lnkConfirm = By.xpath("//a[contains(@href, 'Confirm')]");
     private final By lblSuccess = By.xpath("//div[@id='content']/p");
     private final By lblError = By.xpath("//p[contains(@class,'error')]");
-    private final By lblEmailValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='email' and @class='validation-error']");
-    private final By lblPasswordValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='password' and @class='validation-error']");
-    private final By lblConfirmPasswordValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='confirmPassword' and @class='validation-error']");
-    private final By lblPidValidationError = By.xpath("//form[@id='RegisterForm']//label[@for='pid' and @class='validation-error']");
+    private final By lblEmailError = By.xpath("//form[@id='RegisterForm']//label[@for='email' and @class='validation-error']");
+    private final By lblPasswordError = By.xpath("//form[@id='RegisterForm']//label[@for='password' and @class='validation-error']");
+    private final By lblConfirmPasswordError = By.xpath("//form[@id='RegisterForm']//label[@for='confirmPassword' and @class='validation-error']");
+    private final By lblPidError = By.xpath("//form[@id='RegisterForm']//label[@for='pid' and @class='validation-error']");
 
     public RegisterPage(WebDriver driver) {
         super(driver);
@@ -67,20 +67,20 @@ public class RegisterPage extends BasePage {
         return driver.findElement(lblError);
     }
 
-    private WebElement getLblEmailValidationError() {
-        return driver.findElement(lblEmailValidationError);
+    private WebElement getLblEmailError() {
+        return driver.findElement(lblEmailError);
     }
 
-    private WebElement getLblPasswordValidationError() {
-        return driver.findElement(lblPasswordValidationError);
+    private WebElement getLblPasswordError() {
+        return driver.findElement(lblPasswordError);
     }
 
-    private WebElement getLblConfirmPasswordValidationError() {
-        return driver.findElement(lblConfirmPasswordValidationError);
+    private WebElement getLblConfirmPasswordError() {
+        return driver.findElement(lblConfirmPasswordError);
     }
 
-    private WebElement getLblPidValidationError() {
-        return driver.findElement(lblPidValidationError);
+    private WebElement getLblPidError() {
+        return driver.findElement(lblPidError);
     }
 
     public void register(String email, String password, String confirmPassword, String pid) {
@@ -100,40 +100,34 @@ public class RegisterPage extends BasePage {
         return getLblSuccess().getText();
     }
 
-    public Boolean isExistedLblSuccess() {
-        try{
-            getLblSuccess();
-            return true;
-        }
-        catch(NoSuchElementException e){
+    public Boolean isLblSuccessDisplayed() {
+        try {
+            return getLblSuccess().isDisplayed();
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
 
-    public String getLblPasswordValidationErrorText() {
-        return getLblPasswordValidationError().getText();
+    public String getLblPasswordErrorText() {
+        return getLblPasswordError().getText();
     }
 
-    public Boolean isExistedLblPasswordValidationError() {
-        try{
-            getLblPasswordValidationError();
-            return true;
-        }
-        catch(NoSuchElementException e){
+    public Boolean isLblPasswordErrorDisplayed() {
+        try {
+            return getLblPasswordError().isDisplayed();
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
 
-    public String getLblPidValidationErrorText() {
-        return getLblPidValidationError().getText();
+    public String getLblPidErrorText() {
+        return getLblPidError().getText();
     }
 
-    public Boolean isExistedLblPidValidationError() {
-        try{
-            getLblPidValidationError();
-            return true;
-        }
-        catch(NoSuchElementException e){
+    public Boolean isLblPidErrorDisplayed() {
+        try {
+            return getLblPidError().isDisplayed();
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
@@ -142,12 +136,10 @@ public class RegisterPage extends BasePage {
         return getLblError().getText();
     }
 
-    public Boolean isExistedLblError() {
-        try{
-            getLblError();
-            return true;
-        }
-        catch(NoSuchElementException e){
+    public Boolean isLblErrorDisplayed() {
+        try {
+            return getLblError().isDisplayed();
+        } catch (NoSuchElementException e) {
             return false;
         }
     }

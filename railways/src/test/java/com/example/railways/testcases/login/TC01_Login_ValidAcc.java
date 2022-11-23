@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 @Listeners(ReportListener.class)
 public class TC01_Login_ValidAcc extends BaseTest {
 
-    @Test
+    @Test(description = "TC01-User can log into Railway with valid username and password")
     public void TC_Login_ValidAccount() {
         ExtentTestManager.logMessage("TC01-User can log into Railway with valid username and password");
 

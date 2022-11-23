@@ -1,5 +1,6 @@
 package com.example.railways.testcases.changePassword;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
@@ -17,7 +18,7 @@ import org.testng.annotations.Test;
 @Listeners(ReportListener.class)
 public class TC09_ChangePassword_Success extends BaseTest {
 
-    @Test
+    @Test(description = "TC09-User can change password")
     public void TC_ChangePassword_ValidFields() {
         ExtentTestManager.logMessage("TC09-User can change password");
         ExtentTestManager.logMessage("Pre-condition: Create and activate a new account");
@@ -41,7 +42,7 @@ public class TC09_ChangePassword_Success extends BaseTest {
         changePasswordPage.changePassword(getPassword(), newPassword, newPassword);
 
         ExtentTestManager.logMessage("Expected: Message \"Your password has been updated!\" appears.");
-        Assert.assertTrue(changePasswordPage.isExistedLblSuccess());
+        Assert.assertTrue(changePasswordPage.isLblSuccessDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label success msg");
         Assert.assertEquals(changePasswordPage.getLblSuccessText(), Message.CHANGE_PASSWORD_SUCCESS.getMsg());
     }
 }

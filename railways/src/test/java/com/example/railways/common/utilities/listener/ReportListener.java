@@ -39,7 +39,7 @@ public class ReportListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult iTestResult) {
         Log.info(getTestName(iTestResult) + " test is starting...");
-        ExtentTestManager.saveToReport(iTestResult.getName(), iTestResult.getTestName());
+        ExtentTestManager.saveToReport(iTestResult.getName(), getTestDescription(iTestResult));
     }
 
     @Override

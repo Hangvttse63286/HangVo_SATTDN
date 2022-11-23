@@ -1,5 +1,6 @@
 package com.example.railways.testcases.register;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.dataObjects.Url;
@@ -10,7 +11,6 @@ import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.RegisterPage;
 import com.example.railways.testcases.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -27,7 +27,7 @@ public class TC11_Register_BlankPasswordAndPid extends BaseTest {
         DriverManager.open(Url.RAILWAYS_URL.getUrlLink());
     }
 
-    @Test
+    @Test(description = "TC11-User can't create account while password and PID fields are empty")
     public void TC_Register_BlankPasswordAndPid() {
         ExtentTestManager.logMessage("TC11-User can't create account while password and PID fields are empty");
 
@@ -47,15 +47,21 @@ public class TC11_Register_BlankPasswordAndPid extends BaseTest {
         registerPage.register(email, password, password, pid);
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears above the form.");
-        Assert.assertTrue(registerPage.isExistedLblError());
-        Assert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
-        ExtentTestManager.logMessage("Expected: Next to password fields, error message \"Invalid password length.\" displays");
-        ExtentTestManager.logMessage("Expected: Next to PID field, error message \"Invalid ID length.\" displays");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(registerPage.isExistedLblPasswordValidationError());
-        softAssert.assertTrue(registerPage.isExistedLblPidValidationError());
-        softAssert.assertEquals(registerPage.getLblPasswordValidationErrorText(), Message.REGISTER_PASSWORD_EMPTY.getMsg());
-        softAssert.assertEquals(registerPage.getLblPidValidationErrorText(), Message.REGISTER_PID_EMPTY.getMsg());
+        softAssert.assertTrue(registerPage.isLblErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label error msg");
+        if (registerPage.isLblErrorDisplayed())
+            softAssert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
+
+        ExtentTestManager.logMessage("Expected: Next to password fields, error message \"Invalid password length.\" displays");
+        softAssert.assertTrue(registerPage.isLblPasswordErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label password error msg");
+        if (registerPage.isLblPasswordErrorDisplayed())
+            softAssert.assertEquals(registerPage.getLblPasswordErrorText(), Message.REGISTER_PASSWORD_EMPTY.getMsg());
+
+        ExtentTestManager.logMessage("Expected: Next to PID field, error message \"Invalid ID length.\" displays");
+        softAssert.assertTrue(registerPage.isLblPidErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label pid error msg");
+        if (registerPage.isLblPidErrorDisplayed())
+            softAssert.assertEquals(registerPage.getLblPidErrorText(), Message.REGISTER_PID_EMPTY.getMsg());
+
         softAssert.assertAll();
     }
 }

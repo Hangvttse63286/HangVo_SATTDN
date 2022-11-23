@@ -2,11 +2,11 @@
 
 <suite name="Railways Suite" verbose="1">
     <listeners>
-        <listener class-name="com.example.railways.common.utilities.listener.ReportListener" />
+        <listener class-name="com.example.railways.common.utilities.listener.ReportListener"/>
     </listeners>
     <test name="Railways Test">
         <classes>
-            <class name="com.example.railways.testcases.login.TC08_Login_InactivatedAccount"/>
+            <class name="com.example.railways.testcases.login.TC08_Login_UnregisteredAccount"/>
             <class name="com.example.railways.testcases.login.TC02_Login_BlankUsername"/>
             <class name="com.example.railways.testcases.login.TC03_Login_InvalidPassword"/>
             <class name="com.example.railways.testcases.login.TC01_Login_ValidAcc"/>

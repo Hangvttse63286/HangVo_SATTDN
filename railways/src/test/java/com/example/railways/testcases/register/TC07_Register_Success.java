@@ -1,5 +1,6 @@
 package com.example.railways.testcases.register;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.dataObjects.Url;
@@ -26,7 +27,7 @@ public class TC07_Register_Success extends BaseTest {
         DriverManager.open(Url.RAILWAYS_URL.getUrlLink());
     }
 
-    @Test
+    @Test(description = "TC07-User can create new account")
     public void TC_Register_ValidFields() {
         ExtentTestManager.logMessage("TC07-User can create new account");
 
@@ -46,7 +47,7 @@ public class TC07_Register_Success extends BaseTest {
         registerPage.register(email, password, password, pid);
 
         ExtentTestManager.logMessage("Expected: New account is created and message \"You're here\"");
-        Assert.assertTrue(registerPage.isExistedLblSuccess());
+        Assert.assertTrue(registerPage.isLblSuccessDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label success msg");
         Assert.assertEquals(registerPage.getLblSuccessText(), Message.REGISTER_SUCCESS.getMsg());
     }
 }

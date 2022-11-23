@@ -16,12 +16,13 @@ import com.example.railways.testcases.BaseTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 import java.util.Date;
 
 @Listeners(ReportListener.class)
 public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
 
-    @Test
+    @Test(description = "TC14-User can book 1 ticket at a time")
     public void TC_BookTicket_Book1Ticket() {
         ExtentTestManager.logMessage("TC14-User can book 1 ticket at a time");
         ExtentTestManager.logMessage("Pre-condition: Create and activate a new account");

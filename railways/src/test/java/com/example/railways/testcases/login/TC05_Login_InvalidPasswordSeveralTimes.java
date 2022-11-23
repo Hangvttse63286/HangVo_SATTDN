@@ -1,5 +1,6 @@
 package com.example.railways.testcases.login;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
@@ -16,7 +17,7 @@ import org.testng.annotations.Test;
 @Listeners(ReportListener.class)
 public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
 
-    @Test
+    @Test(description = "TC05-System shows message when user enters wrong password several times")
     public void TC_Login_InvalidPasswordSeveralTimes() {
         ExtentTestManager.logMessage("TC05-System shows message when user enters wrong password several times");
 
@@ -37,7 +38,7 @@ public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
             loginPage.login(email, password);
         }
         ExtentTestManager.logMessage("Expected: User can't login and message \"You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.\" appears.");
-        Assert.assertTrue(loginPage.isExistedLblError());
+        Assert.assertTrue(loginPage.isLblErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label error msg");
         Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_FAILED_SEVERAL_TIMES.getMsg());
     }
 }

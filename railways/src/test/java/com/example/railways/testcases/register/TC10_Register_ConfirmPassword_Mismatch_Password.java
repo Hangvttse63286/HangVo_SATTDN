@@ -1,5 +1,6 @@
 package com.example.railways.testcases.register;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.dataObjects.Url;
@@ -26,7 +27,7 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         DriverManager.open(Url.RAILWAYS_URL.getUrlLink());
     }
 
-    @Test
+    @Test(description = "TC10-User can't create account with \"Confirm password\" is not the same with \"Password\"")
     public void TC_Register_ConfirmPasswordMismatchPassword() {
         ExtentTestManager.logMessage("TC10-User can't create account with \"Confirm password\" is not the same with \"Password\"");
 
@@ -47,7 +48,7 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         registerPage.register(email, password, confirmPassword, pid);
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears.");
-        Assert.assertTrue(registerPage.isExistedLblError());
+        Assert.assertTrue(registerPage.isLblErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label error msg");
         Assert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
     }
 }

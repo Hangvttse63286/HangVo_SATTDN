@@ -1,5 +1,6 @@
 package com.example.railways.testcases.login;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
@@ -16,7 +17,7 @@ import org.testng.annotations.Test;
 @Listeners(ReportListener.class)
 public class TC03_Login_InvalidPassword extends BaseTest {
 
-    @Test
+    @Test(description = "TC03-User cannot log into Railway with invalid password")
     public void TC_Login_InvalidPassword() {
         ExtentTestManager.logMessage("TC03-User cannot log into Railway with invalid password");
 
@@ -35,7 +36,7 @@ public class TC03_Login_InvalidPassword extends BaseTest {
         loginPage.login(email, password);
 
         ExtentTestManager.logMessage("Expected: Error message \"Invalid username or password. Please try again.\" is displayed");
-        Assert.assertTrue(loginPage.isExistedLblError());
+        Assert.assertTrue(loginPage.isLblErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label error msg");
         Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
     }
 }

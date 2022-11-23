@@ -1,5 +1,6 @@
 package com.example.railways.testcases.login;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.dataObjects.Url;
 import com.example.railways.common.utilities.DriverManager;
@@ -15,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 @Listeners(ReportListener.class)
 public class TC06_Login_AdditionalPagesDisplay extends BaseTest {
 
-    @Test
+    @Test(description = "TC06-Additional pages display once user logged in")
     public void TC_Login_ValidAccount_AdditionalPagesDisplay() {
         ExtentTestManager.logMessage("TC06-Additional pages display once user logged in");
 
@@ -34,9 +35,9 @@ public class TC06_Login_AdditionalPagesDisplay extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: \"My ticket\", \"Change password\" and \"Logout\" tabs are displayed. ");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(loginPage.isExisted(Tab.MY_TICKET));
-        softAssert.assertTrue(loginPage.isExisted(Tab.CHANGE_PASSWORD));
-        softAssert.assertTrue(loginPage.isExisted(Tab.LOGOUT));
+        softAssert.assertTrue(loginPage.isDisplayed(Tab.MY_TICKET), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + Tab.MY_TICKET.getName());
+        softAssert.assertTrue(loginPage.isDisplayed(Tab.CHANGE_PASSWORD), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + Tab.CHANGE_PASSWORD.getName());
+        softAssert.assertTrue(loginPage.isDisplayed(Tab.LOGOUT), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + Tab.LOGOUT.getName());
 
         loginPage.clickTab(Tab.MY_TICKET);
         ExtentTestManager.logMessage("Expected: Click \"My ticket\" tab, user will be directed to My ticket page");

@@ -32,12 +32,11 @@ public class BasePage {
         getTab(tab).click();
     }
 
-    public Boolean isExisted(Tab tab) {
-        try{
+    public Boolean isDisplayed(Tab tab) {
+        try {
             getTab(tab);
             return true;
-        }
-        catch(NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
