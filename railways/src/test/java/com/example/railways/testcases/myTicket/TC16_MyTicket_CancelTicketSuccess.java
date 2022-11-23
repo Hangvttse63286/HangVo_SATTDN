@@ -1,5 +1,6 @@
 package com.example.railways.testcases.myTicket;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
@@ -48,6 +49,6 @@ public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: The canceled ticket is disappeared.");
 
-        Assert.assertFalse(myTicketPage.isDisplayedTicket(ticketId));
+        Assert.assertFalse(myTicketPage.isTicketDisplayed(ticketId), AssertMessage.ELEMENT_STILL_DISPLAYED.getMsg());
     }
 }

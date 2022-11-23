@@ -74,7 +74,7 @@ public class ChangePasswordPage extends BasePage {
         return getLblSuccess().getText();
     }
 
-    public Boolean isDisplayedLblSuccess() {
+    public Boolean isLblSuccessDisplayed() {
         try {
             return getLblSuccess().isDisplayed();
         } catch (NoSuchElementException e) {

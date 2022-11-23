@@ -100,7 +100,7 @@ public class RegisterPage extends BasePage {
         return getLblSuccess().getText();
     }
 
-    public Boolean isDisplayedLblSuccess() {
+    public Boolean isLblSuccessDisplayed() {
         try {
             return getLblSuccess().isDisplayed();
         } catch (NoSuchElementException e) {
@@ -112,7 +112,7 @@ public class RegisterPage extends BasePage {
         return getLblPasswordError().getText();
     }
 
-    public Boolean isDisplayedLblPasswordError() {
+    public Boolean isLblPasswordErrorDisplayed() {
         try {
             return getLblPasswordError().isDisplayed();
         } catch (NoSuchElementException e) {
@@ -124,7 +124,7 @@ public class RegisterPage extends BasePage {
         return getLblPidError().getText();
     }
 
-    public Boolean isDisplayedLblPidError() {
+    public Boolean isLblPidErrorDisplayed() {
         try {
             return getLblPidError().isDisplayed();
         } catch (NoSuchElementException e) {
@@ -136,7 +136,7 @@ public class RegisterPage extends BasePage {
         return getLblError().getText();
     }
 
-    public Boolean isDisplayedLblError() {
+    public Boolean isLblErrorDisplayed() {
         try {
             return getLblError().isDisplayed();
         } catch (NoSuchElementException e) {

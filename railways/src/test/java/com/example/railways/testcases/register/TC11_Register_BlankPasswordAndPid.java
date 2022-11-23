@@ -1,5 +1,6 @@
 package com.example.railways.testcases.register;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.dataObjects.Url;
@@ -10,7 +11,6 @@ import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.RegisterPage;
 import com.example.railways.testcases.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -48,21 +48,18 @@ public class TC11_Register_BlankPasswordAndPid extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears above the form.");
         SoftAssert softAssert = new SoftAssert();
-        Boolean isDisplayedLblError = registerPage.isDisplayedLblError();
-        softAssert.assertTrue(isDisplayedLblError);
-        if (isDisplayedLblError)
+        softAssert.assertTrue(registerPage.isLblErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg());
+        if (registerPage.isLblErrorDisplayed())
             softAssert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
 
         ExtentTestManager.logMessage("Expected: Next to password fields, error message \"Invalid password length.\" displays");
-        Boolean isDisplayedLblPassError = registerPage.isDisplayedLblPasswordError();
-        softAssert.assertTrue(isDisplayedLblPassError);
-        if (isDisplayedLblPassError)
+        softAssert.assertTrue(registerPage.isLblPasswordErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg());
+        if (registerPage.isLblPasswordErrorDisplayed())
             softAssert.assertEquals(registerPage.getLblPasswordErrorText(), Message.REGISTER_PASSWORD_EMPTY.getMsg());
 
         ExtentTestManager.logMessage("Expected: Next to PID field, error message \"Invalid ID length.\" displays");
-        Boolean isDisplayedLblPidError = registerPage.isDisplayedLblPidError();
-        softAssert.assertTrue(isDisplayedLblPidError);
-        if (isDisplayedLblPidError)
+        softAssert.assertTrue(registerPage.isLblPidErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg());
+        if (registerPage.isLblPidErrorDisplayed())
             softAssert.assertEquals(registerPage.getLblPidErrorText(), Message.REGISTER_PID_EMPTY.getMsg());
 
         softAssert.assertAll();

@@ -1,5 +1,6 @@
 package com.example.railways.testcases.register;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.dataObjects.Url;
@@ -14,7 +15,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC07_Register_Success extends BaseTest {
@@ -47,7 +47,7 @@ public class TC07_Register_Success extends BaseTest {
         registerPage.register(email, password, password, pid);
 
         ExtentTestManager.logMessage("Expected: New account is created and message \"You're here\"");
-        Assert.assertTrue(registerPage.isDisplayedLblSuccess());
+        Assert.assertTrue(registerPage.isLblSuccessDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg());
         Assert.assertEquals(registerPage.getLblSuccessText(), Message.REGISTER_SUCCESS.getMsg());
     }
 }

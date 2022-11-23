@@ -1,5 +1,6 @@
 package com.example.railways.testcases.register;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.dataObjects.Url;
@@ -14,7 +15,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
@@ -48,7 +48,7 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         registerPage.register(email, password, confirmPassword, pid);
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears.");
-        Assert.assertTrue(registerPage.isDisplayedLblError());
+        Assert.assertTrue(registerPage.isLblErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg());
         Assert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
     }
 }

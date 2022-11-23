@@ -24,6 +24,6 @@ public class TC04_BookTicket_UnloggedUser extends BaseTest {
         homePage.clickTab(Tab.BOOK_TICKET);
 
         ExtentTestManager.logMessage("Expected: Login page displays instead of Book ticket page");
-        Assert.assertTrue(DriverManager.getCurrentUrl().contains(Url.RAILWAYS_LOGIN_URL.getUrlLink()));
+        Assert.assertTrue(DriverManager.getCurrentUrl().contains(Url.RAILWAYS_LOGIN_URL.getUrlLink()), "Login page is not display");
     }
 }

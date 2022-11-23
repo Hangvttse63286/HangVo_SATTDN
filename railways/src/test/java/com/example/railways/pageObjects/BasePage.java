@@ -32,7 +32,7 @@ public class BasePage {
         getTab(tab).click();
     }
 
-    public Boolean isExisted(Tab tab) {
+    public Boolean isDisplayed(Tab tab) {
         try {
             getTab(tab);
             return true;

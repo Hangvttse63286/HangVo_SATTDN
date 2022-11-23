@@ -1,5 +1,6 @@
 package com.example.railways.testcases.login;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
@@ -14,7 +15,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC08_Login_UnregisteredAccount extends BaseTest {
@@ -46,7 +46,7 @@ public class TC08_Login_UnregisteredAccount extends BaseTest {
         loginPage.login(email, password);
 
         ExtentTestManager.logMessage("Expected: User can't login and message \"Invalid username or password. Please try again.\" appears.");
-        Assert.assertTrue(loginPage.isDisplayedLblError());
+        Assert.assertTrue(loginPage.isLblErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg());
         Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
     }
 }
