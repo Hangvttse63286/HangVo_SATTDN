@@ -22,7 +22,7 @@ public class TC06_Login_AdditionalPagesDisplay extends BaseTest {
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Click on \"Login\" tab");
+        ExtentTestManager.logMessage("Click on 'Login' tab");
         homePage.clickTab(Tab.LOGIN);
 
         String email = getEmail();
@@ -33,19 +33,19 @@ public class TC06_Login_AdditionalPagesDisplay extends BaseTest {
         ExtentTestManager.logMessage("Login with valid account");
         loginPage.login(email, password);
 
-        ExtentTestManager.logMessage("Expected: \"My ticket\", \"Change password\" and \"Logout\" tabs are displayed. ");
+        ExtentTestManager.logMessage("Expected: 'My ticket', 'Change password' and 'Logout' tabs are displayed. ");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(loginPage.isDisplayed(Tab.MY_TICKET), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + Tab.MY_TICKET.getName());
         softAssert.assertTrue(loginPage.isDisplayed(Tab.CHANGE_PASSWORD), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + Tab.CHANGE_PASSWORD.getName());
         softAssert.assertTrue(loginPage.isDisplayed(Tab.LOGOUT), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + Tab.LOGOUT.getName());
 
         loginPage.clickTab(Tab.MY_TICKET);
-        ExtentTestManager.logMessage("Expected: Click \"My ticket\" tab, user will be directed to My ticket page");
-        softAssert.assertEquals(DriverManager.getCurrentUrl(), Url.RAILWAYS_MY_TICKET_URL.getUrlLink());
+        ExtentTestManager.logMessage("Expected: Click 'My ticket' tab, user will be directed to My ticket page");
+        softAssert.assertEquals(DriverManager.getCurrentUrl(), Url.RAILWAYS_MY_TICKET_URL.getUrlLink(), "My ticket page does not display");
 
         loginPage.clickTab(Tab.CHANGE_PASSWORD);
-        ExtentTestManager.logMessage("Expected: Click \"Change password\" tab, user will be directed to Change password page");
-        softAssert.assertEquals(DriverManager.getCurrentUrl(), Url.RAILWAYS_CHANGE_PASSWORD_URL.getUrlLink());
+        ExtentTestManager.logMessage("Expected: Click 'Change password' tab, user will be directed to Change password page");
+        softAssert.assertEquals(DriverManager.getCurrentUrl(), Url.RAILWAYS_CHANGE_PASSWORD_URL.getUrlLink(), "Change Password page does not display");
         softAssert.assertAll();
     }
 }

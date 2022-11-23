@@ -16,13 +16,13 @@ import org.testng.annotations.Test;
 @Listeners(ReportListener.class)
 public class TC02_Login_BlankUsername extends BaseTest {
 
-    @Test(description = "TC02-User can't login with blank \"Username\" textbox")
+    @Test(description = "TC02-User can't login with blank 'Username' textbox")
     public void TC_Login_BlankUsername() {
-        ExtentTestManager.logMessage("TC02-User can't login with blank \"Username\" textbox");
+        ExtentTestManager.logMessage("TC02-User can't login with blank 'Username' textbox");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Click on \"Login\" tab");
+        ExtentTestManager.logMessage("Click on 'Login' tab");
         homePage.clickTab(Tab.LOGIN);
 
         String email = "";
@@ -30,12 +30,12 @@ public class TC02_Login_BlankUsername extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("User doesn't type any words into \"Username\" textbox but enter valid information into \"Password\" textbox ");
-        ExtentTestManager.logMessage("Click on \"Login\" button");
+        ExtentTestManager.logMessage("User doesn't type any words into 'Username' textbox but enter valid information into 'Password' textbox ");
+        ExtentTestManager.logMessage("Click on 'Login' button");
         loginPage.login(email, password);
 
-        ExtentTestManager.logMessage("Expected: User can't login and message \"There was a problem with your login and/or errors exist in your form. \" appears.");
+        ExtentTestManager.logMessage("Expected: User can't login and message 'There was a problem with your login and/or errors exist in your form. ' appears.");
         Assert.assertTrue(loginPage.isLblErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label error msg");
-        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_BLANK_FIELD.getMsg());
+        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_BLANK_FIELD.getMsg(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "label error msg");
     }
 }

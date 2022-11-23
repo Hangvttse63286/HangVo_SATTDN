@@ -23,7 +23,7 @@ public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Click on \"Login\" tab");
+        ExtentTestManager.logMessage("Click on 'Login' tab");
         homePage.clickTab(Tab.LOGIN);
 
         String email = getEmail();
@@ -31,14 +31,14 @@ public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Enter valid information into \"Username\" textbox except \"Password\" textbox.");
-        ExtentTestManager.logMessage("Click on \"Login\" button");
+        ExtentTestManager.logMessage("Enter valid information into 'Username' textbox except 'Password' textbox.");
+        ExtentTestManager.logMessage("Click on 'Login' button");
         ExtentTestManager.logMessage("Repeat step 3 three more times.");
         for (int i = 0; i < 4; i++) {
             loginPage.login(email, password);
         }
-        ExtentTestManager.logMessage("Expected: User can't login and message \"You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.\" appears.");
+        ExtentTestManager.logMessage("Expected: User can't login and message 'You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.' appears.");
         Assert.assertTrue(loginPage.isLblErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label error msg");
-        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_FAILED_SEVERAL_TIMES.getMsg());
+        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_FAILED_SEVERAL_TIMES.getMsg(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "label error msg");
     }
 }

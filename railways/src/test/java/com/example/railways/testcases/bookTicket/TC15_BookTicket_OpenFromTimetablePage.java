@@ -1,5 +1,6 @@
 package com.example.railways.testcases.bookTicket;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Station;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.dataObjects.Url;
@@ -19,9 +20,9 @@ import org.testng.asserts.SoftAssert;
 @Listeners(ReportListener.class)
 public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
 
-    @Test(description = "TC15-User can open \"Book ticket\" page by clicking on \"Book ticket\" link in \"Train timetable\" page")
+    @Test(description = "TC15-User can open 'Book ticket' page by clicking on 'Book ticket' link in 'Train timetable' page")
     public void TC_BookTicket_OpenFromTimetablePage() {
-        ExtentTestManager.logMessage("TC15-User can open \"Book ticket\" page by clicking on \"Book ticket\" link in \"Train timetable\" page");
+        ExtentTestManager.logMessage("TC15-User can open 'Book ticket' page by clicking on 'Book ticket' link in 'Train timetable' page");
         ExtentTestManager.logMessage("Pre-condition: Create and activate a new account");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
@@ -30,7 +31,7 @@ public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
         homePage.clickTab(Tab.LOGIN);
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
         loginPage.login(getEmail(), getPassword());
-        ExtentTestManager.logMessage("Click on \"Timetable\" tab");
+        ExtentTestManager.logMessage("Click on 'Timetable' tab");
         loginPage.clickTab(Tab.TIMETABLE);
 
         Station timetableDpStation = Station.HUE;
@@ -38,17 +39,17 @@ public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
         ExtentTestManager.logMessage("Depart Station: " + timetableDpStation.getName() + " - Arrive Station: " + timetableArStation.getName());
 
         TimetablePage timetablePage = new TimetablePage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Click on \"book ticket\" link of the route from \"Huế\" to \"Sài Gòn\"");
+        ExtentTestManager.logMessage("Click on 'book ticket' link of the route from " + timetableDpStation.getName() + " to " + timetableArStation.getName());
         timetablePage.clickLnk(timetableDpStation, timetableArStation, "Book");
 
-        ExtentTestManager.logMessage("Expected: \"Book ticket\" page is loaded with correct  \"Depart from\" and \"Arrive at\" values.");
+        ExtentTestManager.logMessage("Expected: 'Book ticket' page is loaded with correct  'Depart from' and 'Arrive at' values.");
         Assert.assertTrue(DriverManager.getCurrentUrl().contains(Url.RAILWAYS_BOOK_TICKET_URL.getUrlLink()));
 
         BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(bookTicketPage.getSelectedDpStation(), timetableDpStation.getName());
-        softAssert.assertEquals(bookTicketPage.getSelectedArStation(), timetableArStation.getName());
+        softAssert.assertEquals(bookTicketPage.getSelectedDpStation(), timetableDpStation.getName(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "Depart Station");
+        softAssert.assertEquals(bookTicketPage.getSelectedArStation(), timetableArStation.getName(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "Arrive Station");
         softAssert.assertAll();
     }
 }
