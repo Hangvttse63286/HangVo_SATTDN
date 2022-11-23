@@ -105,7 +105,7 @@ public class MyTicketPage extends BasePage {
     public Boolean isTicketDisplayed(int id) {
         try {
             DriverManager.setImplicitlyWait(3);
-            return getBtnCancel(id).findElement(By.xpath("/ancestor::tr")).isDisplayed();
+            return getBtnCancel(id).findElement(By.xpath("//ancestor::tr")).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         } finally {
