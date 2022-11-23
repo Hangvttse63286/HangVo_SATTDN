@@ -12,7 +12,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DriverManager {
     private static WebDriver driver;
@@ -119,5 +123,21 @@ public class DriverManager {
 
     public static void quit() {
         driver.quit();
+    }
+
+    private static Map<String, String> getParams() {
+        String[] params = URI.create(DriverManager.getCurrentUrl()).getQuery().split("&");
+        Map<String, String> map = new HashMap<String, String>();
+
+        for (String param : params) {
+            String name = param.split("=")[0];
+            String value = param.split(name+"=")[1];
+            map.put(name, value);
+        }
+        return map;
+    }
+
+    public static String getParamValue(String paramName) throws URISyntaxException {
+        return getParams().get(paramName);
     }
 }
