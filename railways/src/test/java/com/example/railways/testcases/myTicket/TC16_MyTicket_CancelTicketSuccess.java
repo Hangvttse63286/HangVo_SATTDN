@@ -45,10 +45,10 @@ public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
         ExtentTestManager.logMessage("Click on \"Cancel\" button of ticket which user want to cancel.");
         myTicketPage.cancelTicket(ticketId);
         ExtentTestManager.logMessage("Click on \"OK\" button on Confirmation message \"Are you sure?\"");
-        DriverManager.acceptAlert();
+        DriverManager.dismissAlert();
 
         ExtentTestManager.logMessage("Expected: The canceled ticket is disappeared.");
 
-        Assert.assertFalse(myTicketPage.isTicketDisplayed(ticketId), AssertMessage.ELEMENT_STILL_DISPLAYED.getMsg());
+        Assert.assertFalse(myTicketPage.isTicketDisplayed(ticketId), AssertMessage.ELEMENT_STILL_DISPLAYED.getMsg() + "ticket with id " + ticketId);
     }
 }

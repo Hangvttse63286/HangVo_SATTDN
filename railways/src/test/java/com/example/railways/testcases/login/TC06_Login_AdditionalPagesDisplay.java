@@ -35,9 +35,9 @@ public class TC06_Login_AdditionalPagesDisplay extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: \"My ticket\", \"Change password\" and \"Logout\" tabs are displayed. ");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(loginPage.isDisplayed(Tab.MY_TICKET), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg());
-        softAssert.assertTrue(loginPage.isDisplayed(Tab.CHANGE_PASSWORD), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg());
-        softAssert.assertTrue(loginPage.isDisplayed(Tab.LOGOUT), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg());
+        softAssert.assertTrue(loginPage.isDisplayed(Tab.MY_TICKET), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + Tab.MY_TICKET.getName());
+        softAssert.assertTrue(loginPage.isDisplayed(Tab.CHANGE_PASSWORD), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + Tab.CHANGE_PASSWORD.getName());
+        softAssert.assertTrue(loginPage.isDisplayed(Tab.LOGOUT), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + Tab.LOGOUT.getName());
 
         loginPage.clickTab(Tab.MY_TICKET);
         ExtentTestManager.logMessage("Expected: Click \"My ticket\" tab, user will be directed to My ticket page");
