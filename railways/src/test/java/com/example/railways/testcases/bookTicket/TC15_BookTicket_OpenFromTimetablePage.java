@@ -42,7 +42,7 @@ public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
         ExtentTestManager.logMessage("Click on 'book ticket' link of the route from " + timetableDpStation.getName() + " to " + timetableArStation.getName());
         timetablePage.clickLnk(timetableDpStation, timetableArStation, "Book");
 
-        ExtentTestManager.logMessage("Expected: 'Book ticket' page is loaded with correct  'Depart from' and 'Arrive at' values.");
+        ExtentTestManager.logMessage("Expected: 'Book ticket' page is loaded with correct 'Depart from' and 'Arrive at' values.");
         Assert.assertTrue(DriverManager.getCurrentUrl().contains(Url.RAILWAYS_BOOK_TICKET_URL.getUrlLink()));
 
         BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());

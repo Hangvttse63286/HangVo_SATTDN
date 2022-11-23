@@ -66,7 +66,7 @@ public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
         String successSeatType = successPage.getRowValue("Seat Type");
         String successTicketAmount = successPage.getRowValue("Amount");
 
-        ExtentTestManager.logMessage("Expected: Message \"Ticket Booked Successfully!\" displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
+        ExtentTestManager.logMessage("Expected: Message 'Ticket Booked Successfully!' displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(successPage.getLblBookTicketSuccessText(), Message.BOOK_TICKET_SUCCESS.getMsg(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "label book ticket success");
         softAssert.assertEquals(successDepartDate, departDate, AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "Depart Date");
