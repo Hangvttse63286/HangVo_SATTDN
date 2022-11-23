@@ -1,5 +1,6 @@
 package com.example.railways.testcases.myTicket;
 
+import com.example.railways.common.utilities.Log;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
@@ -8,16 +9,21 @@ import com.example.railways.pageObjects.HomePage;
 import com.example.railways.pageObjects.BookTicketPage;
 import com.example.railways.pageObjects.LoginPage;
 import com.example.railways.pageObjects.MyTicketPage;
+import com.example.railways.pageObjects.SuccessPage;
 import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+
 @Listeners(ReportListener.class)
 public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
 
     @Test(description = "TC16-User can cancel a ticket")
-    public void TC_MyTicket_Cancel1Ticket() {
+    public void TC_MyTicket_Cancel1Ticket() throws URISyntaxException {
         ExtentTestManager.logMessage("TC16-User can cancel a ticket");
         ExtentTestManager.logMessage("Pre-condition: Create and activate a new account");
 
@@ -31,17 +37,20 @@ public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
         loginPage.clickTab(Tab.BOOK_TICKET);
         BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
         bookTicketPage.clickBtnBookTicket();
+        SuccessPage successPage = new SuccessPage(DriverManager.getDriver());
+        int ticketId = successPage.getBookedTicketId();
+        successPage.clickTab(Tab.BOOK_TICKET);
         ExtentTestManager.logMessage("Click on \"My ticket\" tab");
         bookTicketPage.clickTab(Tab.MY_TICKET);
 
         MyTicketPage myTicketPage = new MyTicketPage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Click on \"Cancel\" button of ticket which user want to cancel.");
-        myTicketPage.cancelTicket();
+        myTicketPage.cancelTicket(ticketId);
         ExtentTestManager.logMessage("Click on \"OK\" button on Confirmation message \"Are you sure?\"");
         DriverManager.acceptAlert();
 
         ExtentTestManager.logMessage("Expected: The canceled ticket is disappeared.");
 
-        Assert.assertFalse(myTicketPage.isExistedTicket(myTicketPage.getDeletedId()));
+        Assert.assertFalse(myTicketPage.isExistedTicket(ticketId));
     }
 }

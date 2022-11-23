@@ -1,8 +1,12 @@
 package com.example.railways.pageObjects;
 
+import com.example.railways.common.utilities.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.net.URISyntaxException;
+import java.util.List;
 
 public class SuccessPage extends BasePage {
 
@@ -27,5 +31,9 @@ public class SuccessPage extends BasePage {
 
     public String getLblBookTicketSuccessText() {
         return getLblBookTicketSuccess().getText();
+    }
+
+    public int getBookedTicketId() throws URISyntaxException {
+        return Integer.parseInt(DriverManager.getParamValue("id"));
     }
 }
