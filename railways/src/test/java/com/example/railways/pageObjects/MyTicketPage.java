@@ -24,7 +24,6 @@ public class MyTicketPage extends BasePage {
     private final By btnDeletes = By.xpath("//table[@class='MyTable']//input[@type='button' and @value='Delete']");
     private final By lblFilterError = By.xpath("//div[contains(@class,'error')]");
     private final String btnCancelXPath = "//table[@class='MyTable']//input[@type='button' and @value='Cancel' and contains(@onclick,'%s')]";
-    private String deletedId;
 
     public MyTicketPage(WebDriver driver) {
         super(driver);
@@ -88,10 +87,6 @@ public class MyTicketPage extends BasePage {
 
     private WebElement getRemovedRow(WebElement button) {
         return button.findElement(By.xpath("//ancestor::tr"));
-    }
-
-    public String getDeletedId() {
-        return this.deletedId;
     }
 
     public void scrollToTblMyTicket() {
