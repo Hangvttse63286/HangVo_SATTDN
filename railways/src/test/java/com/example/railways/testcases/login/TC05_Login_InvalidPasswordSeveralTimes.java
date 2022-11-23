@@ -12,11 +12,12 @@ import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
 
-    @Test
+    @Test(description = "TC05-System shows message when user enters wrong password several times")
     public void TC_Login_InvalidPasswordSeveralTimes() {
         ExtentTestManager.logMessage("TC05-System shows message when user enters wrong password several times");
 
@@ -38,6 +39,9 @@ public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
         }
         ExtentTestManager.logMessage("Expected: User can't login and message \"You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.\" appears.");
         Assert.assertTrue(loginPage.isExistedLblError());
-        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_FAILED_SEVERAL_TIMES.getMsg());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(loginPage.isDisplayedLblError());
+        softAssert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_FAILED_SEVERAL_TIMES.getMsg());
+        softAssert.assertAll();
     }
 }

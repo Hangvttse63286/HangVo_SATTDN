@@ -14,6 +14,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC07_Register_Success extends BaseTest {
@@ -26,7 +27,7 @@ public class TC07_Register_Success extends BaseTest {
         DriverManager.open(Url.RAILWAYS_URL.getUrlLink());
     }
 
-    @Test
+    @Test(description = "TC07-User can create new account")
     public void TC_Register_ValidFields() {
         ExtentTestManager.logMessage("TC07-User can create new account");
 
@@ -47,6 +48,9 @@ public class TC07_Register_Success extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: New account is created and message \"You're here\"");
         Assert.assertTrue(registerPage.isExistedLblSuccess());
-        Assert.assertEquals(registerPage.getLblSuccessText(), Message.REGISTER_SUCCESS.getMsg());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(registerPage.isDisplayedLblSuccess());
+        softAssert.assertEquals(registerPage.getLblSuccessText(), Message.REGISTER_SUCCESS.getMsg());
+        softAssert.assertAll();
     }
 }

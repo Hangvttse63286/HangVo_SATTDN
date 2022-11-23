@@ -11,11 +11,12 @@ import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC02_Login_BlankUsername extends BaseTest {
 
-    @Test
+    @Test(description = "TC02-User can't login with blank \"Username\" textbox")
     public void TC_Login_BlankUsername() {
         ExtentTestManager.logMessage("TC02-User can't login with blank \"Username\" textbox");
 
@@ -35,6 +36,9 @@ public class TC02_Login_BlankUsername extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: User can't login and message \"There was a problem with your login and/or errors exist in your form. \" appears.");
         Assert.assertTrue(loginPage.isExistedLblError());
-        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_BLANK_FIELD.getMsg());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(loginPage.isDisplayedLblError());
+        softAssert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_BLANK_FIELD.getMsg());
+        softAssert.assertAll();
     }
 }

@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 @Listeners(ReportListener.class)
 public class TC06_Login_AdditionalPagesDisplay extends BaseTest {
 
-    @Test
+    @Test(description = "TC06-Additional pages display once user logged in")
     public void TC_Login_ValidAccount_AdditionalPagesDisplay() {
         ExtentTestManager.logMessage("TC06-Additional pages display once user logged in");
 

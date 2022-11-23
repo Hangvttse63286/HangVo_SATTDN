@@ -74,17 +74,20 @@ public class ChangePasswordPage extends BasePage {
         return getLblSuccess().getText();
     }
 
-    public Boolean isExistedLblSuccess(){
-        try{
+    public Boolean isExistedLblSuccess() {
+        try {
             getLblSuccess();
             return true;
-        }
-        catch(NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
 
     public void scrollToBtnChangePassword() {
         DriverManager.scrollToView(getBtnChangePassword());
+    }
+
+    public Boolean isDisplayedLblSuccess() {
+        return getLblSuccess().isDisplayed();
     }
 }

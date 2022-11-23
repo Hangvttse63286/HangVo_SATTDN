@@ -101,11 +101,10 @@ public class RegisterPage extends BasePage {
     }
 
     public Boolean isExistedLblSuccess() {
-        try{
+        try {
             getLblSuccess();
             return true;
-        }
-        catch(NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
@@ -115,11 +114,10 @@ public class RegisterPage extends BasePage {
     }
 
     public Boolean isExistedLblPasswordValidationError() {
-        try{
+        try {
             getLblPasswordValidationError();
             return true;
-        }
-        catch(NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
@@ -129,11 +127,10 @@ public class RegisterPage extends BasePage {
     }
 
     public Boolean isExistedLblPidValidationError() {
-        try{
+        try {
             getLblPidValidationError();
             return true;
-        }
-        catch(NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
@@ -143,12 +140,27 @@ public class RegisterPage extends BasePage {
     }
 
     public Boolean isExistedLblError() {
-        try{
+        try {
             getLblError();
             return true;
-        }
-        catch(NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
+    }
+
+    public Boolean isDisplayedLblError() {
+        return getLblError().isDisplayed();
+    }
+
+    public Boolean isDisplayedLblPasswordValidationError() {
+        return getLblPasswordValidationError().isDisplayed();
+    }
+
+    public Boolean isDisplayedLblPidValidationError() {
+        return getLblPidValidationError().isDisplayed();
+    }
+
+    public Boolean isDisplayedLblSuccess() {
+        return getLblSuccess().isDisplayed();
     }
 }

@@ -14,6 +14,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
@@ -26,7 +27,7 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         DriverManager.open(Url.RAILWAYS_URL.getUrlLink());
     }
 
-    @Test
+    @Test(description = "TC10-User can't create account with \"Confirm password\" is not the same with \"Password\"")
     public void TC_Register_ConfirmPasswordMismatchPassword() {
         ExtentTestManager.logMessage("TC10-User can't create account with \"Confirm password\" is not the same with \"Password\"");
 
@@ -48,6 +49,9 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears.");
         Assert.assertTrue(registerPage.isExistedLblError());
-        Assert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(registerPage.isDisplayedLblError());
+        softAssert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
+        softAssert.assertAll();
     }
 }

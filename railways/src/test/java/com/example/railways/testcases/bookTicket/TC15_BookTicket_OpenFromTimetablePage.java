@@ -19,7 +19,7 @@ import org.testng.asserts.SoftAssert;
 @Listeners(ReportListener.class)
 public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
 
-    @Test
+    @Test(description = "TC15-User can open \"Book ticket\" page by clicking on \"Book ticket\" link in \"Train timetable\" page")
     public void TC_BookTicket_OpenFromTimetablePage() {
         ExtentTestManager.logMessage("TC15-User can open \"Book ticket\" page by clicking on \"Book ticket\" link in \"Train timetable\" page");
         ExtentTestManager.logMessage("Pre-condition: Create and activate a new account");

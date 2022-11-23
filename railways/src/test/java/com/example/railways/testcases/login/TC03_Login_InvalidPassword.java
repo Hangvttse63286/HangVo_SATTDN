@@ -12,11 +12,12 @@ import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC03_Login_InvalidPassword extends BaseTest {
 
-    @Test
+    @Test(description = "TC03-User cannot log into Railway with invalid password")
     public void TC_Login_InvalidPassword() {
         ExtentTestManager.logMessage("TC03-User cannot log into Railway with invalid password");
 
@@ -36,6 +37,9 @@ public class TC03_Login_InvalidPassword extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: Error message \"Invalid username or password. Please try again.\" is displayed");
         Assert.assertTrue(loginPage.isExistedLblError());
-        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(loginPage.isDisplayedLblError());
+        softAssert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
+        softAssert.assertAll();
     }
 }

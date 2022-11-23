@@ -33,11 +33,10 @@ public class BasePage {
     }
 
     public Boolean isExisted(Tab tab) {
-        try{
+        try {
             getTab(tab);
             return true;
-        }
-        catch(NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
     }

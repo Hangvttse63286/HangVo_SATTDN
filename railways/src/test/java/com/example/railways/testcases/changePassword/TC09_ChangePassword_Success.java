@@ -13,11 +13,12 @@ import com.example.railways.testcases.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
 public class TC09_ChangePassword_Success extends BaseTest {
 
-    @Test
+    @Test(description = "TC09-User can change password")
     public void TC_ChangePassword_ValidFields() {
         ExtentTestManager.logMessage("TC09-User can change password");
         ExtentTestManager.logMessage("Pre-condition: Create and activate a new account");
@@ -42,6 +43,9 @@ public class TC09_ChangePassword_Success extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: Message \"Your password has been updated!\" appears.");
         Assert.assertTrue(changePasswordPage.isExistedLblSuccess());
-        Assert.assertEquals(changePasswordPage.getLblSuccessText(), Message.CHANGE_PASSWORD_SUCCESS.getMsg());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(changePasswordPage.isDisplayedLblSuccess());
+        softAssert.assertEquals(changePasswordPage.getLblSuccessText(), Message.CHANGE_PASSWORD_SUCCESS.getMsg());
+        softAssert.assertAll();
     }
 }

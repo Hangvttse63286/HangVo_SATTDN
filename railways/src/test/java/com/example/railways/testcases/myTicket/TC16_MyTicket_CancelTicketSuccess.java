@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 @Listeners(ReportListener.class)
 public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
 
-    @Test
+    @Test(description = "TC16-User can cancel a ticket")
     public void TC_MyTicket_Cancel1Ticket() {
         ExtentTestManager.logMessage("TC16-User can cancel a ticket");
         ExtentTestManager.logMessage("Pre-condition: Create and activate a new account");

@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 @Listeners(ReportListener.class)
 public class TC04_BookTicket_UnloggedUser extends BaseTest {
 
-    @Test
+    @Test(description = "TC04-Login page displays when un-logged User clicks on \"Book ticket\" tab")
     public void TC_BookTicket_OpenBookTicketWithUnloggedUser() {
         ExtentTestManager.logMessage("TC04-Login page displays when un-logged User clicks on \"Book ticket\" tab");
 

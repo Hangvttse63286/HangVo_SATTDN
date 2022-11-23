@@ -70,13 +70,16 @@ public class LoginPage extends BasePage {
     }
 
     public Boolean isExistedLblError() {
-        try{
+        try {
             getLblError();
             return true;
-        }
-        catch(NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
+    }
+
+    public Boolean isDisplayedLblError() {
+        return getLblError().isDisplayed();
     }
 
     public void scrollToBtnLogin() {
