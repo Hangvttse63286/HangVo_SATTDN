@@ -47,24 +47,24 @@ public class TC11_Register_BlankPasswordAndPid extends BaseTest {
         registerPage.register(email, password, password, pid);
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears above the form.");
-        Assert.assertTrue(registerPage.isExistedLblError());
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(registerPage.isDisplayedLblError());
-        softAssert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
+        Boolean isDisplayedLblError = registerPage.isDisplayedLblError();
+        softAssert.assertTrue(isDisplayedLblError);
+        if (isDisplayedLblError)
+            softAssert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
+
         ExtentTestManager.logMessage("Expected: Next to password fields, error message \"Invalid password length.\" displays");
-        Boolean isExistedLblPassError = registerPage.isExistedLblPasswordValidationError();
-        softAssert.assertTrue(isExistedLblPassError);
-        if (isExistedLblPassError) {
-            softAssert.assertTrue(registerPage.isDisplayedLblPasswordValidationError());
-            softAssert.assertEquals(registerPage.getLblPasswordValidationErrorText(), Message.REGISTER_PASSWORD_EMPTY.getMsg());
-        }
+        Boolean isDisplayedLblPassError = registerPage.isDisplayedLblPasswordError();
+        softAssert.assertTrue(isDisplayedLblPassError);
+        if (isDisplayedLblPassError)
+            softAssert.assertEquals(registerPage.getLblPasswordErrorText(), Message.REGISTER_PASSWORD_EMPTY.getMsg());
+
         ExtentTestManager.logMessage("Expected: Next to PID field, error message \"Invalid ID length.\" displays");
-        Boolean isExistedLblPidError = registerPage.isExistedLblPidValidationError();
-        softAssert.assertTrue(isExistedLblPidError);
-        if (isExistedLblPidError) {
-            softAssert.assertTrue(registerPage.isDisplayedLblPidValidationError());
-            softAssert.assertEquals(registerPage.getLblPidValidationErrorText(), Message.REGISTER_PID_EMPTY.getMsg());
-        }
+        Boolean isDisplayedLblPidError = registerPage.isDisplayedLblPidError();
+        softAssert.assertTrue(isDisplayedLblPidError);
+        if (isDisplayedLblPidError)
+            softAssert.assertEquals(registerPage.getLblPidErrorText(), Message.REGISTER_PID_EMPTY.getMsg());
+
         softAssert.assertAll();
     }
 }

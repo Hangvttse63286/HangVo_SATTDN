@@ -35,10 +35,7 @@ public class TC02_Login_BlankUsername extends BaseTest {
         loginPage.login(email, password);
 
         ExtentTestManager.logMessage("Expected: User can't login and message \"There was a problem with your login and/or errors exist in your form. \" appears.");
-        Assert.assertTrue(loginPage.isExistedLblError());
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(loginPage.isDisplayedLblError());
-        softAssert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_BLANK_FIELD.getMsg());
-        softAssert.assertAll();
+        Assert.assertTrue(loginPage.isDisplayedLblError());
+        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_BLANK_FIELD.getMsg());
     }
 }

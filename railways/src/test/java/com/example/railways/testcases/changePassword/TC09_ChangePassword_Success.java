@@ -42,10 +42,7 @@ public class TC09_ChangePassword_Success extends BaseTest {
         changePasswordPage.changePassword(getPassword(), newPassword, newPassword);
 
         ExtentTestManager.logMessage("Expected: Message \"Your password has been updated!\" appears.");
-        Assert.assertTrue(changePasswordPage.isExistedLblSuccess());
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(changePasswordPage.isDisplayedLblSuccess());
-        softAssert.assertEquals(changePasswordPage.getLblSuccessText(), Message.CHANGE_PASSWORD_SUCCESS.getMsg());
-        softAssert.assertAll();
+        Assert.assertTrue(changePasswordPage.isDisplayedLblSuccess());
+        Assert.assertEquals(changePasswordPage.getLblSuccessText(), Message.CHANGE_PASSWORD_SUCCESS.getMsg());
     }
 }

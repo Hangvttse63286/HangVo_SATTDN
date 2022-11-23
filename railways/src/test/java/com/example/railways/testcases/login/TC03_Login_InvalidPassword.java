@@ -36,10 +36,7 @@ public class TC03_Login_InvalidPassword extends BaseTest {
         loginPage.login(email, password);
 
         ExtentTestManager.logMessage("Expected: Error message \"Invalid username or password. Please try again.\" is displayed");
-        Assert.assertTrue(loginPage.isExistedLblError());
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(loginPage.isDisplayedLblError());
-        softAssert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
-        softAssert.assertAll();
+        Assert.assertTrue(loginPage.isDisplayedLblError());
+        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
     }
 }

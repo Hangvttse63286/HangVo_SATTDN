@@ -47,10 +47,7 @@ public class TC07_Register_Success extends BaseTest {
         registerPage.register(email, password, password, pid);
 
         ExtentTestManager.logMessage("Expected: New account is created and message \"You're here\"");
-        Assert.assertTrue(registerPage.isExistedLblSuccess());
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(registerPage.isDisplayedLblSuccess());
-        softAssert.assertEquals(registerPage.getLblSuccessText(), Message.REGISTER_SUCCESS.getMsg());
-        softAssert.assertAll();
+        Assert.assertTrue(registerPage.isDisplayedLblSuccess());
+        Assert.assertEquals(registerPage.getLblSuccessText(), Message.REGISTER_SUCCESS.getMsg());
     }
 }

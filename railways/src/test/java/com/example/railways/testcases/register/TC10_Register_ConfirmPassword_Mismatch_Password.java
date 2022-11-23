@@ -48,10 +48,7 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         registerPage.register(email, password, confirmPassword, pid);
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears.");
-        Assert.assertTrue(registerPage.isExistedLblError());
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(registerPage.isDisplayedLblError());
-        softAssert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
-        softAssert.assertAll();
+        Assert.assertTrue(registerPage.isDisplayedLblError());
+        Assert.assertEquals(registerPage.getLblErrorText(), Message.REGISTER_FAILED.getMsg());
     }
 }

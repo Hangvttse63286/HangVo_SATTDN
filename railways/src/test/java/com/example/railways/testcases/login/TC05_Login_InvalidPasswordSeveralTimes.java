@@ -38,10 +38,7 @@ public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
             loginPage.login(email, password);
         }
         ExtentTestManager.logMessage("Expected: User can't login and message \"You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.\" appears.");
-        Assert.assertTrue(loginPage.isExistedLblError());
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(loginPage.isDisplayedLblError());
-        softAssert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_FAILED_SEVERAL_TIMES.getMsg());
-        softAssert.assertAll();
+        Assert.assertTrue(loginPage.isDisplayedLblError());
+        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_FAILED_SEVERAL_TIMES.getMsg());
     }
 }

@@ -1,6 +1,5 @@
 package com.example.railways.testcases.myTicket;
 
-import com.example.railways.common.utilities.Log;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
@@ -16,8 +15,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Listeners(ReportListener.class)
 public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
@@ -51,6 +48,6 @@ public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
 
         ExtentTestManager.logMessage("Expected: The canceled ticket is disappeared.");
 
-        Assert.assertFalse(myTicketPage.isExistedTicket(ticketId));
+        Assert.assertFalse(myTicketPage.isDisplayedTicket(ticketId));
     }
 }
