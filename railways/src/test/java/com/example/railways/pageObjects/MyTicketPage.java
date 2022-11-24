@@ -2,14 +2,12 @@ package com.example.railways.pageObjects;
 
 import com.example.railways.common.utilities.DriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
 public class MyTicketPage extends BasePage {
-
     private final By divContent = By.id("content");
     private final By divNote = By.className("message");
     private final By frmFilter = By.className("Filter");
@@ -25,64 +23,60 @@ public class MyTicketPage extends BasePage {
     private final By lblFilterError = By.xpath("//div[contains(@class,'error')]");
     private final String btnCancelXPath = "//table[@class='MyTable']//input[@type='button' and @value='Cancel' and contains(@onclick,'%s')]";
 
-    public MyTicketPage(WebDriver driver) {
-        super(driver);
-    }
-
     private WebElement getDivContent() {
-        return driver.findElement(divContent);
+        return DriverManager.findElement(divContent);
     }
 
     private WebElement getDivNote() {
-        return driver.findElement(divNote);
+        return DriverManager.findElement(divNote);
     }
 
     private WebElement getFrmFilter() {
-        return driver.findElement(frmFilter);
+        return DriverManager.findElement(frmFilter);
     }
 
     private Select getDdlFilterDpStation() {
-        return new Select(driver.findElement(ddlFilterDpStation));
+        return new Select(DriverManager.findElement(ddlFilterDpStation));
     }
 
     private Select getDdlFilterArStation() {
-        return new Select(driver.findElement(ddlFilterArStation));
+        return new Select(DriverManager.findElement(ddlFilterArStation));
     }
 
     private WebElement getTxtFilterDpDate() {
-        return driver.findElement(txtFilterDpDate);
+        return DriverManager.findElement(txtFilterDpDate);
     }
 
     private Select getDdlFilterStatus() {
-        return new Select(driver.findElement(ddlFilterStatus));
+        return new Select(DriverManager.findElement(ddlFilterStatus));
     }
 
     private WebElement getBtnFilter() {
-        return driver.findElement(btnFilter);
+        return DriverManager.findElement(btnFilter);
     }
 
     private WebElement getTblMyTicket() {
-        return driver.findElement(tblMyTicket);
+        return DriverManager.findElement(tblMyTicket);
     }
 
     private List<WebElement> getTrMyTickets() {
-        return driver.findElements(trMyTickets);
+        return DriverManager.findElements(trMyTickets);
     }
 
     private List<WebElement> getBtnCancels() {
-        return driver.findElements(btnCancels);
+        return DriverManager.findElements(btnCancels);
     }
 
     private WebElement getBtnCancel(int id) {
-        return driver.findElement(By.xpath(String.format(btnCancelXPath, id)));
+        return DriverManager.findElement(By.xpath(String.format(btnCancelXPath, id)));
     }
 
     private List<WebElement> getBtnDeletes() {
-        return driver.findElements(btnDeletes);
+        return DriverManager.findElements(btnDeletes);
     }
 
     private WebElement getLblFilterError() {
-        return driver.findElement(lblFilterError);
+        return DriverManager.findElement(lblFilterError);
     }
 
     private WebElement getRemovedRow(WebElement button) {

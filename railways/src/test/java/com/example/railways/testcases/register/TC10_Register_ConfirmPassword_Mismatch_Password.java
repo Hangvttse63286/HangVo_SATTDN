@@ -32,8 +32,8 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         ExtentTestManager.logMessage("TC10-User can't create account with \"Confirm password\" is not the same with \"Password\"");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Click on \"Register\" tab");
+        HomePage homePage = new HomePage();
+        ExtentTestManager.logMessage("Click on 'Register' tab");
         homePage.clickTab(Tab.REGISTER);
 
         String email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
@@ -42,9 +42,9 @@ public class TC10_Register_ConfirmPassword_Mismatch_Password extends BaseTest {
         String pid = Utilities.generateRandomString(Utilities.getRandomNumber(8, 20));
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password + " - Confirm Password: " + confirmPassword + " - Pid: " + pid);
 
-        RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Enter valid information into all fields except \"Confirm password\" is not the same with \"Password\"");
-        ExtentTestManager.logMessage("Click on \"Register\" button");
+        RegisterPage registerPage = new RegisterPage();
+        ExtentTestManager.logMessage("Enter valid information into all fields except 'Confirm password' is not the same with 'Password'");
+        ExtentTestManager.logMessage("Click on 'Register' button");
         registerPage.register(email, password, confirmPassword, pid);
 
         ExtentTestManager.logMessage("Expected: Message \"There're errors in the form. Please correct the errors and try again.\" appears.");

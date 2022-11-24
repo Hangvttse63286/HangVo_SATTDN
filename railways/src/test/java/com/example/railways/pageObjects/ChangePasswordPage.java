@@ -3,11 +3,9 @@ package com.example.railways.pageObjects;
 import com.example.railways.common.utilities.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ChangePasswordPage extends BasePage {
-
     private final By frmChangePassword = By.id("ChangePW");
     private final By txtCurrentPassword = By.id("currentPassword");
     private final By txtNewPassword = By.id("newPassword");
@@ -19,48 +17,44 @@ public class ChangePasswordPage extends BasePage {
     private final By msgNewPasswordValidationError = By.xpath("//form[@class='RegisterForm']//label[@for='newPassword' and @class='validation-error']");
     private final By msgConfirmPasswordValidationError = By.xpath("//form[@class='RegisterForm']//label[@for='confirmPassword' and @class='validation-error']");
 
-    public ChangePasswordPage(WebDriver driver) {
-        super(driver);
-    }
-
     private WebElement getFrmChangePassword() {
-        return driver.findElement(frmChangePassword);
+        return DriverManager.findElement(frmChangePassword);
     }
 
     private WebElement getTxtCurrentPassword() {
-        return driver.findElement(txtCurrentPassword);
+        return DriverManager.findElement(txtCurrentPassword);
     }
 
     private WebElement getTxtNewPassword() {
-        return driver.findElement(txtNewPassword);
+        return DriverManager.findElement(txtNewPassword);
     }
 
     private WebElement getTxtConfirmPassword() {
-        return driver.findElement(txtConfirmPassword);
+        return DriverManager.findElement(txtConfirmPassword);
     }
 
     private WebElement getBtnChangePassword() {
-        return driver.findElement(btnChangePassword);
+        return DriverManager.findElement(btnChangePassword);
     }
 
     private WebElement getLblSuccess() {
-        return driver.findElement(lblSuccess);
+        return DriverManager.findElement(lblSuccess);
     }
 
     private WebElement getLblError() {
-        return driver.findElement(lblError);
+        return DriverManager.findElement(lblError);
     }
 
     private WebElement getLblCurrentPasswordValidationError() {
-        return driver.findElement(lblCurrentPasswordValidationError);
+        return DriverManager.findElement(lblCurrentPasswordValidationError);
     }
 
     public WebElement getMsgNewPasswordValidationError() {
-        return driver.findElement(msgNewPasswordValidationError);
+        return DriverManager.findElement(msgNewPasswordValidationError);
     }
 
     public WebElement getMsgConfirmPasswordValidationError() {
-        return driver.findElement(msgConfirmPasswordValidationError);
+        return DriverManager.findElement(msgConfirmPasswordValidationError);
     }
 
     public void changePassword(String currentPassword, String newPassword, String confirmPassword) {

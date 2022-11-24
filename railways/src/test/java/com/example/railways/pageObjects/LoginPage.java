@@ -3,11 +3,9 @@ package com.example.railways.pageObjects;
 import com.example.railways.common.utilities.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
-
     private final By frmLogin = By.className("LoginForm");
     private final By txtEmail = By.id("username");
     private final By txtPassword = By.id("password");
@@ -18,44 +16,40 @@ public class LoginPage extends BasePage {
     private final By lblEmailValidationError = By.xpath("//form[@class='LoginForm']//label[@for='username' and @class='validation-error']");
     private final By lblPasswordValidationError = By.xpath("//form[@class='LoginForm']//label[@for='password' and @class='validation-error']");
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
-
     private WebElement getFrmLogin() {
-        return driver.findElement(frmLogin);
+        return DriverManager.findElement(frmLogin);
     }
 
     private WebElement getTxtEmail() {
-        return driver.findElement(txtEmail);
+        return DriverManager.findElement(txtEmail);
     }
 
     private WebElement getTxtPassword() {
-        return driver.findElement(txtPassword);
+        return DriverManager.findElement(txtPassword);
     }
 
     private WebElement getBtnLogin() {
-        return driver.findElement(btnLogin);
+        return DriverManager.findElement(btnLogin);
     }
 
     private WebElement getLnkRegister() {
-        return driver.findElement(lnkRegister);
+        return DriverManager.findElement(lnkRegister);
     }
 
     private WebElement getLnkForgotPassword() {
-        return driver.findElement(lnkForgotPassword);
+        return DriverManager.findElement(lnkForgotPassword);
     }
 
     private WebElement getLblError() {
-        return driver.findElement(lblError);
+        return DriverManager.findElement(lblError);
     }
 
     private WebElement getLblEmailValidationError() {
-        return driver.findElement(lblEmailValidationError);
+        return DriverManager.findElement(lblEmailValidationError);
     }
 
     private WebElement getLblPasswordValidationError() {
-        return driver.findElement(lblPasswordValidationError);
+        return DriverManager.findElement(lblPasswordValidationError);
     }
 
     public void login(String email, String password) {

@@ -3,7 +3,6 @@ package com.example.railways.testcases.login;
 import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
-import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.listener.ReportListener;
@@ -22,15 +21,15 @@ public class TC03_Login_InvalidPassword extends BaseTest {
         ExtentTestManager.logMessage("TC03-User cannot log into Railway with invalid password");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Click on \"Login\" tab");
+        HomePage homePage = new HomePage();
+        ExtentTestManager.logMessage("Click on 'Login' tab");
         homePage.clickTab(Tab.LOGIN);
 
         String email = getEmail();
         String password = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage();
         ExtentTestManager.logMessage("Enter valid Email and invalid Password");
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);

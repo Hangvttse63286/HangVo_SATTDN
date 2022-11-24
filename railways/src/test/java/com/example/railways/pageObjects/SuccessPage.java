@@ -2,27 +2,20 @@ package com.example.railways.pageObjects;
 
 import com.example.railways.common.utilities.DriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.net.URISyntaxException;
-import java.util.List;
 
 public class SuccessPage extends BasePage {
-
     private final By lblBookTicketSuccess = By.tagName("h1");
     private final By tblBookedTicket = By.xpath("//table[contains(@class,'WideTable')]");
 
-    public SuccessPage(WebDriver driver) {
-        super(driver);
-    }
-
     private WebElement getLblBookTicketSuccess() {
-        return driver.findElement(lblBookTicketSuccess);
+        return DriverManager.findElement(lblBookTicketSuccess);
     }
 
     private WebElement getTblBookedTicket() {
-        return driver.findElement(tblBookedTicket);
+        return DriverManager.findElement(tblBookedTicket);
     }
 
     public String getRowValue(String row) {

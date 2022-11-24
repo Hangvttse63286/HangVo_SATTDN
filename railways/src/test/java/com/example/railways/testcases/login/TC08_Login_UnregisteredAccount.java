@@ -32,15 +32,15 @@ public class TC08_Login_UnregisteredAccount extends BaseTest {
         ExtentTestManager.logMessage("TC-08: User can't login with an account hasn't been registered");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Click on \"Login\" tab");
+        HomePage homePage = new HomePage();
+        ExtentTestManager.logMessage("Click on 'Login' tab");
         homePage.clickTab(Tab.LOGIN);
 
         String email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
         String password = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage();
         ExtentTestManager.logMessage("Enter account hasn't been registered.");
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);

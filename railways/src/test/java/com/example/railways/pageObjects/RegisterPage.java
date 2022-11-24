@@ -3,11 +3,9 @@ package com.example.railways.pageObjects;
 import com.example.railways.common.utilities.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class RegisterPage extends BasePage {
-
     private final By frmRegister = By.id("RegisterForm");
     private final By txtEmail = By.id("email");
     private final By txtPassword = By.id("password");
@@ -23,64 +21,60 @@ public class RegisterPage extends BasePage {
     private final By lblConfirmPasswordError = By.xpath("//form[@id='RegisterForm']//label[@for='confirmPassword' and @class='validation-error']");
     private final By lblPidError = By.xpath("//form[@id='RegisterForm']//label[@for='pid' and @class='validation-error']");
 
-    public RegisterPage(WebDriver driver) {
-        super(driver);
-    }
-
     private WebElement getFrmRegister() {
-        return driver.findElement(frmRegister);
+        return DriverManager.findElement(frmRegister);
     }
 
     private WebElement getTxtEmail() {
-        return driver.findElement(txtEmail);
+        return DriverManager.findElement(txtEmail);
     }
 
     private WebElement getTxtPassword() {
-        return driver.findElement(txtPassword);
+        return DriverManager.findElement(txtPassword);
     }
 
     private WebElement getTxtConfirmPassword() {
-        return driver.findElement(txtConfirmPassword);
+        return DriverManager.findElement(txtConfirmPassword);
     }
 
     private WebElement getTxtPid() {
-        return driver.findElement(txtPid);
+        return DriverManager.findElement(txtPid);
     }
 
     private WebElement getBtnRegister() {
-        return driver.findElement(btnRegister);
+        return DriverManager.findElement(btnRegister);
     }
 
     private WebElement getLnkLogin() {
-        return driver.findElement(lnkLogin);
+        return DriverManager.findElement(lnkLogin);
     }
 
     private WebElement getLnkConfirm() {
-        return driver.findElement(lnkConfirm);
+        return DriverManager.findElement(lnkConfirm);
     }
 
     private WebElement getLblSuccess() {
-        return driver.findElement(lblSuccess);
+        return DriverManager.findElement(lblSuccess);
     }
 
     private WebElement getLblError() {
-        return driver.findElement(lblError);
+        return DriverManager.findElement(lblError);
     }
 
     private WebElement getLblEmailError() {
-        return driver.findElement(lblEmailError);
+        return DriverManager.findElement(lblEmailError);
     }
 
     private WebElement getLblPasswordError() {
-        return driver.findElement(lblPasswordError);
+        return DriverManager.findElement(lblPasswordError);
     }
 
     private WebElement getLblConfirmPasswordError() {
-        return driver.findElement(lblConfirmPasswordError);
+        return DriverManager.findElement(lblConfirmPasswordError);
     }
 
     private WebElement getLblPidError() {
-        return driver.findElement(lblPidError);
+        return DriverManager.findElement(lblPidError);
     }
 
     public void register(String email, String password, String confirmPassword, String pid) {

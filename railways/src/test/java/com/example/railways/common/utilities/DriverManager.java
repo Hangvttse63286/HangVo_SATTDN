@@ -16,6 +16,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DriverManager {
@@ -139,5 +140,13 @@ public class DriverManager {
 
     public static String getParamValue(String paramName) throws URISyntaxException {
         return getParams().get(paramName);
+    }
+
+    public static WebElement findElement(By locator) {
+        return driver.findElement(locator);
+    }
+
+    public static List<WebElement> findElements(By locator) {
+        return driver.findElements(locator);
     }
 }

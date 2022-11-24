@@ -32,8 +32,8 @@ public class TC11_Register_BlankPasswordAndPid extends BaseTest {
         ExtentTestManager.logMessage("TC11-User can't create account while password and PID fields are empty");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Click on \"Register\" tab");
+        HomePage homePage = new HomePage();
+        ExtentTestManager.logMessage("Click on 'Register' tab");
         homePage.clickTab(Tab.REGISTER);
 
         String email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
@@ -41,7 +41,7 @@ public class TC11_Register_BlankPasswordAndPid extends BaseTest {
         String pid = "";
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password + " - Confirm Password: " + password + " - Pid: " + pid);
 
-        RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
+        RegisterPage registerPage = new RegisterPage();
         ExtentTestManager.logMessage("Enter valid email address and leave other fields empty");
         ExtentTestManager.logMessage("Click on \"Register\" button");
         registerPage.register(email, password, password, pid);

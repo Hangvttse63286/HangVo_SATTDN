@@ -19,8 +19,8 @@ public class TC04_BookTicket_UnloggedUser extends BaseTest {
         ExtentTestManager.logMessage("TC04-Login page displays when un-logged User clicks on \"Book ticket\" tab");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Click on \"Book ticket\" tab");
+        HomePage homePage = new HomePage();
+        ExtentTestManager.logMessage("Click on 'Book ticket' tab");
         homePage.clickTab(Tab.BOOK_TICKET);
 
         ExtentTestManager.logMessage("Expected: Login page displays instead of Book ticket page");

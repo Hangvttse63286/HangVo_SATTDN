@@ -26,23 +26,23 @@ public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
         ExtentTestManager.logMessage("Pre-condition: Create and activate a new account");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
+        HomePage homePage = new HomePage();
         ExtentTestManager.logMessage("Login with valid account");
         homePage.clickTab(Tab.LOGIN);
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Book a ticket");
         loginPage.clickTab(Tab.BOOK_TICKET);
-        BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
+        BookTicketPage bookTicketPage = new BookTicketPage();
         bookTicketPage.clickBtnBookTicket();
-        SuccessPage successPage = new SuccessPage(DriverManager.getDriver());
+        SuccessPage successPage = new SuccessPage();
         int ticketId = successPage.getBookedTicketId();
         successPage.clickTab(Tab.BOOK_TICKET);
         ExtentTestManager.logMessage("Click on \"My ticket\" tab");
         bookTicketPage.clickTab(Tab.MY_TICKET);
 
-        MyTicketPage myTicketPage = new MyTicketPage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Click on \"Cancel\" button of ticket which user want to cancel.");
+        MyTicketPage myTicketPage = new MyTicketPage();
+        ExtentTestManager.logMessage("Click on 'Cancel' button of ticket which user want to cancel.");
         myTicketPage.cancelTicket(ticketId);
         ExtentTestManager.logMessage("Click on \"OK\" button on Confirmation message \"Are you sure?\"");
         DriverManager.acceptAlert();

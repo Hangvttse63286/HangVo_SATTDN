@@ -2,7 +2,6 @@ package com.example.railways.testcases.login;
 
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
-import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.listener.ReportListener;
@@ -21,7 +20,7 @@ public class TC01_Login_ValidAcc extends BaseTest {
         ExtentTestManager.logMessage("TC01-User can log into Railway with valid username and password");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
+        HomePage homePage = new HomePage();
 
         ExtentTestManager.logMessage("Click on \"Login\" tab");
         homePage.clickTab(Tab.LOGIN);
@@ -30,7 +29,7 @@ public class TC01_Login_ValidAcc extends BaseTest {
         String password = getPassword();
         Log.info("Email: " + email + " - Password: " + password);
 
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage();
         ExtentTestManager.logMessage("Enter valid Email and Password");
         ExtentTestManager.logMessage("Click on \"Login\" button");
         loginPage.login(email, password);
