@@ -29,7 +29,7 @@ public class TC09_ChangePassword_Success extends BaseTest {
         homePage.clickTab(Tab.LOGIN);
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
         loginPage.login(getEmail(), getPassword());
-        ExtentTestManager.logMessage("Click on \"Change Password\" tab");
+        ExtentTestManager.logMessage("Click on 'Change Password' tab");
         loginPage.clickTab(Tab.CHANGE_PASSWORD);
 
         String newPassword = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
@@ -38,11 +38,11 @@ public class TC09_ChangePassword_Success extends BaseTest {
         ChangePasswordPage changePasswordPage = new ChangePasswordPage(DriverManager.getDriver());
         changePasswordPage.scrollToBtnChangePassword();
         ExtentTestManager.logMessage("Enter valid value into all fields.");
-        ExtentTestManager.logMessage("Click on \"Change Password\" button");
+        ExtentTestManager.logMessage("Click on 'Change Password' button");
         changePasswordPage.changePassword(getPassword(), newPassword, newPassword);
 
-        ExtentTestManager.logMessage("Expected: Message \"Your password has been updated!\" appears.");
+        ExtentTestManager.logMessage("Expected: Message 'Your password has been updated!' appears.");
         Assert.assertTrue(changePasswordPage.isLblSuccessDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label success msg");
-        Assert.assertEquals(changePasswordPage.getLblSuccessText(), Message.CHANGE_PASSWORD_SUCCESS.getMsg());
+        Assert.assertEquals(changePasswordPage.getLblSuccessText(), Message.CHANGE_PASSWORD_SUCCESS.getMsg(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "label success msg");
     }
 }

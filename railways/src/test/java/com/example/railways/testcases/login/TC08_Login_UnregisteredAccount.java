@@ -33,7 +33,7 @@ public class TC08_Login_UnregisteredAccount extends BaseTest {
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage(DriverManager.getDriver());
-        ExtentTestManager.logMessage("Click on \"Login\" tab");
+        ExtentTestManager.logMessage("Click on 'Login' tab");
         homePage.clickTab(Tab.LOGIN);
 
         String email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
@@ -42,11 +42,11 @@ public class TC08_Login_UnregisteredAccount extends BaseTest {
 
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
         ExtentTestManager.logMessage("Enter account hasn't been registered.");
-        ExtentTestManager.logMessage("Click on \"Login\" button");
+        ExtentTestManager.logMessage("Click on 'Login' button");
         loginPage.login(email, password);
 
-        ExtentTestManager.logMessage("Expected: User can't login and message \"Invalid username or password. Please try again.\" appears.");
+        ExtentTestManager.logMessage("Expected: User can't login and message 'Invalid username or password. Please try again.' appears.");
         Assert.assertTrue(loginPage.isLblErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label error msg");
-        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
+        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "label error msg");
     }
 }
