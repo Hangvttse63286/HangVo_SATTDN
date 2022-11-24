@@ -43,7 +43,7 @@ public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
         timetablePage.clickLnk(timetableDpStation, timetableArStation, "Book");
 
         ExtentTestManager.logMessage("Expected: 'Book ticket' page is loaded with correct 'Depart from' and 'Arrive at' values.");
-        Assert.assertTrue(DriverManager.getCurrentUrl().contains(Url.RAILWAYS_BOOK_TICKET_URL.getUrlLink()));
+        Assert.assertTrue(DriverManager.getCurrentUrl().contains(Url.RAILWAYS_BOOK_TICKET_URL.getUrlLink()), "Book Ticket page does not display");
 
         BookTicketPage bookTicketPage = new BookTicketPage();
 
