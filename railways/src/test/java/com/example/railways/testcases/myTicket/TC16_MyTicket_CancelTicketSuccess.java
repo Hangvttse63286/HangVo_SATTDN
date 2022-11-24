@@ -38,13 +38,13 @@ public class TC16_MyTicket_CancelTicketSuccess extends BaseTest {
         SuccessPage successPage = new SuccessPage();
         int ticketId = successPage.getBookedTicketId();
         successPage.clickTab(Tab.BOOK_TICKET);
-        ExtentTestManager.logMessage("Click on \"My ticket\" tab");
+        ExtentTestManager.logMessage("Click on 'My ticket' tab");
         bookTicketPage.clickTab(Tab.MY_TICKET);
 
         MyTicketPage myTicketPage = new MyTicketPage();
         ExtentTestManager.logMessage("Click on 'Cancel' button of ticket which user want to cancel.");
         myTicketPage.cancelTicket(ticketId);
-        ExtentTestManager.logMessage("Click on \"OK\" button on Confirmation message \"Are you sure?\"");
+        ExtentTestManager.logMessage("Click on 'OK' button on Confirmation message 'Are you sure?'");
         DriverManager.acceptAlert();
 
         ExtentTestManager.logMessage("Expected: The canceled ticket is disappeared.");

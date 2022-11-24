@@ -43,11 +43,11 @@ public class TC07_Register_Success extends BaseTest {
 
         RegisterPage registerPage = new RegisterPage();
         ExtentTestManager.logMessage("Enter valid information into all fields");
-        ExtentTestManager.logMessage("Click on \"Register\" button");
+        ExtentTestManager.logMessage("Click on 'Register' button");
         registerPage.register(email, password, password, pid);
 
-        ExtentTestManager.logMessage("Expected: New account is created and message \"You're here\"");
+        ExtentTestManager.logMessage("Expected: New account is created and message 'You're here'");
         Assert.assertTrue(registerPage.isLblSuccessDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label success msg");
-        Assert.assertEquals(registerPage.getLblSuccessText(), Message.REGISTER_SUCCESS.getMsg());
+        Assert.assertEquals(registerPage.getLblSuccessText(), Message.REGISTER_SUCCESS.getMsg(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "label success msg");
     }
 }

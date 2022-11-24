@@ -31,11 +31,11 @@ public class TC03_Login_InvalidPassword extends BaseTest {
 
         LoginPage loginPage = new LoginPage();
         ExtentTestManager.logMessage("Enter valid Email and invalid Password");
-        ExtentTestManager.logMessage("Click on \"Login\" button");
+        ExtentTestManager.logMessage("Click on 'Login' button");
         loginPage.login(email, password);
 
-        ExtentTestManager.logMessage("Expected: Error message \"Invalid username or password. Please try again.\" is displayed");
+        ExtentTestManager.logMessage("Expected: Error message 'Invalid username or password. Please try again.' is displayed");
         Assert.assertTrue(loginPage.isLblErrorDisplayed(), AssertMessage.ELEMENT_NOT_DISPLAYED.getMsg() + "label error msg");
-        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg());
+        Assert.assertEquals(loginPage.getLblErrorText(), Message.LOGIN_INVALID_ACCOUNT.getMsg(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "label error msg");
     }
 }

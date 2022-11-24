@@ -1,5 +1,6 @@
 package com.example.railways.testcases.login;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
 import com.example.railways.common.utilities.Log;
@@ -22,7 +23,7 @@ public class TC01_Login_ValidAcc extends BaseTest {
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
         HomePage homePage = new HomePage();
 
-        ExtentTestManager.logMessage("Click on \"Login\" tab");
+        ExtentTestManager.logMessage("Click on 'Login' tab");
         homePage.clickTab(Tab.LOGIN);
 
         String email = getEmail();
@@ -31,11 +32,11 @@ public class TC01_Login_ValidAcc extends BaseTest {
 
         LoginPage loginPage = new LoginPage();
         ExtentTestManager.logMessage("Enter valid Email and Password");
-        ExtentTestManager.logMessage("Click on \"Login\" button");
+        ExtentTestManager.logMessage("Click on 'Login' button");
         loginPage.login(email, password);
         String welcomeText = loginPage.getWelcomeText().trim();
 
         ExtentTestManager.logMessage("Expected: User is logged into Railway. Welcome user message is displayed.");
-        Assert.assertEquals(welcomeText, Message.LOGGED_WELCOME_TEXT.getMsg() + email);
+        Assert.assertEquals(welcomeText, Message.LOGGED_WELCOME_TEXT.getMsg() + email, AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "Welcome text");
     }
 }

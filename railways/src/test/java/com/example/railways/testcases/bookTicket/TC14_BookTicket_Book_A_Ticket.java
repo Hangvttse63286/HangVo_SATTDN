@@ -1,5 +1,6 @@
 package com.example.railways.testcases.bookTicket;
 
+import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.SeatType;
 import com.example.railways.dataObjects.Station;
@@ -64,14 +65,14 @@ public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
         String successSeatType = successPage.getRowValue("Seat Type");
         String successTicketAmount = successPage.getRowValue("Amount");
 
-        ExtentTestManager.logMessage("Expected: Message \"Ticket Booked Successfully!\" displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
+        ExtentTestManager.logMessage("Expected: Message 'Ticket Booked Successfully!' displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(successPage.getLblBookTicketSuccessText(), Message.BOOK_TICKET_SUCCESS.getMsg());
-        softAssert.assertEquals(successDepartDate, departDate);
-        softAssert.assertEquals(successDepartStation, departStation.getName());
-        softAssert.assertEquals(successArriveStation, arriverStation.getName());
-        softAssert.assertEquals(successSeatType, seatType.getName());
-        softAssert.assertEquals(successTicketAmount, (String.valueOf(ticketAmount)));
+        softAssert.assertEquals(successPage.getLblBookTicketSuccessText(), Message.BOOK_TICKET_SUCCESS.getMsg(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "label book ticket success");
+        softAssert.assertEquals(successDepartDate, departDate, AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "Depart Date");
+        softAssert.assertEquals(successDepartStation, departStation.getName(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "Depart Station");
+        softAssert.assertEquals(successArriveStation, arriverStation.getName(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "Arrive Station");
+        softAssert.assertEquals(successSeatType, seatType.getName(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "Seat Type");
+        softAssert.assertEquals(successTicketAmount, (String.valueOf(ticketAmount)), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "Ticket Amount");
         softAssert.assertAll();
 
     }
