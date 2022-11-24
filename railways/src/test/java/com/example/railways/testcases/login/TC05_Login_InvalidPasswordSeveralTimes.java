@@ -3,7 +3,6 @@ package com.example.railways.testcases.login;
 import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
-import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.listener.ReportListener;
@@ -22,7 +21,7 @@ public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
         ExtentTestManager.logMessage("TC05-System shows message when user enters wrong password several times");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
+        HomePage homePage = new HomePage();
         ExtentTestManager.logMessage("Click on 'Login' tab");
         homePage.clickTab(Tab.LOGIN);
 
@@ -30,7 +29,7 @@ public class TC05_Login_InvalidPasswordSeveralTimes extends BaseTest {
         String password = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage();
         ExtentTestManager.logMessage("Enter valid information into 'Username' textbox except 'Password' textbox.");
         ExtentTestManager.logMessage("Click on 'Login' button");
         ExtentTestManager.logMessage("Repeat step 3 three more times.");

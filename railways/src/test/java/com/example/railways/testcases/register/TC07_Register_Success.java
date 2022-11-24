@@ -32,7 +32,7 @@ public class TC07_Register_Success extends BaseTest {
         ExtentTestManager.logMessage("TC07-User can create new account");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
+        HomePage homePage = new HomePage();
         ExtentTestManager.logMessage("Click on 'Register' tab");
         homePage.clickTab(Tab.REGISTER);
 
@@ -41,7 +41,7 @@ public class TC07_Register_Success extends BaseTest {
         String pid = Utilities.generateRandomString(Utilities.getRandomNumber(8, 20));
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password + " - Confirm Password: " + password + " - Pid: " + pid);
 
-        RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
+        RegisterPage registerPage = new RegisterPage();
         ExtentTestManager.logMessage("Enter valid information into all fields");
         ExtentTestManager.logMessage("Click on 'Register' button");
         registerPage.register(email, password, password, pid);

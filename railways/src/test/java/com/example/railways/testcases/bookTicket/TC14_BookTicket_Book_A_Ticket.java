@@ -5,7 +5,6 @@ import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.SeatType;
 import com.example.railways.dataObjects.Station;
 import com.example.railways.dataObjects.Tab;
-import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.listener.ReportListener;
@@ -29,10 +28,10 @@ public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
         ExtentTestManager.logMessage("Pre-condition: Create and activate a new account");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
+        HomePage homePage = new HomePage();
         ExtentTestManager.logMessage("Login with valid account");
         homePage.clickTab(Tab.LOGIN);
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Click on \"Book ticket\" tab");
         loginPage.clickTab(Tab.BOOK_TICKET);
@@ -51,7 +50,7 @@ public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
                 + " - Seat Type: " + seatType.getName()
                 + " - Ticket Amount: " + ticketAmount);
 
-        BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
+        BookTicketPage bookTicketPage = new BookTicketPage();
         ExtentTestManager.logMessage("Select a Depart date from the list");
         ExtentTestManager.logMessage("Select " + departStation.getName() + " for 'Depart from' and " + arriverStation.getName() + " for 'Arrive at'.");
         ExtentTestManager.logMessage("Select " + seatType.getName() + " for 'Seat type'");
@@ -59,7 +58,7 @@ public class TC14_BookTicket_Book_A_Ticket extends BaseTest {
         ExtentTestManager.logMessage("Click on 'Book ticket' button");
         bookTicketPage.bookTicket(departDate, departStation, arriverStation, seatType, ticketAmount);
 
-        SuccessPage successPage = new SuccessPage(DriverManager.getDriver());
+        SuccessPage successPage = new SuccessPage();
         String successDepartDate = successPage.getRowValue("Depart Date");
         String successDepartStation = successPage.getRowValue("Depart Station");
         String successArriveStation = successPage.getRowValue("Arrive Station");

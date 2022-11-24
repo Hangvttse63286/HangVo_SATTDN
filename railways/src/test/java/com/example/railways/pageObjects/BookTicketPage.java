@@ -4,12 +4,10 @@ import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.dataObjects.SeatType;
 import com.example.railways.dataObjects.Station;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class BookTicketPage extends BasePage {
-
     private final By ddlDepartDate = By.xpath("//form//select[@name='Date']");
     private final By ddlDepartStation = By.name("DepartStation");
     private final By ddlArriveStation = By.name("ArriveStation");
@@ -17,32 +15,28 @@ public class BookTicketPage extends BasePage {
     private final By ddlTicketAmount = By.name("TicketAmount");
     private final By btnBookTicket = By.xpath("//form//input[@type='submit' and @value='Book ticket']");
 
-    public BookTicketPage(WebDriver driver) {
-        super(driver);
-    }
-
     private Select getDdlDepartDate() {
-        return new Select(driver.findElement(ddlDepartDate));
+        return new Select(DriverManager.findElement(ddlDepartDate));
     }
 
     private Select getDdlDepartStation() {
-        return new Select(driver.findElement(ddlDepartStation));
+        return new Select(DriverManager.findElement(ddlDepartStation));
     }
 
     private Select getDdlArriveStation() {
-        return new Select(driver.findElement(ddlArriveStation));
+        return new Select(DriverManager.findElement(ddlArriveStation));
     }
 
     private Select getDdlSeatType() {
-        return new Select(driver.findElement(ddlSeatType));
+        return new Select(DriverManager.findElement(ddlSeatType));
     }
 
     private Select getDdlTicketAmount() {
-        return new Select(driver.findElement(ddlTicketAmount));
+        return new Select(DriverManager.findElement(ddlTicketAmount));
     }
 
     private WebElement getBtnBookTicket() {
-        return driver.findElement(btnBookTicket);
+        return DriverManager.findElement(btnBookTicket);
     }
 
     public void bookTicket(String departDate, Station departStation, Station arriveStation, SeatType seatType, int ticketAmount) {

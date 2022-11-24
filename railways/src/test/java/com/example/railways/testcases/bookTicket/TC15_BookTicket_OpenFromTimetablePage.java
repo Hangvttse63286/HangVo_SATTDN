@@ -26,10 +26,10 @@ public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
         ExtentTestManager.logMessage("Pre-condition: Create and activate a new account");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
+        HomePage homePage = new HomePage();
         ExtentTestManager.logMessage("Login with valid account");
         homePage.clickTab(Tab.LOGIN);
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Click on 'Timetable' tab");
         loginPage.clickTab(Tab.TIMETABLE);
@@ -38,14 +38,14 @@ public class TC15_BookTicket_OpenFromTimetablePage extends BaseTest {
         Station timetableArStation = Station.SAI_GON;
         ExtentTestManager.logMessage("Depart Station: " + timetableDpStation.getName() + " - Arrive Station: " + timetableArStation.getName());
 
-        TimetablePage timetablePage = new TimetablePage(DriverManager.getDriver());
+        TimetablePage timetablePage = new TimetablePage();
         ExtentTestManager.logMessage("Click on 'book ticket' link of the route from " + timetableDpStation.getName() + " to " + timetableArStation.getName());
         timetablePage.clickLnk(timetableDpStation, timetableArStation, "Book");
 
         ExtentTestManager.logMessage("Expected: 'Book ticket' page is loaded with correct 'Depart from' and 'Arrive at' values.");
         Assert.assertTrue(DriverManager.getCurrentUrl().contains(Url.RAILWAYS_BOOK_TICKET_URL.getUrlLink()));
 
-        BookTicketPage bookTicketPage = new BookTicketPage(DriverManager.getDriver());
+        BookTicketPage bookTicketPage = new BookTicketPage();
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(bookTicketPage.getSelectedDpStation(), timetableDpStation.getName(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED.getMsg() + "Depart Station");

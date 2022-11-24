@@ -1,13 +1,12 @@
 package com.example.railways.pageObjects;
 
+import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.dataObjects.Station;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class TicketPricePage extends BasePage {
-
     private final By tblTicketPriceList = By.xpath("//table[contains(@class,'NoBorder')]");
     private final By btnCheckPrices = By.xpath("//table[contains(@class,'NoBorder')]//a[contains(@href,'Price')]");
     private final By tblTicketPrice = By.xpath("//table[contains(@class,'MedTable')]");
@@ -15,32 +14,28 @@ public class TicketPricePage extends BasePage {
     private final By tblSeat = By.xpath("//table[contains(@class,'NoBorder')]");
     private final By btnBookTickets = By.xpath("//table[contains(@class,'NoBorder')]//a[contains(@href,'Book')]");
 
-    public TicketPricePage(WebDriver driver) {
-        super(driver);
-    }
-
     private WebElement getTblTicketPriceList() {
-        return driver.findElement(tblTicketPriceList);
+        return DriverManager.findElement(tblTicketPriceList);
     }
 
     private List<WebElement> getBtnCheckPrices() {
-        return driver.findElements(btnCheckPrices);
+        return DriverManager.findElements(btnCheckPrices);
     }
 
     private WebElement getTblTicketPrice() {
-        return driver.findElement(tblTicketPrice);
+        return DriverManager.findElement(tblTicketPrice);
     }
 
     private WebElement getThTrain() {
-        return driver.findElement(thTrain);
+        return DriverManager.findElement(thTrain);
     }
 
     private WebElement getTblSeat() {
-        return driver.findElement(tblSeat);
+        return DriverManager.findElement(tblSeat);
     }
 
     private List<WebElement> getBtnBookTickets() {
-        return driver.findElements(btnBookTickets);
+        return DriverManager.findElements(btnBookTickets);
     }
 
     private void checkPrice(Station departStation, Station arriveStation) {

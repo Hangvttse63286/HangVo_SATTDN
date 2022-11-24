@@ -3,7 +3,6 @@ package com.example.railways.testcases.login;
 import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
-import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.listener.ReportListener;
 import com.example.railways.pageObjects.HomePage;
@@ -21,7 +20,7 @@ public class TC02_Login_BlankUsername extends BaseTest {
         ExtentTestManager.logMessage("TC02-User can't login with blank 'Username' textbox");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
+        HomePage homePage = new HomePage();
         ExtentTestManager.logMessage("Click on 'Login' tab");
         homePage.clickTab(Tab.LOGIN);
 
@@ -29,7 +28,7 @@ public class TC02_Login_BlankUsername extends BaseTest {
         String password = getPassword();
         ExtentTestManager.logMessage("Email: " + email + " - Password: " + password);
 
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage();
         ExtentTestManager.logMessage("User doesn't type any words into 'Username' textbox but enter valid information into 'Password' textbox ");
         ExtentTestManager.logMessage("Click on 'Login' button");
         loginPage.login(email, password);

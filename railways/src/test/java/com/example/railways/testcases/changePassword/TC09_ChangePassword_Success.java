@@ -3,7 +3,6 @@ package com.example.railways.testcases.changePassword;
 import com.example.railways.common.constant.AssertMessage;
 import com.example.railways.dataObjects.Message;
 import com.example.railways.dataObjects.Tab;
-import com.example.railways.common.utilities.DriverManager;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.common.utilities.extentreports.ExtentTestManager;
 import com.example.railways.common.utilities.listener.ReportListener;
@@ -24,10 +23,10 @@ public class TC09_ChangePassword_Success extends BaseTest {
         ExtentTestManager.logMessage("Pre-condition: Create and activate a new account");
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
-        HomePage homePage = new HomePage(DriverManager.getDriver());
+        HomePage homePage = new HomePage();
         ExtentTestManager.logMessage("Login with valid account");
         homePage.clickTab(Tab.LOGIN);
-        LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+        LoginPage loginPage = new LoginPage();
         loginPage.login(getEmail(), getPassword());
         ExtentTestManager.logMessage("Click on 'Change Password' tab");
         loginPage.clickTab(Tab.CHANGE_PASSWORD);
@@ -35,7 +34,7 @@ public class TC09_ChangePassword_Success extends BaseTest {
         String newPassword = Utilities.generateRandomString(Utilities.getRandomNumber(8, 64));
         ExtentTestManager.logMessage("New Password: " + newPassword);
 
-        ChangePasswordPage changePasswordPage = new ChangePasswordPage(DriverManager.getDriver());
+        ChangePasswordPage changePasswordPage = new ChangePasswordPage();
         changePasswordPage.scrollToBtnChangePassword();
         ExtentTestManager.logMessage("Enter valid value into all fields.");
         ExtentTestManager.logMessage("Click on 'Change Password' button");

@@ -43,7 +43,7 @@ public class BaseTest {
         DriverManager.pageLoadTimeout();
         DriverManager.implicitlyWait();
 
-        RegisterPage registerPage = new RegisterPage(DriverManager.getDriver());
+        RegisterPage registerPage = new RegisterPage();
         registerPage.clickTab(Tab.REGISTER);
 
         email = Utilities.generateRandomEmail(Utilities.getRandomNumber(6, 32));
