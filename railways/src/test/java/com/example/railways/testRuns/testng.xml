@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Railways Suite" verbose="1">
+    <listeners>
+        <listener class-name="com.example.railways.common.utilities.listener.ReportListener"/>
+    </listeners>
+    <test name="Railways Test">
+        <classes>
+            <class name="com.example.railways.testcases.FTTC01_BookTicket_After_CheckPrice"/>
+            <class name="com.example.railways.testcases.FTTC02_MyTicket_Filter"/>
+        </classes>
+    </test>
+</suite>

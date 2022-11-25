@@ -1,14 +1,14 @@
 package com.example.railways.dataObjects;
 
-public enum Status {
-    NEW("New"),
-    PAID("Paid"),
-    EXPIRED("Expired"),
-    IGNORE("Ignore");
+public enum Filter {
+    DEPART_STATION("Depart Station"),
+    ARRIVE_STATION("Arrive Station"),
+    DEPART_DATE("Depart Date"),
+    STATUS("Status");
 
     private final String name;
 
-    Status(String name) {
+    Filter(String name) {
         this.name = name;
     }
 
