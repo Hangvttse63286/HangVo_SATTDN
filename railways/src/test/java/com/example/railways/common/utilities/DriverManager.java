@@ -10,6 +10,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.URI;
@@ -83,6 +84,13 @@ public class DriverManager {
 
     public static void waitVisibility(By by, long duration) {
         explicitlyWait(duration).until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public static void waitUntilSelectOptionsPopulated(By select) {
+        new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(10))
+                .until(ExpectedConditions.presenceOfNestedElementLocatedBy(select, By.tagName("option")));
     }
 
     public WebElement waitToBeClickable(By by, long duration) {

@@ -58,13 +58,21 @@ public class MyTicketPage extends BasePage {
         return getTblMyTicket().findElements(By.xpath(String.format(filterTicketXPath, Filter.ARRIVE_STATION.getName(), arStation.getName())));
     }
 
-    public void filterByArStation(Station arStation) {
+    public int filterByArStation(Station arStation) {
         DriverManager.scrollToView(getBtnFilter());
         getDdlFilterArStation().selectByVisibleText(arStation.getName());
+        int numOfFilterTicket = getTicketByArStation(arStation).size();
         getBtnFilter().click();
+        return numOfFilterTicket;
     }
 
-    public Boolean isFilterResultMatch(Station arStation) {
-        return getTickets().equals(getTicketByArStation(arStation));
+    public Boolean isFilterResultMatch(Station arStation, int size) {
+        try {
+            if(getTickets().size() != size)
+                return false;
+            return getTickets().equals(getTicketByArStation(arStation));
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.railways.pageObjects;
 
 import com.example.railways.common.utilities.DriverManager;
+import com.example.railways.common.utilities.Log;
 import com.example.railways.common.utilities.Utilities;
 import com.example.railways.dataObjects.SeatType;
 import com.example.railways.dataObjects.Station;
@@ -43,7 +44,7 @@ public class BookTicketPage extends BasePage {
         return DriverManager.findElement(btnBookTicket);
     }
 
-    public Station bookTicket() {
+    public Station bookTicket() throws InterruptedException {
         DriverManager.scrollToView(getBtnBookTicket());
         getDdlDepartStation().selectByVisibleText(Station.values()[Utilities.getRandomNumber(0,6)].getName());
         List<Station> arStations = getArStationOptions();
@@ -77,7 +78,8 @@ public class BookTicketPage extends BasePage {
         return getDdlDepartStation().getOptions().size();
     }
 
-    public List<Station> getArStationOptions() {
+    public List<Station> getArStationOptions() throws InterruptedException {
+        Thread.sleep(1000);
         List<WebElement> optionList = getDdlArriveStation().getOptions();
         List<String> arStationList = optionList.stream().map(WebElement::getText).collect(Collectors.toList());
         return arStationList.stream().map(Station::fromString).collect(Collectors.toList());

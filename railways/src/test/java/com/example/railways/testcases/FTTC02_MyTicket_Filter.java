@@ -23,7 +23,7 @@ import java.util.List;
 public class FTTC02_MyTicket_Filter extends BaseTest {
 
     @Test(description = "User can filter 'Manage ticket' table with Arrive station")
-    public void myTicket_Filter_By_ArStation() {
+    public void myTicket_Filter_By_ArStation() throws InterruptedException {
         List<Station> arStationList = new ArrayList<>();
 
         ExtentTestManager.logMessage("Navigate to QA Railway Website");
@@ -53,9 +53,9 @@ public class FTTC02_MyTicket_Filter extends BaseTest {
 
         ExtentTestManager.logMessage("Select one of booked arrive station in 'Arrive Station' textbox");
         Station filterArStation = arStationList.get(Utilities.getRandomNumber(0, arStationList.size()));
-        myTicketPage.filterByArStation(filterArStation);
+        int numOfFilterTicket = myTicketPage.filterByArStation(filterArStation);
 
         ExtentTestManager.logMessage("Expected: 'Manage ticket' table shows correct ticket(s)");
-        Assert.assertTrue(myTicketPage.isFilterResultMatch(filterArStation), "Filter result does not match");
+        Assert.assertTrue(myTicketPage.isFilterResultMatch(filterArStation, numOfFilterTicket), "Filter result does not match");
     }
 }
