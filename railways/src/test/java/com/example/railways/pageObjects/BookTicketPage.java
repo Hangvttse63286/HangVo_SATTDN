@@ -79,7 +79,7 @@ public class BookTicketPage extends BasePage {
     }
 
     public List<Station> getArStationOptions() throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(200);
         List<WebElement> optionList = getDdlArriveStation().getOptions();
         List<String> arStationList = optionList.stream().map(WebElement::getText).collect(Collectors.toList());
         return arStationList.stream().map(Station::fromString).collect(Collectors.toList());
