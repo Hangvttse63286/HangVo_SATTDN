@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 @Listeners(ReportListener.class)
-public class FTTC01_BookTicket_After_CheckPrice extends BaseTest{
+public class FTTC01_BookTicket_After_CheckPrice extends BaseTest {
 
     @Test(description = "User can book ticket after checking price")
     public void bookTicket_After_CheckPrice() {

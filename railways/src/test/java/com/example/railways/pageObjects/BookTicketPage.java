@@ -46,9 +46,9 @@ public class BookTicketPage extends BasePage {
 
     public Station bookTicket() throws InterruptedException {
         DriverManager.scrollToView(getBtnBookTicket());
-        getDdlDepartStation().selectByVisibleText(Station.values()[Utilities.getRandomNumber(0,6)].getName());
+        getDdlDepartStation().selectByVisibleText(Station.values()[Utilities.getRandomNumber(0, 6)].getName());
         List<Station> arStations = getArStationOptions();
-        Station arStation = arStations.get(Utilities.getRandomNumber(0,arStations.size()));
+        Station arStation = arStations.get(Utilities.getRandomNumber(0, arStations.size()));
         getDdlArriveStation().selectByVisibleText(arStation.getName());
         getBtnBookTicket().click();
         return arStation;

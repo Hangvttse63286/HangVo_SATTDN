@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.Select;
+
 import java.util.List;
 
 public class MyTicketPage extends BasePage {
@@ -60,15 +61,15 @@ public class MyTicketPage extends BasePage {
 
     public int filterByArStation(Station arStation) {
         DriverManager.scrollToView(getBtnFilter());
-        getDdlFilterArStation().selectByVisibleText(arStation.getName());
         int numOfFilterTicket = getTicketByArStation(arStation).size();
+        getDdlFilterArStation().selectByVisibleText(arStation.getName());
         getBtnFilter().click();
         return numOfFilterTicket;
     }
 
     public Boolean isFilterResultMatch(Station arStation, int size) {
         try {
-            if(getTickets().size() != size)
+            if (getTickets().size() != size)
                 return false;
             return getTickets().equals(getTicketByArStation(arStation));
         } catch (NoSuchElementException e) {

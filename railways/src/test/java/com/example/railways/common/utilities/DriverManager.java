@@ -140,7 +140,7 @@ public class DriverManager {
 
         for (String param : params) {
             String name = param.split("=")[0];
-            String value = param.split(name+"=")[1];
+            String value = param.split(name + "=")[1];
             map.put(name, value);
         }
         return map;

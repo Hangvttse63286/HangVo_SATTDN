@@ -45,7 +45,7 @@ public class FTTC02_MyTicket_Filter extends BaseTest {
             successPage = new SuccessPage();
             if (!(arStationList.size() > 6))
                 successPage.clickTab(Tab.BOOK_TICKET);
-        } while(!(arStationList.size() > 6));
+        } while (!(arStationList.size() > 6));
 
         ExtentTestManager.logMessage("Click on 'My ticket' tab");
         successPage.clickTab(Tab.MY_TICKET);
