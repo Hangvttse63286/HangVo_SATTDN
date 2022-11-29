@@ -1,7 +1,8 @@
 package com.example.tadashboard.dataObjects;
 
 public enum Url {
-    TA_LOGIN("http://localhost/TADashboard/login.jsp");
+    TA_LOGIN("http://localhost/TADashboard/login.jsp"),
+    TA_DASHBOARD("http://localhost/TADashboard");
 
     private final String url;
 

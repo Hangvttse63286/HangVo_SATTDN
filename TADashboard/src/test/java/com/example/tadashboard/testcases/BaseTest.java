@@ -13,12 +13,13 @@ import java.util.Arrays;
 
 public class BaseTest {
 
-    @BeforeTest
     public void initializeTestBaseSetup() {
         try {
             ConfigFileReader.setConfigFileReader();
             DriverManager.setDriver();
             DriverManager.maximizeWindow();
+            DriverManager.pageLoadTimeout();
+            DriverManager.implicitlyWait();
         } catch (Exception e) {
             Log.error("Error..." + Arrays.toString(e.getStackTrace()));
         }
@@ -26,18 +27,12 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        DriverManager.open(Url.TA_LOGIN);
-        DriverManager.pageLoadTimeout();
-        DriverManager.implicitlyWait();
+        initializeTestBaseSetup();
     }
 
     @AfterMethod
-    public void clearAllCookies() {
-        DriverManager.clearAllCookies();
-    }
-
-    @AfterTest
     public void tearDown() {
+        DriverManager.clearAllCookies();
         try {
             Thread.sleep(2000);
             DriverManager.quit();

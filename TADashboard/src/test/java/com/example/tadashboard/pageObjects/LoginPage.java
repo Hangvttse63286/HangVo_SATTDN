@@ -26,10 +26,11 @@ public class LoginPage {
         return DriverManager.findElement(btnLogin);
     }
 
-    public void login(String username, String password) {
+    public void login(String username, String password) throws InterruptedException {
         DriverManager.scrollToView(getBtnLogin());
         getTxtUsername().sendKeys(username);
         getTxtPassword().sendKeys(password);
         getBtnLogin().click();
+        Thread.sleep(500);
     }
 }
