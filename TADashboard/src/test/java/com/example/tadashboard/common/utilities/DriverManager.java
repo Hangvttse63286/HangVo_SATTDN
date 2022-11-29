@@ -2,9 +2,11 @@ package com.example.tadashboard.common.utilities;
 
 import com.example.tadashboard.common.constant.Browser;
 import com.example.tadashboard.common.utilities.helpers.ConfigFileReader;
+import com.example.tadashboard.dataObjects.Url;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -61,8 +63,8 @@ public class DriverManager {
         return new FirefoxDriver();
     }
 
-    public static void open(String url) {
-        driver.get(url);
+    public static void open(Url url) {
+        driver.get(url.getUrl());
     }
 
     public static void pageLoadTimeout() {
@@ -107,6 +109,19 @@ public class DriverManager {
 
     private static Alert switchToAlert() {
         return driver.switchTo().alert();
+    }
+
+    public static String getAlertMsg() {
+        return switchToAlert().getText();
+    }
+
+    public static Boolean isAlertDisplayed(long duration) {
+        try {
+            explicitlyWait(duration).until(ExpectedConditions.alertIsPresent());
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public static void acceptAlert() {

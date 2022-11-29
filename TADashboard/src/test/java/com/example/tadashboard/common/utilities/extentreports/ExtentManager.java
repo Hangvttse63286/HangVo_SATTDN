@@ -11,7 +11,7 @@ public class ExtentManager {
 
     public synchronized static ExtentReports getExtentReports() {
         ExtentSparkReporter reporter = new ExtentSparkReporter(Utilities.getProjectPath() + ConfigFileReader.getValue("exportReportPath"));
-        reporter.config().setReportName("Railways Extent Report");
+        reporter.config().setReportName("Extent Report");
         extentReports.attachReporter(reporter);
         extentReports.setSystemInfo("Framework Name", "Selenium Java");
         extentReports.setSystemInfo("Author", "Hang Vo");
