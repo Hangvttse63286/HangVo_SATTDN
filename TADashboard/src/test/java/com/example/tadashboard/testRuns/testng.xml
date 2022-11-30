@@ -7,6 +7,7 @@
     <test name="Railways Test">
         <classes>
             <class name="com.example.tadashboard.testcases.DA_LOGIN_TC003"/>
+            <class name="com.example.tadashboard.testcases.DA_LOGIN_TC008"/>
         </classes>
     </test>
 </suite>

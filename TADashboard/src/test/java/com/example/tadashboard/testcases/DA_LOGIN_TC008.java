@@ -6,6 +6,7 @@ import com.example.tadashboard.common.utilities.extentreports.ExtentTestManager;
 import com.example.tadashboard.common.utilities.listener.ReportListener;
 import com.example.tadashboard.dataObjects.Constant;
 import com.example.tadashboard.dataObjects.Message;
+import com.example.tadashboard.dataObjects.PageTitle;
 import com.example.tadashboard.dataObjects.Url;
 import com.example.tadashboard.pageObjects.LoginPage;
 import org.testng.Assert;
@@ -28,6 +29,6 @@ public class DA_LOGIN_TC008 extends BaseTest{
         loginPage.login(Constant.VALID_USERNAME, Constant.SPECIAL_CHARS_PASSWORD);
 
         ExtentTestManager.logMessage("Verify that Main page is displayed");
-        Assert.assertTrue(DriverManager.getCurrentUrl().contains(Url.TA_DASHBOARD.getUrl()), AssertMessage.PAGE_NOT_DISPLAYED.getMsg() + "Dashboard main page");
+        Assert.assertEquals(DriverManager.getPageTitle(), PageTitle.TA_EXECUTION_DASHBOARD.getTitle(), AssertMessage.PAGE_NOT_DISPLAYED.getMsg() + "Dashboard main page");
     }
 }

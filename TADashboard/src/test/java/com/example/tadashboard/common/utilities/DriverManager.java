@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -87,11 +88,11 @@ public class DriverManager {
         explicitlyWait(duration).until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    public WebElement waitToBeClickable(By by, long duration) {
-        return explicitlyWait(duration).until(ExpectedConditions.elementToBeClickable(by));
+    public static WebElement waitToBeClickable(WebElement element, long duration) {
+        return explicitlyWait(duration).until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public Boolean waitToBeSelected(By by, long duration) {
+    public static Boolean waitToBeSelected(By by, long duration) {
         return explicitlyWait(duration).until(ExpectedConditions.elementToBeSelected(by));
     }
 
@@ -133,8 +134,7 @@ public class DriverManager {
     }
 
     public static void scrollToView(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView()", element);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView()", element);
     }
 
     public static void quit() {
@@ -163,5 +163,14 @@ public class DriverManager {
 
     public static List<WebElement> findElements(By locator) {
         return driver.findElements(locator);
+    }
+
+    public static void moveToElement(WebElement element) {
+        explicitlyWait(2).until(ExpectedConditions.elementToBeClickable(element));
+        new Actions(driver).moveToElement(element).perform();
+    }
+
+    public static String getPageTitle() {
+        return driver.getTitle();
     }
 }

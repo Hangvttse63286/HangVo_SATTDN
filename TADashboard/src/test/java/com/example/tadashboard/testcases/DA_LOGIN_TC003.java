@@ -28,7 +28,7 @@ public class DA_LOGIN_TC003 extends BaseTest{
         ExtentTestManager.logMessage("Click on 'Login' button");
         loginPage.login(Constant.ADMIN_USERNAME, Constant.INVALID_PASSWORD);
 
-        ExtentTestManager.logMessage("Verify that Dashboard Error message 'Username password is invalid' appears");
+        ExtentTestManager.logMessage("Verify that Dashboard Error message 'Username or password is invalid' appears");
         Assert.assertTrue(DriverManager.isAlertDisplayed(3), AssertMessage.ELEMENT_NOT_DISPLAYED + "Dashboard Error message");
         Assert.assertEquals(DriverManager.getAlertMsg(), Message.LOGIN_INVALID_USER.getMsg(), AssertMessage.VALUE_MISMATCH_WITH_EXPECTED + "Dashboard Error message");
     }

@@ -1,7 +1,7 @@
 package com.example.tadashboard.dataObjects;
 
 public enum Message {
-    LOGIN_INVALID_USER("Username password is invalid");
+    LOGIN_INVALID_USER("Username or password is invalid");
 
     private final String msg;
 
