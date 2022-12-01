@@ -4,6 +4,7 @@ import com.example.tadashboard.common.utilities.DriverManager;
 import com.example.tadashboard.dataObjects.GlobalSettingSubMenu;
 import com.example.tadashboard.dataObjects.HeadMenuTab;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -12,7 +13,17 @@ public class BasePage {
     private final By header = By.id("header");
     private final By mnuMainMenu = By.id("main-menu");
     private final By mnuGlobalSettingMenu = By.xpath("//li[@class='mn-setting']");
+    private final By btnChoosePanel = By.id("btnChoosepanel");
+    private final By divChoosePanels = By.cssSelector(".ccpanels");
+    private final By btnCreateNewPanel = By.xpath("//div[@class='cpbutton']//span[.='Create new panel']");
+    private final By tabOverview = By.xpath("//a[.='Overview']");
+    private final By tabExecutionDashboard = By.xpath("//a[.='Execution Dashboard']");
     private final By popupAddPage = By.id("div_popup");
+    private final By popupAddPanel = By.xpath("//div[@class='ui-dialog editpanelDlg']");
+    private final By txtAddPanelDisplayName = By.id("txtDisplayName");
+    private final By ddlAddPanelChartType = By.id("cbbChartType");
+    private final By ddlAddPanelCategory = By.id("cbbCategoryField");
+    private final By ddlAddPanelSeries = By.id("cbbSeriesField");
     private final By txtAddPageName = By.id("name");
     private final By ddlAddPageParentPage = By.id("parent");
     private final By ddlAddPageNumOfCol = By.id("columnnumber");
@@ -37,6 +48,14 @@ public class BasePage {
         return getMnuMainMenu().findElement(mnuGlobalSettingMenu);
     }
 
+    protected WebElement getTabOverview() {
+        return getMnuMainMenu().findElement(tabOverview);
+    }
+
+    protected WebElement getTabExecutionDashboard() {
+        return getMnuMainMenu().findElement(tabExecutionDashboard);
+    }
+
     protected WebElement getHeadMenuTab(HeadMenuTab tab) {
         return getHeader().findElement(By.xpath(String.format(headMenuTabXPath, tab.getTab())));
     }
@@ -45,7 +64,45 @@ public class BasePage {
         return getHeadMenuTab(HeadMenuTab.ADMINISTER).findElement(By.xpath(String.format(subMnuAdministerXPath, subTab.getTab())));
     }
 
+    public void clickTabOverview() {
+        getTabOverview().click();
+    }
+
+    public Boolean isTabOverviewClickable() {
+        try {
+            clickTabOverview();
+            return true;
+        } catch (ElementClickInterceptedException e) {
+            return false;
+        }
+    }
+
+    public void clickTabExecutionDashboard() {
+        getTabExecutionDashboard().click();
+    }
+
+    public Boolean isTabExecutionDashboardClickable() {
+        try {
+            clickTabExecutionDashboard();
+            return true;
+        } catch (ElementClickInterceptedException e) {
+            return false;
+        }
+    }
+
+
+    public Boolean isHeadMenuTabClickable(HeadMenuTab tab) {
+        try {
+            clickHeadMenuTab(tab);
+            return true;
+        } catch (ElementClickInterceptedException e) {
+            return false;
+        }
+    }
+
+
     public void clickSubMnuAdminister(HeadMenuTab subTab) {
+        hoverHeadMenuTab(HeadMenuTab.ADMINISTER);
         getSubMnuAdminister(subTab).click();
     }
 
